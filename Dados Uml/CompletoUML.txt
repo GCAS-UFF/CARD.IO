@@ -1,0 +1,46 @@
+@startuml
+class Acao {
+  float valor
+  realizar ()
+}
+
+class Recomendada {
+  long periodicidade
+}
+
+class Realizada {
+  long data
+  string comentario
+  boolean status
+}
+
+class Paciente {
+    string Nome
+    int idade
+    string CPF
+    string endereco
+    float pesoMaximo
+}
+
+Acao <|-- Recomendada
+Acao <|-- Realizada
+
+Tipo <|-- Alimento
+Tipo <|-- Exercicio
+Tipo <|-- Remedio
+Tipo <|-- DadosFisiologicos
+Tipo <|-- Liquido
+
+Alimento <|-- Arroz
+Exercicio <|-- Corrida
+Remedio <|-- Levoid
+DadosFisiologicos <|-- Pressao
+DadosFisiologicos <|-- Peso 
+DadosFisiologicos <|-- BPM
+Liquido <|-- Agua
+
+Acao o-- Tipo
+
+Paciente -- Acao
+
+@enduml

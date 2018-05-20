@@ -1,0 +1,15 @@
+@startuml
+Tipo <|-- Alimento
+Tipo <|-- Exercicio
+Tipo <|-- Remedio
+Tipo <|-- DadosFisiologicos
+Tipo <|-- Liquido
+
+Alimento <|-- Arroz
+Exercicio <|-- Corrida
+Remedio <|-- Levoid
+DadosFisiologicos <|-- Pressao
+DadosFisiologicos <|-- Peso 
+DadosFisiologicos <|-- BPM
+Liquido <|-- Agua
+@enduml

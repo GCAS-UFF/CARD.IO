@@ -1,0 +1,17 @@
+@startuml
+class Acao {
+  long data
+  float valor
+  realizar ()
+}
+
+class Recomendada {
+  long periodicidade
+}
+
+Acao <|-- Disponivel
+Acao <|-- Recomendada
+Acao <|-- Relizada
+
+
+@enduml
