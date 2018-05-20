@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/azul_esverdeado</color>
+    <color name="colorPrimaryDark">@color/azul_fundo</color>
+    <color name="colorAccent">@color/azul_selecao</color>
+
+    <color name="azul_esverdeado">#19bbd5</color>
+    <color name="azul_fundo">#0e293c</color>
+    <color name="azul_detalhe">#184769</color>
+    <color name="azul_balao">#3292e1</color>
+
+    <color name="azul_selecao">#a3e3ee</color>
+
+    <!--DEGRADE-->
+    <color name="degrade_escuro">#29a3dd</color>
+    <color name="degrade_claro">#08d6cb</color>
 </resources>
