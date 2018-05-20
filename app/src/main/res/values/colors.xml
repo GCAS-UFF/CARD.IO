@@ -4,12 +4,17 @@
     <color name="colorPrimaryDark">@color/azul_fundo</color>
     <color name="colorAccent">@color/azul_selecao</color>
 
+    <color name="branco">#ffffff</color>
+    <color name="preto">#000000</color>
+
     <color name="azul_esverdeado">#19bbd5</color>
     <color name="azul_fundo">#0e293c</color>
     <color name="azul_detalhe">#184769</color>
     <color name="azul_balao">#3292e1</color>
 
     <color name="azul_selecao">#a3e3ee</color>
+
+    <color name="cinza_borda">#a3a3a3</color>
 
     <!--DEGRADE-->
     <color name="degrade_escuro">#29a3dd</color>

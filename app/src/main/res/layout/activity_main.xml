@@ -1,18 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cardio.com.cardio.MainActivity">
+    android:orientation="vertical"
+    android:background="@color/azul_fundo">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal"
+        android:gravity="center">
 
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/ll_controle_peso"
+            android:layout_width="@dimen/ll_home_largura"
+            android:layout_height="@dimen/ll_home_altura"
+            android:orientation="vertical"
+            android:background="@drawable/shape_fundo_redondo"
+            android:padding="@dimen/padding_icone_home"
+            android:layout_margin="@dimen/margem_icone_homme">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ico_corpo"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/TextoHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_controle_peso"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_alimentacao"
+            android:layout_width="@dimen/ll_home_largura"
+            android:layout_height="@dimen/ll_home_altura"
+            android:orientation="vertical"
+            android:background="@drawable/shape_fundo_redondo"
+            android:padding="@dimen/padding_icone_home"
+            android:layout_margin="@dimen/margem_icone_homme">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ico_talheres"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/TextoHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_alimentacao"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/ll_medicacoes"
+            android:layout_width="@dimen/ll_home_largura"
+            android:layout_height="@dimen/ll_home_altura"
+            android:orientation="vertical"
+            android:background="@drawable/shape_fundo_redondo"
+            android:padding="@dimen/padding_icone_home"
+            android:layout_margin="@dimen/margem_icone_homme">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ico_medicamentos"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/TextoHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_medicacoes"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_consultas"
+            android:layout_width="@dimen/ll_home_largura"
+            android:layout_height="@dimen/ll_home_altura"
+            android:orientation="vertical"
+            android:background="@drawable/shape_fundo_redondo"
+            android:padding="@dimen/padding_icone_home"
+            android:layout_margin="@dimen/margem_icone_homme">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ico_consultas"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/TextoHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_consultas"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/ll_atividade_fisica"
+            android:layout_width="@dimen/ll_home_largura"
+            android:layout_height="@dimen/ll_home_altura"
+            android:orientation="vertical"
+            android:background="@drawable/shape_fundo_redondo"
+            android:padding="@dimen/padding_icone_home"
+            android:layout_margin="@dimen/margem_icone_homme">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ico_halter"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/TextoHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_atividades_fisicas"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sobre"
+            android:layout_width="@dimen/ll_home_largura"
+            android:layout_height="@dimen/ll_home_altura"
+            android:orientation="vertical"
+            android:background="@drawable/shape_fundo_redondo"
+            android:padding="@dimen/padding_icone_home"
+            android:layout_margin="@dimen/margem_icone_homme">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ico_sinais_biologicos"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/TextoHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_sobre"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

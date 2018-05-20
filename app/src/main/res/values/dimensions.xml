@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--TELA HOME-->
+    <dimen name="margem_icone_homme">5dp</dimen>
+    <dimen name="padding_icone_home">15dp</dimen>
+
+    <dimen name="ll_home_largura">160dp</dimen>
+    <dimen name="ll_home_altura">125dp</dimen>
+
+</resources>

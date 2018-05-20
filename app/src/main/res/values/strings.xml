@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Card.io</string>
+
+
+    <!--TELA HOME-->
+    <string name="titulo_controle_peso">Pesagem</string>
+    <string name="titulo_alimentacao">Alimentação</string>
+    <string name="titulo_medicacoes">Medicações</string>
+    <string name="titulo_consultas">Consultas</string>
+    <string name="titulo_atividades_fisicas">Exercícios</string>
+    <string name="titulo_sobre">Sobre</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--TELA PESAGEM-->
+    <string name="titulo_tela_pesagem">Como eu estou hoje</string>
+
+    <string name="label_peso">Meu peso</string>
+    <string name="label_unidade_peso">kg</string>
+    <string name="label_batimentos">Meus batimentos</string>
+    <string name="label_unidade_batimentos">bpm</string>
+    <string name="label_pressao">Minha pressão arterial</string>
+    <string name="label_unidade_pressao">mmHg</string>
 </resources>
