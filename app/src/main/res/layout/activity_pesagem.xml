@@ -1,34 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:layout_height="match_parent">
     <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/shape_borda_redonda_cinza"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginBottom="10dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <include
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            layout="@layout/content_pesagem_titulo"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rec_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp"/>
+            android:orientation="vertical"
+            android:background="@drawable/shape_borda_redonda_cinza"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginBottom="10dp">
+
+            <include
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                layout="@layout/content_pesagem_titulo"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/LabelTelaPesagem"
+                    android:text="@string/titulo_radio_group_edema"
+                    android:layout_marginBottom="5dp"/>
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/radio_nenhum_inchaco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/OpcoesRadioGroupPesagem"
+                        android:text="@string/opcao_rg_nenhum_inchaco"/>
+                    <RadioButton
+                        android:id="@+id/radio_pouco_inchaco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/OpcoesRadioGroupPesagem"
+                        android:text="@string/opcao_rg_pouco_inchaco"/>
+                    <RadioButton
+                        android:id="@+id/radio_medio_inchaco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/OpcoesRadioGroupPesagem"
+                        android:text="@string/opcao_rg_medio_inchaco"/>
+                    <RadioButton
+                        android:id="@+id/radio_muito_inchaco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/OpcoesRadioGroupPesagem"
+                        android:text="@string/opcao_rg_muito_inchaco"/>
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/LabelTelaPesagem"
+                    android:text="@string/titulo_radio_group_fadiga"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"/>
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/radio_nenhuma_fadiga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/OpcoesRadioGroupPesagem"
+                        android:text="@string/opcao_rg_nenhuma_fadiga"/>
+                    <RadioButton
+                        android:id="@+id/radio_pouca_fadiga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/OpcoesRadioGroupPesagem"
+                        android:text="@string/opcao_rg_pouca_fadiga"/>
+                    <RadioButton
+                        android:id="@+id/radio_media_fadiga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/OpcoesRadioGroupPesagem"
+                        android:text="@string/opcao_rg_media_fadiga"/>
+                    <RadioButton
+                        android:id="@+id/radio_muita_fadiga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/OpcoesRadioGroupPesagem"
+                        android:text="@string/opcao_rg_muita_fadiga"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_salvar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_salvar_pesagem"
+                style="@style/BotaoSalvarPesagem"
+                android:background="@drawable/riple_effect_botao_azul"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:layout_gravity="right"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"/>
+            
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

@@ -17,7 +17,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/shape_fundo_redondo"
+            android:background="@drawable/riple_effect_botao_branco"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -39,7 +39,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/shape_fundo_redondo"
+            android:background="@drawable/riple_effect_botao_branco"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -69,7 +69,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/shape_fundo_redondo"
+            android:background="@drawable/riple_effect_botao_branco"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -91,7 +91,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/shape_fundo_redondo"
+            android:background="@drawable/riple_effect_botao_branco"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -121,7 +121,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/shape_fundo_redondo"
+            android:background="@drawable/riple_effect_botao_branco"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -143,7 +143,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/shape_fundo_redondo"
+            android:background="@drawable/riple_effect_botao_branco"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 

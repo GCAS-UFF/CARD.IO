@@ -22,4 +22,15 @@
     <string name="label_unidade_batimentos">bpm</string>
     <string name="label_pressao">Minha pressão arterial</string>
     <string name="label_unidade_pressao">mmHg</string>
+    <string name="titulo_radio_group_edema">Edema</string>
+    <string name="opcao_rg_nenhum_inchaco">Nenhum inchaço</string>
+    <string name="opcao_rg_pouco_inchaco">Pouco inchaço</string>
+    <string name="opcao_rg_medio_inchaco">Inchaço médio</string>
+    <string name="opcao_rg_muito_inchaco">Muito inchaço</string>
+    <string name="titulo_radio_group_fadiga">Fadiga</string>
+    <string name="opcao_rg_nenhuma_fadiga">Nenhum inchaço</string>
+    <string name="opcao_rg_pouca_fadiga">Pouca fadiga</string>
+    <string name="opcao_rg_media_fadiga">Fadiga média</string>
+    <string name="opcao_rg_muita_fadiga">Muita fadiga</string>
+    <string name="btn_salvar_pesagem">Salvar</string>
 </resources>
