@@ -8,4 +8,6 @@
     <dimen name="ll_home_largura">160dp</dimen>
     <dimen name="ll_home_altura">125dp</dimen>
 
+    <dimen name="espacamneto_padrao">10dp</dimen>
+
 </resources>

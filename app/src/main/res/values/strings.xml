@@ -33,4 +33,17 @@
     <string name="opcao_rg_media_fadiga">Fadiga média</string>
     <string name="opcao_rg_muita_fadiga">Muita fadiga</string>
     <string name="btn_salvar_pesagem">Salvar</string>
+
+    <string name="pilha">Pilha</string>
+
+    <!--TELA MEDICAMENTO-->
+    <string name="label_cadsstrar_medicamento">Cadastrar Medicamento</string>
+    <string name="label_manha">Manhã</string>
+    <string name="label_tarde">Tarde</string>
+    <string name="label_noite">Noite</string>
+    <string name="label_madrugada">Madrugada</string>
+
+    <!--DIALOG-->
+    <string name="ok">Ok</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

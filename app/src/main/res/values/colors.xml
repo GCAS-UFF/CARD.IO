@@ -6,6 +6,8 @@
 
     <color name="branco">#ffffff</color>
     <color name="preto">#000000</color>
+    <color name="vermelho">#ff0000</color>
+    <color name="verde">#00ff00</color>
 
     <color name="azul_esverdeado">#19bbd5</color>
     <color name="azul_fundo">#0e293c</color>

@@ -38,5 +38,21 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="TextTitle" >
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:color">@color/preto</item>
+    </style>
+
+    <style name="TextSubtitle" >
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:color">@color/preto</item>
+    </style>
+
+    <style name="TextContent" >
+        <item name="android:textSize">15sp</item>
+        <item name="android:color">@color/preto</item>
+    </style>
 
 </resources>
