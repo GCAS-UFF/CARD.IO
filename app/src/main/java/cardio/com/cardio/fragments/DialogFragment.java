@@ -22,6 +22,7 @@ import java.util.List;
 import cardio.com.cardio.R;
 import cardio.com.cardio.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.model.CaixaDeTexto;
+import cardio.com.cardio.model.CaixaDeTextoData;
 import cardio.com.cardio.model.Item;
 
 public class DialogFragment extends android.support.v4.app.DialogFragment {
@@ -48,15 +49,29 @@ public class DialogFragment extends android.support.v4.app.DialogFragment {
         mBtnCancelar = (Button) view.findViewById(R.id.btn_cancelar);
         mBtnOk = (Button) view.findViewById(R.id.btn_ok);
 
+
         List<Item> items = new ArrayList<>();
 
         CaixaDeTexto caixaDeTextoNome = new CaixaDeTexto("Nome Medicamento", "", CaixaDeTexto.INPUT_TEXT);
         items.add(caixaDeTextoNome);
 
-        CaixaDeTexto caixaDeTextoDosagem = new CaixaDeTexto("Dosagem", "", CaixaDeTexto.INPUT_NUMBER);
+        CaixaDeTexto caixaDeTextoDosagem = new CaixaDeTexto("Dosagem", "", CaixaDeTexto.INPUT_TEXT);
         items.add(caixaDeTextoDosagem);
 
+        CaixaDeTextoData caixaDeTextoDataInicial = new CaixaDeTextoData("Data Inicial", CaixaDeTextoData.INPUT_DATE);
+        items.add(caixaDeTextoDataInicial);
+
+        CaixaDeTextoData caixaDeTextoTempoInicial = new CaixaDeTextoData("Hora Inicial", CaixaDeTextoData.INPUT_TIME);
+        items.add(caixaDeTextoTempoInicial);
+
+        CaixaDeTexto caixaDeTextoVezesDia = new CaixaDeTexto("Vezes Ao Dia", "", CaixaDeTexto.INPUT_NUMBER);
+        items.add(caixaDeTextoVezesDia);
+
+        CaixaDeTextoData caixaDeTextoDataFim = new CaixaDeTextoData("Data Fim", CaixaDeTextoData.INPUT_DATE);
+        items.add(caixaDeTextoDataFim);
+
         ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(items);
+        itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
 
         mRecView.setAdapter(itemRecycleViewAdapter);
         mRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -71,6 +86,8 @@ public class DialogFragment extends android.support.v4.app.DialogFragment {
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.shape_muito_redondo_fundo);
 
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+
 
     }
 }

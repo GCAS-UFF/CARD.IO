@@ -18,6 +18,7 @@ public class HomeFragment extends Fragment {
 
     private LinearLayout mLlPesagem;
     private LinearLayout mLlMedicamentos;
+    private LinearLayout mLlSobre;
     private ComunicadorHomeActivity comunicadorHomeActivity;
 
     public HomeFragment() {
@@ -54,6 +55,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 comunicadorHomeActivity.trocaTela(R.id.ll_medicacoes);
+            }
+        });
+
+        mLlSobre = (LinearLayout) view.findViewById(R.id.ll_sobre);
+        mLlSobre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comunicadorHomeActivity.trocaTela(R.id.ll_sobre);
             }
         });
     }

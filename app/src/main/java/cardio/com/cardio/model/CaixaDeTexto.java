@@ -7,12 +7,14 @@ public class CaixaDeTexto extends Item {
     public static final int INPUT_DECIMAL = InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL;
     public static final int INPUT_NUMBER = InputType.TYPE_CLASS_NUMBER;
     public static final int INPUT_TEXT = InputType.TYPE_CLASS_TEXT;
+    public static final int INPUT_PASSWORD = InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD;
 
     private String label;
     private String unidade;
     private String input;
     private int inputType;
     private String hint;
+    private String value;
 
     public CaixaDeTexto(String label, String unidade, int inputType) {
         super(LayoutConstantes.LAYOUT_CAIXA_DE_TEXTO);
@@ -47,5 +49,13 @@ public class CaixaDeTexto extends Item {
 
     public void setHint(String hint) {
         this.hint = hint;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

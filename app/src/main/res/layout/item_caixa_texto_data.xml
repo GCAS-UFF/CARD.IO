@@ -25,8 +25,8 @@
             android:layout_below="@id/tv_label"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"/>
-        <EditText
-            android:id="@+id/edt_input"
+        <TextView
+            android:id="@+id/tv_input"
             style="@style/InputTelaPesagem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

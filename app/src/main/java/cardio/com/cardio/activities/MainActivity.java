@@ -1,12 +1,9 @@
 package cardio.com.cardio.activities;
 
-import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.fragments.HomeFragment;
@@ -35,6 +32,15 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Comu
     }
 
     @Override
+    public void onBackPressed() {
+        if (fragmentManager.getBackStackEntryCount() <=1){
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public void trocaTela(int resId) {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -51,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Comu
                 fragmentTransaction.replace(R.id.container, medicamentosFragment, "medicamentosFragment");
                 fragmentTransaction.addToBackStack(getString(R.string.pilha));
                 fragmentTransaction.commit();
+                break;
         }
     }
 }
