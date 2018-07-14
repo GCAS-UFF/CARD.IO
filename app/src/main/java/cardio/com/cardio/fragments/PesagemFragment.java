@@ -7,14 +7,20 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import cardio.com.cardio.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.model.CaixaDeTexto;
@@ -23,6 +29,9 @@ import cardio.com.cardio.model.Item;
 public class PesagemFragment extends Fragment {
 
     private RecyclerView mRecView;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
+    private FirebaseAuth firebaseAuth;
 
     public PesagemFragment() {
     }
@@ -59,5 +68,14 @@ public class PesagemFragment extends Fragment {
 
         mRecView.setAdapter(itemRecycleViewAdapter);
         mRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        initFirebase();
+    }
+
+    private void initFirebase (){
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        Log.d("debug_kelly", PreferencesUtils.getString(getActivity(), getResources().getString(R.string.patientKey)));
     }
 }

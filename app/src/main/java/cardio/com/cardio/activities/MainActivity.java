@@ -5,11 +5,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import cardio.com.cardio.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.fragments.HomeFragment;
 import cardio.com.cardio.fragments.MedicamentosFragment;
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Comu
             case R.id.menu_option_logout:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, LoginActivity.class));
+                PreferencesUtils.setString(this, getResources().getString(R.string.patientKey), null);
+                Log.d("debug_kelly", "" + PreferencesUtils.getString(this, getResources().getString(R.string.patientKey)));
                 finish();
                 break;
         }
