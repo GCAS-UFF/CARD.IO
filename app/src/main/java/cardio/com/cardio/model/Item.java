@@ -11,4 +11,6 @@ public abstract class Item {
     public int getTipo() {
         return tipo;
     }
+
+    public abstract boolean isEmpty();
 }

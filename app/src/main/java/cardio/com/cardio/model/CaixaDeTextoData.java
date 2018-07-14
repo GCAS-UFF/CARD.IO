@@ -7,6 +7,7 @@ public class CaixaDeTextoData extends Item{
 
     private String label;
     private String inputType;
+    private String value;
 
     public CaixaDeTextoData(String label, String  inputType) {
         super(LayoutConstantes.LAYOUT_CAIXA_DE_TEXTO_DATA);
@@ -28,5 +29,18 @@ public class CaixaDeTextoData extends Item{
 
     public void setInputType(String inputType) {
         this.inputType = inputType;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return (value == null || value.isEmpty());
     }
 }

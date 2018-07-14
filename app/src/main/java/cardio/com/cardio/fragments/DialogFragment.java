@@ -87,7 +87,5 @@ public class DialogFragment extends android.support.v4.app.DialogFragment {
 
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
-
-
     }
 }

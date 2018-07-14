@@ -1,9 +1,14 @@
 package cardio.com.cardio.activities;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.fragments.HomeFragment;
@@ -13,6 +18,26 @@ import cardio.com.cardio.fragments.PesagemFragment;
 public class MainActivity extends AppCompatActivity implements HomeFragment.ComunicadorHomeActivity{
 
     private FragmentManager fragmentManager;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menu_option_logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

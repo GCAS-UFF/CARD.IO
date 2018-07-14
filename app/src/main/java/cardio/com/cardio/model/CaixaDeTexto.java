@@ -58,4 +58,9 @@ public class CaixaDeTexto extends Item {
     public void setValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return (value == null || value.isEmpty());
+    }
 }

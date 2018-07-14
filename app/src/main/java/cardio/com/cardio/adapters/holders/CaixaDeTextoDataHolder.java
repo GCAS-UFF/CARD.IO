@@ -2,6 +2,8 @@ package cardio.com.cardio.adapters.holders;
 
 import android.app.TimePickerDialog;
 import android.support.v4.app.FragmentManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,6 +46,23 @@ public class CaixaDeTextoDataHolder extends Holder {
                     TimePickerFragment timePickerFragment = new TimePickerFragment(comunicatorTime);
                     timePickerFragment.show(mFragmentManager, "timePicker");
                 }
+            }
+        });
+
+        mTvInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                caixaDeTextoData.setValue(mTvInput.getText().toString());
             }
         });
     }
