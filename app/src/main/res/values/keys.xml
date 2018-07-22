@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="patientKey">Paciente</string>
+    <string name="professionalKey">Profissional</string>
+    <string name="userKey">Usuario</string>
     <string name="performedActionsKey">AcoesRealizadas</string>
     <string name="recommendedActionsKey">AcoesRecomendadas</string>
+
+    <string name="userTypeKey">Tipo</string>
 </resources>

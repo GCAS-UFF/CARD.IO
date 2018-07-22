@@ -30,12 +30,22 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="BotaoSalvarPesagem">
+    <style name="BotaoSalvar">
         <item name="android:textColor">@color/branco</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:text">@string/btn_save</item>
+        <item name="android:paddingLeft">@dimen/save_button_padding_left</item>
+        <item name="android:paddingRight">@dimen/save_button_padding_right</item>
+        <item name="android:paddingBottom">@dimen/save_button_padding_bottom</item>
+        <item name="android:paddingTop">@dimen/save_button_padding_top</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:layout_marginRight">@dimen/save_button_margin_right</item>
+        <item name="android:layout_marginBottom">@dimen/save_button_margin_bottom</item>
+        <item name="android:background">@drawable/riple_effect_botao_azul</item>
     </style>
 
     <style name="TextTitle" >

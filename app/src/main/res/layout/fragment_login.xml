@@ -29,28 +29,28 @@
             android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_register"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape_botao_register"
-                style="@style/BotaoSalvarPesagem"
-                />
-
-            <Button
+                style="@style/BotaoSalvar"
                 android:id="@+id/btn_login"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/btn_login"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/shape_botao_login"
-                style="@style/BotaoSalvarPesagem"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="10dp"
                 />
+
+            <TextView
+                android:id="@+id/tv_not_registered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_not_registred"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
     </LinearLayout>

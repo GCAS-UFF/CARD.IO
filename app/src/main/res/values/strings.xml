@@ -3,19 +3,16 @@
 
 
     <!--TELA HOME-->
-    <string name="titulo_controle_peso">Pesagem</string>
+    <string name="titulo_controle_peso">Biometria</string>
     <string name="titulo_alimentacao">Alimentação</string>
     <string name="titulo_medicacoes">Medicações</string>
     <string name="titulo_consultas">Consultas</string>
     <string name="titulo_atividades_fisicas">Exercícios</string>
     <string name="titulo_sobre">Sobre</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--TELA PESAGEM-->
     <string name="titulo_tela_pesagem">Como eu estou hoje</string>
-
     <string name="label_peso">Meu peso</string>
     <string name="label_unidade_peso">kg</string>
     <string name="label_batimentos">Meus batimentos</string>
@@ -32,9 +29,7 @@
     <string name="opcao_rg_pouca_fadiga">Pouca fadiga</string>
     <string name="opcao_rg_media_fadiga">Fadiga média</string>
     <string name="opcao_rg_muita_fadiga">Muita fadiga</string>
-    <string name="btn_salvar_pesagem">Salvar</string>
 
-    <string name="pilha">Pilha</string>
 
     <!--TELA MEDICAMENTO-->
     <string name="label_cadsstrar_medicamento">Cadastrar Medicamento</string>
@@ -43,14 +38,57 @@
     <string name="label_noite">Noite</string>
     <string name="label_madrugada">Madrugada</string>
 
-    <!--DIALOG-->
-    <string name="ok">Ok</string>
-    <string name="cancelar">Cancelar</string>
+
+    <!--TELA ALIMENTACAO-->
+    <string name="titulo_tela_alimentacao">Alimentação</string>
+    <string name="medida">Medida</string>
+    <string name="copo_americano">Um copo americano</string>
+    <string name="meio_copo_americano">Meio copo americano</string>
+    <string name="xicara">Uma xícara</string>
+    <string name="meia_xicara">Meia xícara</string>
+    <string name="copo_requeijao">Um copo de requeijão</string>
+    <string name="meio_copo_requeijao">Meio copo de requeijão</string>
+    <string name="calice">Um cálice</string>
+
+    <string name="quantidade">Quantidade</string>
+    <string name="qtd_copo_americano">200 ml</string>
+    <string name="qtd_meio_copo_americano">100 ml</string>
+    <string name="qtd_xicara">250 ml</string>
+    <string name="qtd_meia_xicara">125 ml</string>
+    <string name="qtd_copo_requeijao">250 ml</string>
+    <string name="qtd_meio_copo_requeijao">125 ml</string>
+    <string name="qtd_calice">135 ml</string>
 
 
     <!--TELA LOGIN-->
     <string name="btn_login">Login</string>
     <string name="btn_register">Cadastrar</string>
     <string name="title_activity_login">Login</string>
+    <string name="label_not_registred">Ainda não é cadastrado?</string>
+
+    <!--TELA EXERCICIOS-->
+    <string name="titulo_tela_exercicio">Atividades Físicas</string>
+
+    <!--TELA LISTA PACIENTES-->
+    <string name="add_patient">Cadastrar Paciente</string>
+
+
+    <!--GENERAL-->
+    <string name="pilha">Pilha</string>
+    <string name="ok">Ok</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="btn_save">Salvar</string>
+
+
+    <!--MESSAGES-->
+    <string name="message_error_field_empty">Todos os campos devem ser preenchidos</string>
+    <string name="message_succes_register_user">Usuário cadastrado com sucesso!</string>
+    <string name="message_error_register_user">Falha ao cadastrar usuário!</string>
+    <string name="message_succes_register_general">Registro realizado com sucesso!</string>
+    <string name="message_error_register_general">Falha ao registrar informação!</string>
+    <string name="message_not_registred">Caso seja um paciente ainda não cadastrado entre em contato com seu profissional de saúde para que faça seu cadastro. \n Caso seja um profissional de saúde autorizado basta clicar em \"Ok\" e seguir com seu cadastro.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

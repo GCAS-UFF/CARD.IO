@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/azul_esverdeado</color>
-    <color name="colorPrimaryDark">@color/azul_fundo</color>
+    <color name="colorPrimaryDark">@color/azul_esverdeado</color>
     <color name="colorAccent">@color/azul_selecao</color>
 
     <color name="branco">#ffffff</color>

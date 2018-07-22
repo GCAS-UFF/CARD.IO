@@ -11,16 +11,16 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".common.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.MainActivity"/>
+        <activity android:name=".common.activities.LoginActivity" />
+        <activity android:name=".patiente.activities.MainActivityPatient" />
+        <activity android:name=".professional.activities.MainActivityProfessional"></activity>
     </application>
 
 </manifest>
