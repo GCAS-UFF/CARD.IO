@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.fragments.LoginFragment;
-import cardio.com.cardio.professional.fragments.RegisterPatientFragment;
 
 public class LoginActivity extends AppCompatActivity implements LoginFragment.ComunicadorLoginActivity {
 
@@ -26,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.Co
 
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.container, loginFragment, "loginFragment");
-            fragmentTransaction.addToBackStack(getString(R.string.pilha));
+            fragmentTransaction.addToBackStack(getString(R.string.pile));
             fragmentTransaction.commit();
         }
 
@@ -42,14 +41,14 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.Co
     }
 
     @Override
-    public void trocaTela(int resId) {
+    public void changeScreen(int resId) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         switch (resId){
             case R.layout.fragment_login:
                 LoginFragment loginFragment = new LoginFragment();
                 fragmentTransaction.replace(R.id.container, loginFragment, "loginFragment");
-                fragmentTransaction.addToBackStack(getResources().getString(R.string.pilha));
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.pile));
                 fragmentTransaction.commit();
                 break;
         }

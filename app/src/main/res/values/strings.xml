@@ -3,61 +3,61 @@
 
 
     <!--TELA HOME-->
-    <string name="titulo_controle_peso">Biometria</string>
-    <string name="titulo_alimentacao">Alimentação</string>
-    <string name="titulo_medicacoes">Medicações</string>
-    <string name="titulo_consultas">Consultas</string>
-    <string name="titulo_atividades_fisicas">Exercícios</string>
-    <string name="titulo_sobre">Sobre</string>
+    <string name="weight_control_title">Biometria</string>
+    <string name="alimentation_title">Alimentação</string>
+    <string name="medicines_title">Medicações</string>
+    <string name="medical_appointment_title">Consultas</string>
+    <string name="exercises_title">Exercícios</string>
+    <string name="about_title">Sobre</string>
 
 
     <!--TELA PESAGEM-->
-    <string name="titulo_tela_pesagem">Como eu estou hoje</string>
-    <string name="label_peso">Meu peso</string>
-    <string name="label_unidade_peso">kg</string>
-    <string name="label_batimentos">Meus batimentos</string>
-    <string name="label_unidade_batimentos">bpm</string>
-    <string name="label_pressao">Minha pressão arterial</string>
-    <string name="label_unidade_pressao">mmHg</string>
-    <string name="titulo_radio_group_edema">Inchaço</string>
-    <string name="opcao_rg_nenhum_inchaco">Nenhum inchaço</string>
-    <string name="opcao_rg_pouco_inchaco">Pouco inchaço</string>
-    <string name="opcao_rg_medio_inchaco">Inchaço médio</string>
-    <string name="opcao_rg_muito_inchaco">Muito inchaço</string>
-    <string name="titulo_radio_group_fadiga">Fadiga</string>
-    <string name="opcao_rg_nenhuma_fadiga">Nenhuma fadiga</string>
-    <string name="opcao_rg_pouca_fadiga">Pouca fadiga</string>
-    <string name="opcao_rg_media_fadiga">Fadiga média</string>
-    <string name="opcao_rg_muita_fadiga">Muita fadiga</string>
+    <string name="weight_screen_title">Como eu estou hoje</string>
+    <string name="label_weigth">Meu peso</string>
+    <string name="weight_unit_label">kg</string>
+    <string name="heartbeats_label">Meus batimentos</string>
+    <string name="heartbeats_unit_label">bpm</string>
+    <string name="pressure_label">Minha pressão arterial</string>
+    <string name="pressure_unit_label">mmHg</string>
+    <string name="swelling_rg_title">Inchaço</string>
+    <string name="no_swelling_rg_opt">Nenhum inchaço</string>
+    <string name="little_swelling_rg_opt">Pouco inchaço</string>
+    <string name="medium_swelling_rg_opt">Inchaço médio</string>
+    <string name="much_swelling_rg_opt">Muito inchaço</string>
+    <string name="fatigue_rg_title">Fadiga</string>
+    <string name="no_fatigue_rg_opt">Nenhuma fadiga</string>
+    <string name="little_fatigue_rg_opt">Pouca fadiga</string>
+    <string name="medium_fatigue_rg_opt">Fadiga média</string>
+    <string name="much_fatigue_rg_opt">Muita fadiga</string>
 
 
     <!--TELA MEDICAMENTO-->
-    <string name="label_cadsstrar_medicamento">Cadastrar Medicamento</string>
-    <string name="label_manha">Manhã</string>
-    <string name="label_tarde">Tarde</string>
-    <string name="label_noite">Noite</string>
-    <string name="label_madrugada">Madrugada</string>
+    <string name="register_medice_label">Cadastrar Medicamento</string>
+    <string name="label_morning">Manhã</string>
+    <string name="label_evening">Tarde</string>
+    <string name="label_night">Noite</string>
+    <string name="label_dawn">Madrugada</string>
 
 
     <!--TELA ALIMENTACAO-->
-    <string name="titulo_tela_alimentacao">Alimentação</string>
-    <string name="medida">Medida</string>
-    <string name="copo_americano">Um copo americano</string>
-    <string name="meio_copo_americano">Meio copo americano</string>
-    <string name="xicara">Uma xícara</string>
-    <string name="meia_xicara">Meia xícara</string>
-    <string name="copo_requeijao">Um copo de requeijão</string>
-    <string name="meio_copo_requeijao">Meio copo de requeijão</string>
-    <string name="calice">Um cálice</string>
+    <string name="alimentation_screen_title">Alimentação</string>
+    <string name="measure">Medida</string>
+    <string name="glass">Um copo americano</string>
+    <string name="half_glas">Meio copo americano</string>
+    <string name="cup">Uma xícara</string>
+    <string name="half_cup">Meia xícara</string>
+    <string name="requeijao_glass">Um copo de requeijão</string>
+    <string name="half_requeijao_glass">Meio copo de requeijão</string>
+    <string name="chalice">Um cálice</string>
 
-    <string name="quantidade">Quantidade</string>
-    <string name="qtd_copo_americano">200 ml</string>
-    <string name="qtd_meio_copo_americano">100 ml</string>
-    <string name="qtd_xicara">250 ml</string>
-    <string name="qtd_meia_xicara">125 ml</string>
-    <string name="qtd_copo_requeijao">250 ml</string>
-    <string name="qtd_meio_copo_requeijao">125 ml</string>
-    <string name="qtd_calice">135 ml</string>
+    <string name="quantity">Quantidade</string>
+    <string name="qtd_glass">200 ml</string>
+    <string name="qtd_half_glass">100 ml</string>
+    <string name="qtd_cup">250 ml</string>
+    <string name="qtd_half_cup">125 ml</string>
+    <string name="qtd_requeijao_glass">250 ml</string>
+    <string name="qtd_half_requeijao_glass">125 ml</string>
+    <string name="qtd_chalice">135 ml</string>
 
 
     <!--TELA LOGIN-->
@@ -67,16 +67,16 @@
     <string name="label_not_registred">Ainda não é cadastrado?</string>
 
     <!--TELA EXERCICIOS-->
-    <string name="titulo_tela_exercicio">Atividades Físicas</string>
+    <string name="exercise_screen_title">Atividades Físicas</string>
 
     <!--TELA LISTA PACIENTES-->
     <string name="add_patient">Cadastrar Paciente</string>
 
 
     <!--GENERAL-->
-    <string name="pilha">Pilha</string>
+    <string name="pile">Pile</string>
     <string name="ok">Ok</string>
-    <string name="cancelar">Cancelar</string>
+    <string name="cancel">Cancelar</string>
     <string name="btn_save">Salvar</string>
 
 
@@ -87,8 +87,5 @@
     <string name="message_succes_register_general">Registro realizado com sucesso!</string>
     <string name="message_error_register_general">Falha ao registrar informação!</string>
     <string name="message_not_registred">Caso seja um paciente ainda não cadastrado entre em contato com seu profissional de saúde para que faça seu cadastro. \n Caso seja um profissional de saúde autorizado basta clicar em \"Ok\" e seguir com seu cadastro.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

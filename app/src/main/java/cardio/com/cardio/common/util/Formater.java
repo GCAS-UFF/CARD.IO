@@ -37,4 +37,10 @@ public class Formater {
         }
     }
 
+    public static String getStringFromDate(Date date){
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        return formato.format(date);
+    }
+
+
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/azul_fundo">
+    android:background="@color/blue_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/riple_effect_botao_branco"
+            android:background="@drawable/white_button_riple_effect"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -27,10 +27,10 @@
                 android:src="@drawable/ico_corpo"
                 android:layout_gravity="center_horizontal"/>
             <TextView
-                style="@style/TextoHome"
+                style="@style/HomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/titulo_controle_peso"
+                android:text="@string/weight_control_title"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 
@@ -39,7 +39,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/riple_effect_botao_branco"
+            android:background="@drawable/white_button_riple_effect"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -49,10 +49,10 @@
                 android:src="@drawable/ico_talheres"
                 android:layout_gravity="center_horizontal"/>
             <TextView
-                style="@style/TextoHome"
+                style="@style/HomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/titulo_alimentacao"
+                android:text="@string/alimentation_title"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 
@@ -69,7 +69,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/riple_effect_botao_branco"
+            android:background="@drawable/white_button_riple_effect"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -79,10 +79,10 @@
                 android:src="@drawable/ico_medicamentos"
                 android:layout_gravity="center_horizontal"/>
             <TextView
-                style="@style/TextoHome"
+                style="@style/HomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/titulo_medicacoes"
+                android:text="@string/medicines_title"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 
@@ -91,7 +91,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/riple_effect_botao_branco"
+            android:background="@drawable/white_button_riple_effect"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -101,10 +101,10 @@
                 android:src="@drawable/ico_consultas"
                 android:layout_gravity="center_horizontal"/>
             <TextView
-                style="@style/TextoHome"
+                style="@style/HomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/titulo_consultas"
+                android:text="@string/medical_appointment_title"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 
@@ -121,7 +121,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/riple_effect_botao_branco"
+            android:background="@drawable/white_button_riple_effect"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -131,10 +131,10 @@
                 android:src="@drawable/ico_halter"
                 android:layout_gravity="center_horizontal"/>
             <TextView
-                style="@style/TextoHome"
+                style="@style/HomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/titulo_atividades_fisicas"
+                android:text="@string/exercises_title"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 
@@ -143,7 +143,7 @@
             android:layout_width="@dimen/ll_home_largura"
             android:layout_height="@dimen/ll_home_altura"
             android:orientation="vertical"
-            android:background="@drawable/riple_effect_botao_branco"
+            android:background="@drawable/white_button_riple_effect"
             android:padding="@dimen/padding_icone_home"
             android:layout_margin="@dimen/margem_icone_homme">
 
@@ -153,10 +153,10 @@
                 android:src="@drawable/ico_sinais_biologicos"
                 android:layout_gravity="center_horizontal"/>
             <TextView
-                style="@style/TextoHome"
+                style="@style/HomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/titulo_sobre"
+                android:text="@string/about_title"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 

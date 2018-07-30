@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/azul_esverdeado</color>
-    <color name="colorPrimaryDark">@color/azul_esverdeado</color>
-    <color name="colorAccent">@color/azul_selecao</color>
+    <color name="colorPrimary">@color/greenish_blue</color>
+    <color name="colorPrimaryDark">@color/greenish_blue</color>
+    <color name="colorAccent">@color/selected_blue</color>
 
-    <color name="branco">#ffffff</color>
-    <color name="preto">#000000</color>
-    <color name="vermelho">#e1323a</color>
-    <color name="verde">#32e181</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="red">#e1323a</color>
+    <color name="green">#32e181</color>
 
-    <color name="azul_esverdeado">#19bbd5</color>
-    <color name="azul_fundo">#0e293c</color>
-    <color name="azul_detalhe">#184769</color>
-    <color name="azul_balao">#3292e1</color>
+    <color name="greenish_blue">#19bbd5</color>
+    <color name="blue_background">#0e293c</color>
+    <color name="blue_detail">#184769</color>
+    <color name="blue_balloon">#3292e1</color>
 
-    <color name="azul_selecao">#a3e3ee</color>
+    <color name="selected_blue">#a3e3ee</color>
 
-    <color name="cinza_borda">#a3a3a3</color>
+    <color name="grey_edge">#a3a3a3</color>
 
     <!--DEGRADE-->
-    <color name="degrade_escuro">#29a3dd</color>
-    <color name="degrade_claro">#08d6cb</color>
+    <color name="dark_fade">#29a3dd</color>
+    <color name="light_fade">#08d6cb</color>
 </resources>

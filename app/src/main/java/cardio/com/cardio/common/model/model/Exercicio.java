@@ -2,7 +2,7 @@ package cardio.com.cardio.common.model.model;
 
 import cardio.com.cardio.common.Firebase.ActionsFirebaseConstants;
 
-public class Exercicio extends Acao {
+public class Exercicio extends Action {
 
 
     private String exercise;

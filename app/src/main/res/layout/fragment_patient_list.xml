@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/riple_effect_botao_azul"
+        android:background="@drawable/blue_button_riple_effect"
         android:layout_marginBottom="15dp">
 
         <TextView
-            style="@style/BotaoSalvar"
+            style="@style/SaveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_patient"
@@ -32,7 +32,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:tint="@color/branco"/>
+            android:tint="@color/white"/>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

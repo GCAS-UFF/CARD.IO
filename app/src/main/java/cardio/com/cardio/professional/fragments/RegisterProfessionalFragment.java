@@ -30,11 +30,12 @@ import java.util.List;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.Firebase.FirebaseConfig;
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.activities.LoginActivity;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.common.model.model.Profissional;
 import cardio.com.cardio.common.model.model.User;
-import cardio.com.cardio.common.model.view.CaixaDeTexto;
+import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.model.view.Item;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
@@ -43,10 +44,14 @@ public class RegisterProfessionalFragment extends Fragment {
     private RecyclerView mRecView;
     private Button mBtnRegister;
     private List<Item> mItens;
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mDbProfessionalRef;
-    private DatabaseReference mDbUserRef;
     private FirebaseAuth mFirebaseAuth;
+
+    private TextBox mNameTextBox;
+    private TextBox mCPFTextBox;
+    private TextBox mRegionalRegisterTextBox;
+    private TextBox mSpecialityTextBox;
+    private TextBox mEmailTextBox;
+    private TextBox mPasswordTextBox;
 
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
@@ -74,33 +79,30 @@ public class RegisterProfessionalFragment extends Fragment {
         mRecView = (RecyclerView) view.findViewById(R.id.rec_view_patient);
         mBtnRegister = (Button) view.findViewById(R.id.btn_register);
 
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDbProfessionalRef = mFirebaseDatabase.getReference().child(getResources().getString(R.string.professionalKey));
-        mDbUserRef = mFirebaseDatabase.getReference().child(getString(R.string.userKey));
         mFirebaseAuth =  FirebaseConfig.getFirebaseAuth();
 
         mItens = new ArrayList<>();
 
-        final CaixaDeTexto caixaDeTextoNome = new CaixaDeTexto("Nome", "", CaixaDeTexto.INPUT_TEXT);
-        caixaDeTextoNome.setHint("Nome Completo");
-        mItens.add(caixaDeTextoNome);
+        mNameTextBox = new TextBox("Nome", "", TextBox.INPUT_TEXT);
+        mNameTextBox.setHint("Nome Completo");
+        mItens.add(mNameTextBox);
 
-        final CaixaDeTexto caixaDeTextoCPF = new CaixaDeTexto("CPF", "", CaixaDeTexto.INPUT_DECIMAL);
-        caixaDeTextoCPF.setHint("000.000.000-00");
-        mItens.add(caixaDeTextoCPF);
+        mCPFTextBox = new TextBox("CPF", "", TextBox.INPUT_DECIMAL);
+        mCPFTextBox.setHint("000.000.000-00");
+        mItens.add(mCPFTextBox);
 
-        final CaixaDeTexto caixaDeTextoRegistroRegional = new CaixaDeTexto("Registro Regional", "", CaixaDeTexto.INPUT_TEXT);
-        mItens.add(caixaDeTextoRegistroRegional);
+        mRegionalRegisterTextBox = new TextBox("Registro Regional", "", TextBox.INPUT_TEXT);
+        mItens.add(mRegionalRegisterTextBox);
 
-        final CaixaDeTexto caixaDeTextoEspecialidade = new CaixaDeTexto("Especialidade", "", CaixaDeTexto.INPUT_TEXT);
-        mItens.add(caixaDeTextoEspecialidade);
+        mSpecialityTextBox = new TextBox("Especialidade", "", TextBox.INPUT_TEXT);
+        mItens.add(mSpecialityTextBox);
 
-        final CaixaDeTexto caixaDeTextoEmail = new CaixaDeTexto("E-mail", "", CaixaDeTexto.INPUT_TEXT);
-        caixaDeTextoEmail.setHint("email@email.com");
-        mItens.add(caixaDeTextoEmail);
+        mEmailTextBox = new TextBox("E-mail", "", TextBox.INPUT_TEXT);
+        mEmailTextBox.setHint("email@email.com");
+        mItens.add(mEmailTextBox);
 
-        final CaixaDeTexto caixaDeTextoSenha = new CaixaDeTexto("Senha", "", CaixaDeTexto.INPUT_PASSWORD);
-        mItens.add(caixaDeTextoSenha);
+        mPasswordTextBox = new TextBox("Senha", "", TextBox.INPUT_PASSWORD);
+        mItens.add(mPasswordTextBox);
 
         ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItens);
         itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
@@ -113,12 +115,12 @@ public class RegisterProfessionalFragment extends Fragment {
             public void onClick(View v) {
                 if (isValidForm()) {
                     Profissional profissional = new Profissional();
-                    profissional.setNome(caixaDeTextoNome.getValue());
-                    profissional.setCpf(caixaDeTextoCPF.getValue());
-                    profissional.setRegistro(caixaDeTextoRegistroRegional.getValue());
-                    profissional.setEmail(caixaDeTextoEmail.getValue());
-                    profissional.setEspecialidade(caixaDeTextoEspecialidade.getValue());
-                    profissional.setSenha(caixaDeTextoSenha.getValue());
+                    profissional.setNome(mNameTextBox.getValue());
+                    profissional.setCpf(mCPFTextBox.getValue());
+                    profissional.setRegistro(mRegionalRegisterTextBox.getValue());
+                    profissional.setEmail(mEmailTextBox.getValue());
+                    profissional.setEspecialidade(mSpecialityTextBox.getValue());
+                    profissional.setSenha(mPasswordTextBox.getValue());
 
                     registerProfissional(profissional);
                 } else {
@@ -177,9 +179,11 @@ public class RegisterProfessionalFragment extends Fragment {
             user.setEmail(profissional.getEmail());
 
             profissional.setId(mFirebaseAuth.getUid());
-            mDbUserRef.child(profissional.getId()).setValue(user);
-            mDbUserRef.child(profissional.getId()).child(getString(R.string.userTypeKey)).setValue(profissional.getTipo());
-            mDbProfessionalRef.child(profissional.getId()).setValue(profissional);
+
+            FirebaseHelper.getInstance().getUserDatabaseReference(profissional.getId()).setValue(user);
+            FirebaseHelper.getInstance().getUserTypeDatabaseReference(profissional.getId()).setValue(profissional.getTipo());
+            FirebaseHelper.getInstance().getProfessionalDatabaseReference(profissional.getId()).setValue(profissional);
+
             Toast.makeText(getActivity(), getResources().getString(R.string.message_succes_register_user), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getActivity(), LoginActivity.class));
             return true;

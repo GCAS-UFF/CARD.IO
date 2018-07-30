@@ -6,14 +6,22 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import cardio.com.cardio.R;
-import cardio.com.cardio.patiente.fragments.DialogFragment;
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
+import cardio.com.cardio.common.adapters.ItemExpandableListAdapter;
+import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 public class PatientListFragment extends Fragment {
@@ -21,6 +29,8 @@ public class PatientListFragment extends Fragment {
     private RecyclerView mRecVwListPatient;
     private RelativeLayout mRlAddPatient;
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
+    private ItemExpandableListAdapter itemExpandableListAdapter;
+
 
     public PatientListFragment() {
     }
@@ -42,6 +52,11 @@ public class PatientListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mRecVwListPatient = (RecyclerView) view.findViewById(R.id.recycle_view);
+        mRecVwListPatient.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        itemExpandableListAdapter = new ItemExpandableListAdapter();
+        mRecVwListPatient.setAdapter(itemExpandableListAdapter);
+
         mRlAddPatient = (RelativeLayout) view.findViewById(R.id.rl_add_medicamento);
 
         mRlAddPatient.setOnClickListener(new View.OnClickListener() {
@@ -50,5 +65,48 @@ public class PatientListFragment extends Fragment {
                 comunicatorFragmentActivity.trocaTela(R.layout.fragment_register_patient);
             }
         });
+
+        populatePpatientList();
     }
+
+    public void populatePpatientList(){
+        FirebaseHelper.getInstance().getCurrentPatientListDatabaseReference().
+                addListenerForSingleValueEvent(pacientListEventListener);
+
+    }
+
+    private ValueEventListener pacientListEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            for (DataSnapshot pacientSnapshot: dataSnapshot.getChildren()){
+
+                String id = pacientSnapshot.getValue(String.class);
+                if (id != null){
+                    FirebaseHelper.getInstance().
+                            getPatientDatabaseReference(id).addListenerForSingleValueEvent(patientEventListener);
+                }
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
+
+    ValueEventListener patientEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            Paciente paciente = dataSnapshot.getValue(Paciente.class);
+            paciente.setId(dataSnapshot.getKey());
+
+            itemExpandableListAdapter.addPacient(paciente);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
 }

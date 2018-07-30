@@ -17,8 +17,8 @@ import java.util.List;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
-import cardio.com.cardio.common.model.view.CaixaDeTexto;
-import cardio.com.cardio.common.model.view.CaixaDeTextoData;
+import cardio.com.cardio.common.model.view.TextBox;
+import cardio.com.cardio.common.model.view.DateTextBox;
 import cardio.com.cardio.common.model.view.Item;
 
 public class DialogFragment extends android.support.v4.app.DialogFragment {
@@ -48,22 +48,22 @@ public class DialogFragment extends android.support.v4.app.DialogFragment {
 
         List<Item> items = new ArrayList<>();
 
-        CaixaDeTexto caixaDeTextoNome = new CaixaDeTexto("Nome Medicamento", "", CaixaDeTexto.INPUT_TEXT);
+        TextBox caixaDeTextoNome = new TextBox("Nome Medicamento", "", TextBox.INPUT_TEXT);
         items.add(caixaDeTextoNome);
 
-        CaixaDeTexto caixaDeTextoDosagem = new CaixaDeTexto("Dosagem", "", CaixaDeTexto.INPUT_TEXT);
+        TextBox caixaDeTextoDosagem = new TextBox("Dosagem", "", TextBox.INPUT_TEXT);
         items.add(caixaDeTextoDosagem);
 
-        CaixaDeTextoData caixaDeTextoDataInicial = new CaixaDeTextoData("Data Inicial", CaixaDeTextoData.INPUT_DATE);
+        DateTextBox caixaDeTextoDataInicial = new DateTextBox("Data Inicial", DateTextBox.INPUT_DATE);
         items.add(caixaDeTextoDataInicial);
 
-        CaixaDeTextoData caixaDeTextoTempoInicial = new CaixaDeTextoData("Hora Inicial", CaixaDeTextoData.INPUT_TIME);
+        DateTextBox caixaDeTextoTempoInicial = new DateTextBox("Hora Inicial", DateTextBox.INPUT_TIME);
         items.add(caixaDeTextoTempoInicial);
 
-        CaixaDeTexto caixaDeTextoVezesDia = new CaixaDeTexto("Vezes Ao Dia", "", CaixaDeTexto.INPUT_NUMBER);
+        TextBox caixaDeTextoVezesDia = new TextBox("Vezes Ao Dia", "", TextBox.INPUT_NUMBER);
         items.add(caixaDeTextoVezesDia);
 
-        CaixaDeTextoData caixaDeTextoDataFim = new CaixaDeTextoData("Data Fim", CaixaDeTextoData.INPUT_DATE);
+        DateTextBox caixaDeTextoDataFim = new DateTextBox("Data Fim", DateTextBox.INPUT_DATE);
         items.add(caixaDeTextoDataFim);
 
         ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(items);
@@ -79,7 +79,7 @@ public class DialogFragment extends android.support.v4.app.DialogFragment {
             }
         });
 
-        getDialog().getWindow().setBackgroundDrawableResource(R.drawable.shape_muito_redondo_fundo);
+        getDialog().getWindow().setBackgroundDrawableResource(R.drawable.very_round_background_shape);
 
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 

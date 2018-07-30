@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/ll_expandable_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Maura"
+        style="@style/TextTitle"
+        />
+
+    <include layout="@layout/separator"/>
+
+    <LinearLayout
+        android:id="@+id/ll_expandable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="15dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPF:"
+                android:layout_gravity="left"
+                style="@style/TextSubtitle"/>
+            <TextView
+                android:id="@+id/tv_cpf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123.123.123-12"
+                android:layout_marginStart="10dp"
+                style="@style/TextContent"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Endereço:"
+                android:layout_gravity="left"
+                style="@style/TextSubtitle"/>
+            <TextView
+                android:id="@+id/tv_adress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teste"
+                android:layout_marginStart="10dp"
+                style="@style/TextContent"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nascimento:"
+                android:layout_gravity="left"
+                style="@style/TextSubtitle"/>
+            <TextView
+                android:id="@+id/tv_birthdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10/10/10"
+                android:layout_marginStart="10dp"
+                style="@style/TextContent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/separator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

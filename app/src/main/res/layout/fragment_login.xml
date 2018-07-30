@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/azul_fundo">
+    android:background="@color/blue_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/shape_redondo_fundo"
+        android:background="@drawable/round_background_shape"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:paddingTop="30dp"
@@ -32,7 +32,7 @@
             android:orientation="vertical">
 
             <Button
-                style="@style/BotaoSalvar"
+                style="@style/SaveButton"
                 android:id="@+id/btn_login"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

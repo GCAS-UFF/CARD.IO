@@ -5,20 +5,20 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.activities.LoginActivity;
-import cardio.com.cardio.patiente.fragments.AlimentacaoFragment;
-import cardio.com.cardio.patiente.fragments.ExercicioFragment;
+import cardio.com.cardio.patiente.fragments.AlimentationFragment;
+import cardio.com.cardio.patiente.fragments.ExerciseFragment;
 import cardio.com.cardio.patiente.fragments.HomeFragment;
-import cardio.com.cardio.patiente.fragments.MedicamentosFragment;
-import cardio.com.cardio.patiente.fragments.PesagemFragment;
+import cardio.com.cardio.patiente.fragments.MedicinesFragments;
+import cardio.com.cardio.patiente.fragments.WeightFragment;
 
 public class MainActivityPatient extends AppCompatActivity implements HomeFragment.ComunicadorHomeActivity{
 
@@ -37,7 +37,7 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
             case R.id.menu_option_logout:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, LoginActivity.class));
-                PreferencesUtils.setString(this, getResources().getString(R.string.userKey), null);
+                PreferencesUtils.setString(this, FirebaseHelper.USER_KEY, null);
                 finish();
                 break;
         }
@@ -57,7 +57,7 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.container, homeFragment, "homeFragment");
-            fragmentTransaction.addToBackStack(getString(R.string.pilha));
+            fragmentTransaction.addToBackStack(getString(R.string.pile));
             fragmentTransaction.commit();
         }
     }
@@ -78,27 +78,27 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
 
         switch (resId){
             case R.id.ll_controle_peso:
-                PesagemFragment pesagemFragment = new PesagemFragment();
+                WeightFragment pesagemFragment = new WeightFragment();
                 fragmentTransaction.replace(R.id.container,pesagemFragment, "pesagemFragment");
-                fragmentTransaction.addToBackStack(getString(R.string.pilha));
+                fragmentTransaction.addToBackStack(getString(R.string.pile));
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_medicacoes:
-                MedicamentosFragment medicamentosFragment = new MedicamentosFragment();
+                MedicinesFragments medicamentosFragment = new MedicinesFragments();
                 fragmentTransaction.replace(R.id.container, medicamentosFragment, "medicamentosFragment");
-                fragmentTransaction.addToBackStack(getString(R.string.pilha));
+                fragmentTransaction.addToBackStack(getString(R.string.pile));
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_alimentacao:
-                AlimentacaoFragment alimentacaoFragment = new AlimentacaoFragment();
+                AlimentationFragment alimentacaoFragment = new AlimentationFragment();
                 fragmentTransaction.replace(R.id.container, alimentacaoFragment, "alimentacaoFragment");
-                fragmentTransaction.addToBackStack(getString(R.string.pilha));
+                fragmentTransaction.addToBackStack(getString(R.string.pile));
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_exercicios:
-                ExercicioFragment exercicioFragment = new ExercicioFragment();
+                ExerciseFragment exercicioFragment = new ExerciseFragment();
                 fragmentTransaction.replace(R.id.container, exercicioFragment, "exercicioFragment");
-                fragmentTransaction.addToBackStack(getString(R.string.pilha));
+                fragmentTransaction.addToBackStack(getString(R.string.pile));
                 fragmentTransaction.commit();
 
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/separator"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_titulo_medicamento"
+            style="@style/TextSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Levout"
+            android:layout_marginStart="25dp" />
+        <TextView
+            android:id="@+id/tv_dosagem"
+            style="@style/TextContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50mg"
+            android:layout_alignStart="@id/tv_titulo_medicamento"
+            android:layout_below="@id/tv_titulo_medicamento"/>
+        <TextView
+            android:id="@+id/tv_horario"
+            style="@style/TextContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6:00"
+            android:layout_alignStart="@id/tv_titulo_medicamento"
+            android:layout_below="@id/tv_dosagem"/>
+
+        <ImageView
+            android:id="@+id/img_vw_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ico_delete"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"/>
+        <ImageView
+            android:id="@+id/img_vw_edit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ico_edit"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/img_vw_delete"
+            android:layout_marginEnd="10dp"/>
+    </RelativeLayout>
+
+</LinearLayout>

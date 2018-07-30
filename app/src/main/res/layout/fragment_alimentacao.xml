@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/shape_borda_redonda_cinza"
+            android:background="@drawable/grey_round_edge_shape"
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
             android:layout_marginLeft="25dp"
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                style="@style/BotaoSalvar"
+                style="@style/SaveButton"
                 />
 
             <LinearLayout
@@ -76,13 +76,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/copo_americano"
+                        android:text="@string/glass"
                         android:layout_gravity="left"
                         android:layout_weight="1"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/qtd_copo_americano"
+                        android:text="@string/qtd_glass"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -92,13 +92,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/meio_copo_americano"
+                        android:text="@string/half_glas"
                         android:layout_gravity="left"
                         android:layout_weight="1"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/qtd_meio_copo_americano"
+                        android:text="@string/qtd_half_glass"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -108,13 +108,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/xicara"
+                        android:text="@string/cup"
                         android:layout_gravity="left"
                         android:layout_weight="1"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/qtd_xicara"
+                        android:text="@string/qtd_cup"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -124,13 +124,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/meia_xicara"
+                        android:text="@string/half_cup"
                         android:layout_gravity="left"
                         android:layout_weight="1"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/qtd_meia_xicara"
+                        android:text="@string/qtd_half_cup"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -140,13 +140,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/copo_requeijao"
+                        android:text="@string/requeijao_glass"
                         android:layout_gravity="left"
                         android:layout_weight="1"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/qtd_copo_requeijao"
+                        android:text="@string/qtd_requeijao_glass"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -156,13 +156,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/meio_copo_requeijao"
+                        android:text="@string/half_requeijao_glass"
                         android:layout_gravity="left"
                         android:layout_weight="1"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/qtd_meio_copo_requeijao"
+                        android:text="@string/qtd_half_requeijao_glass"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -172,13 +172,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/calice"
+                        android:text="@string/chalice"
                         android:layout_gravity="left"
                         android:layout_weight="1"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/qtd_calice"
+                        android:text="@string/qtd_chalice"
                         />
                 </LinearLayout>
             </LinearLayout>

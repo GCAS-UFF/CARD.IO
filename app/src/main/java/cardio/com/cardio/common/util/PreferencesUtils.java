@@ -5,47 +5,41 @@ import android.content.SharedPreferences;
 
 public class PreferencesUtils {
 
-    public static final String PREF_ID = "CARDIO";
+    private static final String PREF_ID = "CARDIO";
+    private static SharedPreferences sharedpreferences;
+
+    public static void initialize (Context context) {
+        sharedpreferences = context.getSharedPreferences(PREF_ID, Context.MODE_PRIVATE);
+    }
 
     public static void setBollean(Context context, String chave, boolean on) {
-
-        SharedPreferences pref = context.getSharedPreferences(PREF_ID, 0);
-        SharedPreferences.Editor editor = pref.edit();
+        SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putBoolean(chave, on);
         editor.commit();
     }
 
     public static boolean getBollean(Context context, String chave) {
-        SharedPreferences pref = context.getSharedPreferences(PREF_ID, 0);
-        boolean b = pref.getBoolean(chave, false);
+        boolean b = sharedpreferences.getBoolean(chave, false);
         return b;
     }
 
     public static void setInteger(Context context, String chave, int valor) {
-        SharedPreferences pref = context.getSharedPreferences(PREF_ID, 0);
-        SharedPreferences.Editor editor = pref.edit();
+        SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putInt(chave, valor);
         editor.commit();
     }
 
     public static int getInteger(Context context, String chave) {
-        SharedPreferences pref = context.getSharedPreferences(PREF_ID, 0);
-        int i = pref.getInt(chave, 0);
-        return i;
+        return sharedpreferences.getInt(chave, 0);
     }
 
     public static void setString(Context context, String chave, String valor) {
-
-        SharedPreferences pref = context.getSharedPreferences(PREF_ID, 0);
-        SharedPreferences.Editor editor = pref.edit();
+        SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(chave, valor);
         editor.commit();
     }
 
     public static String getString(Context context, String chave) {
-        SharedPreferences pref = context.getSharedPreferences(PREF_ID, 0);
-        String s = pref.getString(chave, null);  //String.valueOf(pref.getInt(chave, 0));
-        return s;
+        return sharedpreferences.getString(chave, null);  //String.valueOf(pref.getInt(chave, 0));
     }
-
 }

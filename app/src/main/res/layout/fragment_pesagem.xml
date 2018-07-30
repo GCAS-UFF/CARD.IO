@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/shape_borda_redonda_cinza"
+            android:background="@drawable/grey_round_edge_shape"
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
             android:layout_marginLeft="25dp"
@@ -45,8 +45,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/LabelTelaPesagem"
-                    android:text="@string/titulo_radio_group_edema"
+                    style="@style/WeightScreenLabel"
+                    android:text="@string/swelling_rg_title"
                     android:layout_marginBottom="5dp"/>
                 <RadioGroup
                     android:id="@+id/rg_inchaco"
@@ -56,33 +56,33 @@
                         android:id="@+id/radio_nenhum_inchaco"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/OpcoesRadioGroupPesagem"
-                        android:text="@string/opcao_rg_nenhum_inchaco"/>
+                        style="@style/WeightRadioGroupOptions"
+                        android:text="@string/no_swelling_rg_opt"/>
                     <RadioButton
                         android:id="@+id/radio_pouco_inchaco"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/OpcoesRadioGroupPesagem"
-                        android:text="@string/opcao_rg_pouco_inchaco"/>
+                        style="@style/WeightRadioGroupOptions"
+                        android:text="@string/little_swelling_rg_opt"/>
                     <RadioButton
                         android:id="@+id/radio_medio_inchaco"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/OpcoesRadioGroupPesagem"
-                        android:text="@string/opcao_rg_medio_inchaco"/>
+                        style="@style/WeightRadioGroupOptions"
+                        android:text="@string/medium_swelling_rg_opt"/>
                     <RadioButton
                         android:id="@+id/radio_muito_inchaco"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/OpcoesRadioGroupPesagem"
-                        android:text="@string/opcao_rg_muito_inchaco"/>
+                        style="@style/WeightRadioGroupOptions"
+                        android:text="@string/much_swelling_rg_opt"/>
                 </RadioGroup>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/LabelTelaPesagem"
-                    android:text="@string/titulo_radio_group_fadiga"
+                    style="@style/WeightScreenLabel"
+                    android:text="@string/fatigue_rg_title"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="5dp"/>
                 <RadioGroup
@@ -93,26 +93,26 @@
                         android:id="@+id/radio_nenhuma_fadiga"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/OpcoesRadioGroupPesagem"
-                        android:text="@string/opcao_rg_nenhuma_fadiga"/>
+                        style="@style/WeightRadioGroupOptions"
+                        android:text="@string/no_fatigue_rg_opt"/>
                     <RadioButton
                         android:id="@+id/radio_pouca_fadiga"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/OpcoesRadioGroupPesagem"
-                        android:text="@string/opcao_rg_pouca_fadiga"/>
+                        style="@style/WeightRadioGroupOptions"
+                        android:text="@string/little_fatigue_rg_opt"/>
                     <RadioButton
                         android:id="@+id/radio_media_fadiga"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/OpcoesRadioGroupPesagem"
-                        android:text="@string/opcao_rg_media_fadiga"/>
+                        style="@style/WeightRadioGroupOptions"
+                        android:text="@string/medium_fatigue_rg_opt"/>
                     <RadioButton
                         android:id="@+id/radio_muita_fadiga"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/OpcoesRadioGroupPesagem"
-                        android:text="@string/opcao_rg_muita_fadiga"/>
+                        style="@style/WeightRadioGroupOptions"
+                        android:text="@string/much_fatigue_rg_opt"/>
                 </RadioGroup>
 
             </LinearLayout>
@@ -121,7 +121,7 @@
                 android:id="@+id/btn_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BotaoSalvar"
+                style="@style/SaveButton"
                 />
 
         </LinearLayout>

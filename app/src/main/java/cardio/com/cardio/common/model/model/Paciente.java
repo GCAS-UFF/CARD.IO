@@ -40,7 +40,7 @@ public class Paciente extends User{
     }
 
     public void setEndereco(String endereco) {
-        endereco = endereco;
+        this.endereco = endereco;
     }
 
     public long getDataNasc() {

@@ -2,7 +2,7 @@ package cardio.com.cardio.common.model.model;
 
 import cardio.com.cardio.common.Firebase.ActionsFirebaseConstants;
 
-public class MedicaoDadosFisiologicos extends Acao{
+public class MedicaoDadosFisiologicos extends Action {
     private float weigth;
     private int bpm;
     private String bloodPressure;

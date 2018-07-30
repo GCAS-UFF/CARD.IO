@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import cardio.com.cardio.common.Firebase.FirebaseConfig;
 import cardio.com.cardio.R;
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.patiente.activities.MainActivityPatient;
@@ -40,9 +41,9 @@ public class SplashActivity extends AppCompatActivity {
     public void tryLogin(){
         if(FirebaseConfig.getFirebaseAuth().getCurrentUser() != null) {
 
-            String tipo = PreferencesUtils.getString(this, getString(R.string.userTypeKey));
+            String type = PreferencesUtils.getString(this, FirebaseHelper.USER_TYPE_KEY);
 
-            if (tipo.equals((new Paciente()).getTipo())) {
+            if (type.equals((new Paciente()).getTipo())) {
                 startActivity(new Intent(this, MainActivityPatient.class));
             } else {
                 startActivity(new Intent(this, MainActivityProfessional.class));

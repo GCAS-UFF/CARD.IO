@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -30,15 +29,16 @@ import java.util.Date;
 import java.util.List;
 
 import cardio.com.cardio.common.Firebase.FirebaseConfig;
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.model.model.User;
 import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
-import cardio.com.cardio.common.fragments.LoginFragment;
-import cardio.com.cardio.common.model.view.CaixaDeTexto;
-import cardio.com.cardio.common.model.view.CaixaDeTextoData;
+import cardio.com.cardio.common.model.view.TextBox;
+import cardio.com.cardio.common.model.view.DateTextBox;
 import cardio.com.cardio.common.model.view.Item;
 import cardio.com.cardio.common.model.model.Paciente;
+import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 
@@ -47,10 +47,14 @@ public class RegisterPatientFragment extends Fragment {
     private RecyclerView mRecView;
     private Button mBtnRegister;
     private List<Item> mItens;
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mDbPatientRef;
-    private DatabaseReference mDbUserRef;
     private FirebaseAuth mFirebaseAuth;
+
+    private TextBox mNameTextBox;
+    private TextBox mCPFTextBox;
+    private TextBox mAdressTextBox;
+    private DateTextBox mDateTextBox;
+    private TextBox mEmailTextBox;
+    private TextBox mPasswordTextBox;
 
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
@@ -78,34 +82,31 @@ public class RegisterPatientFragment extends Fragment {
         mRecView = (RecyclerView) view.findViewById(R.id.rec_view_patient);
         mBtnRegister = (Button) view.findViewById(R.id.btn_register);
 
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDbPatientRef = mFirebaseDatabase.getReference().child((new Paciente()).getTipo());
-        mDbUserRef = mFirebaseDatabase.getReference().child(getString(R.string.userKey));
         mFirebaseAuth =  FirebaseConfig.getFirebaseAuth();
 
         mItens = new ArrayList<>();
 
-        final CaixaDeTexto caixaDeTextoNome = new CaixaDeTexto("Nome", "", CaixaDeTexto.INPUT_TEXT);
-        caixaDeTextoNome.setHint("Nome Completo");
-        mItens.add(caixaDeTextoNome);
+        mNameTextBox = new TextBox("Nome", "", TextBox.INPUT_TEXT);
+        mNameTextBox.setHint("Nome Completo");
+        mItens.add(mNameTextBox);
 
-        final CaixaDeTexto caixaDeTextoCPF = new CaixaDeTexto("CPF", "", CaixaDeTexto.INPUT_DECIMAL);
-        caixaDeTextoCPF.setHint("000.000.000-00");
-        mItens.add(caixaDeTextoCPF);
+        mCPFTextBox = new TextBox("CPF", "", TextBox.INPUT_DECIMAL);
+        mCPFTextBox.setHint("000.000.000-00");
+        mItens.add(mCPFTextBox);
 
-        final CaixaDeTexto caixaDeTextoEndereco = new CaixaDeTexto("Endereço","", CaixaDeTexto.INPUT_TEXT);
-        caixaDeTextoEndereco.setHint("");
-        mItens.add(caixaDeTextoEndereco);
+        mAdressTextBox = new TextBox("Endereço","", TextBox.INPUT_TEXT);
+        mAdressTextBox.setHint("");
+        mItens.add(mAdressTextBox);
 
-        final CaixaDeTextoData caixaDeTextoData = new CaixaDeTextoData("Data de Nascimento", CaixaDeTextoData.INPUT_DATE);
-        mItens.add(caixaDeTextoData);
+        mDateTextBox = new DateTextBox("Data de Nascimento", DateTextBox.INPUT_DATE);
+        mItens.add(mDateTextBox);
 
-        final CaixaDeTexto caixaDeTextoEmail = new CaixaDeTexto("E-mail", "", CaixaDeTexto.INPUT_TEXT);
-        caixaDeTextoEmail.setHint("email@email.com");
-        mItens.add(caixaDeTextoEmail);
+        mEmailTextBox = new TextBox("E-mail", "", TextBox.INPUT_TEXT);
+        mEmailTextBox.setHint("email@email.com");
+        mItens.add(mEmailTextBox);
 
-        final CaixaDeTexto caixaDeTextoSenha = new CaixaDeTexto("Senha", "", CaixaDeTexto.INPUT_PASSWORD);
-        mItens.add(caixaDeTextoSenha);
+        mPasswordTextBox = new TextBox("Senha", "", TextBox.INPUT_PASSWORD);
+        mItens.add(mPasswordTextBox);
 
         ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItens);
         itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
@@ -119,13 +120,13 @@ public class RegisterPatientFragment extends Fragment {
                 try {
                     if (isValidForm()) {
                         Paciente paciente = new Paciente();
-                        paciente.setNome(caixaDeTextoNome.getValue());
-                        paciente.setCpf(caixaDeTextoCPF.getValue());
-                        paciente.setEmail(caixaDeTextoEmail.getValue());
-                        paciente.setEndereco(caixaDeTextoEndereco.getValue());
-                        paciente.setSenha(caixaDeTextoSenha.getValue());
+                        paciente.setNome(mNameTextBox.getValue());
+                        paciente.setCpf(mCPFTextBox.getValue());
+                        paciente.setEmail(mEmailTextBox.getValue());
+                        paciente.setEndereco(mAdressTextBox.getValue());
+                        paciente.setSenha(mPasswordTextBox.getValue());
 
-                        Date date = Formater.getDateFromString(caixaDeTextoData.getValue());
+                        Date date = Formater.getDateFromString(mDateTextBox.getValue());
                         paciente.setDataNasc(date.getTime());
 
                         registerPatient(paciente);
@@ -188,9 +189,15 @@ public class RegisterPatientFragment extends Fragment {
             user.setEmail(paciente.getEmail());
 
             paciente.setId(mFirebaseAuth.getUid());
-            mDbUserRef.child(paciente.getId()).setValue(user);
-            mDbUserRef.child(paciente.getId()).child(getString(R.string.userTypeKey)).setValue(paciente.getTipo());
-            mDbPatientRef.child(paciente.getId()).setValue(paciente);
+
+            FirebaseHelper.getInstance().getUserDatabaseReference(paciente.getId()).setValue(user);
+            FirebaseHelper.getInstance().getUserTypeDatabaseReference(paciente.getId()).setValue(paciente.getTipo());
+
+            FirebaseHelper.getInstance().getPatientDatabaseReference(paciente.getId()).setValue(paciente);
+
+            String id = FirebaseHelper.getInstance().getCurrentPatientListDatabaseReference().push().getKey();
+            FirebaseHelper.getInstance().getCurrentPatientListDatabaseReference().child(id).setValue(paciente.getId());
+
             Toast.makeText(getActivity(), getResources().getString(R.string.message_succes_register_user), Toast.LENGTH_SHORT).show();
             comunicatorFragmentActivity.trocaTela(R.layout.fragment_patient_list);
             return true;

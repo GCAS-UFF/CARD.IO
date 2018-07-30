@@ -13,13 +13,13 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
-        android:text="@string/titulo_tela_exercicio"
+        android:text="@string/exercise_screen_title"
         android:textStyle="bold"
         android:textSize="20sp"
         android:gravity="center"/>
 
     <include
-        layout="@layout/separador" />
+        layout="@layout/separator" />
 
 
 </LinearLayout>

@@ -31,12 +31,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cardio.com.cardio.common.Firebase.FirebaseConfig;
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.patiente.activities.MainActivityPatient;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
-import cardio.com.cardio.common.model.view.CaixaDeTexto;
+import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.model.view.Item;
 import cardio.com.cardio.professional.activities.MainActivityProfessional;
 
@@ -47,6 +48,10 @@ public class LoginFragment extends Fragment {
     private Button mBtnLogin;
     private TextView mTvNotRegistered;
     private ComunicadorLoginActivity comunicadorLoginActivity;
+    private ItemRecycleViewAdapter itemRecycleViewAdapter;
+    private  TextBox userTextBox;
+    private TextBox passwordTextBox;
+    private FirebaseAuth autentication;
 
     @Nullable
     @Override
@@ -70,13 +75,13 @@ public class LoginFragment extends Fragment {
 
         List<Item> itens = new ArrayList<>();
 
-        CaixaDeTexto caixaDeTextoUsuario = new CaixaDeTexto("E-mail", "", CaixaDeTexto.INPUT_TEXT);
+        TextBox caixaDeTextoUsuario = new TextBox("E-mail", "", TextBox.INPUT_TEXT);
         itens.add(caixaDeTextoUsuario);
 
-        CaixaDeTexto caixaDeTextoSenha = new CaixaDeTexto("Senha", "", CaixaDeTexto.INPUT_PASSWORD);
+        TextBox caixaDeTextoSenha = new TextBox("Senha", "", TextBox.INPUT_PASSWORD);
         itens.add(caixaDeTextoSenha);
 
-        final ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(itens);
+        itemRecycleViewAdapter = new ItemRecycleViewAdapter(itens);
 
         mRecView.setAdapter(itemRecycleViewAdapter);
         mRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -85,16 +90,15 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mBtnLogin.setClickable(false);
-                final CaixaDeTexto caixaDeTextoUsuario = (CaixaDeTexto) itemRecycleViewAdapter.getmItens().get(0);
-                CaixaDeTexto caixaDeTextoSenha = (CaixaDeTexto) itemRecycleViewAdapter.getmItens().get(1);
+                userTextBox = (TextBox) itemRecycleViewAdapter.getmItems().get(0);
+                passwordTextBox = (TextBox) itemRecycleViewAdapter.getmItems().get(1);
 
-                if(caixaDeTextoUsuario.getValue() == null || caixaDeTextoUsuario.getValue().isEmpty()
-                        || caixaDeTextoSenha.getValue() == null || caixaDeTextoSenha.getValue().isEmpty()){
+                if(userTextBox.getValue() == null || userTextBox.getValue().isEmpty()
+                        || passwordTextBox.getValue() == null || passwordTextBox.getValue().isEmpty()){
                     Toast.makeText(getActivity(), "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 }else{
-                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(getString(R.string.userKey));
-                    final FirebaseAuth autentication = FirebaseConfig.getFirebaseAuth();
-                    autentication.signInWithEmailAndPassword(caixaDeTextoUsuario.getValue(), caixaDeTextoSenha.getValue()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    autentication = FirebaseConfig.getFirebaseAuth();
+                    autentication.signInWithEmailAndPassword(userTextBox.getValue(), passwordTextBox.getValue()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
@@ -103,11 +107,10 @@ public class LoginFragment extends Fragment {
                                 ValueEventListener postListener = new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        String tipo = dataSnapshot.child(getString(R.string.userKey)).
-                                                child(autentication.getUid()).child(getString(R.string.userTypeKey)).getValue(String.class);
+                                        String tipo = dataSnapshot.getValue(String.class);
 
-                                        PreferencesUtils.setString(getActivity(), getString(R.string.userKey), autentication.getUid());
-                                        PreferencesUtils.setString(getActivity(), getString(R.string.userTypeKey), tipo);
+                                        PreferencesUtils.setString(getActivity(), FirebaseHelper.USER_KEY, autentication.getUid());
+                                        PreferencesUtils.setString(getActivity(), FirebaseHelper.USER_TYPE_KEY, tipo);
 
                                         if (tipo.equals((new Paciente()).getTipo())){
                                             startActivity(new Intent(getActivity(), MainActivityPatient.class));
@@ -121,7 +124,9 @@ public class LoginFragment extends Fragment {
                                         // Getting Post failed, log a message
                                     }
                                 };
-                                FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(postListener);
+                                FirebaseHelper.getInstance().getUserTypeDatabaseReference(autentication.getUid())
+                                        .addListenerForSingleValueEvent(postListener);
+
                                 mBtnLogin.setClickable(false);
                             }
                             else{
@@ -151,7 +156,7 @@ public class LoginFragment extends Fragment {
                         startActivity(new Intent(getActivity(), MainActivityProfessional.class));
                     }
                 })
-                .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
@@ -161,6 +166,6 @@ public class LoginFragment extends Fragment {
     }
 
     public interface ComunicadorLoginActivity {
-        void trocaTela( int resId);
+        void changeScreen(int resId);
     }
 }

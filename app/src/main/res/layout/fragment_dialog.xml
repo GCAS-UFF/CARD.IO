@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@drawable/shape_muito_redondo_fundo"
+    android:background="@drawable/very_round_background_shape"
     android:padding="10dp">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rec_view"
@@ -27,7 +27,7 @@
             android:id="@+id/btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_botao_verde"
+            android:background="@drawable/green_button_shape"
             android:text="@string/ok"
             android:layout_marginEnd="20dp"/>
 
@@ -35,8 +35,8 @@
             android:id="@+id/btn_cancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_botao_vermelho"
-            android:text="@string/cancelar"/>
+            android:background="@drawable/red_button_shape"
+            android:text="@string/cancel"/>
 
     </LinearLayout>
 </LinearLayout>

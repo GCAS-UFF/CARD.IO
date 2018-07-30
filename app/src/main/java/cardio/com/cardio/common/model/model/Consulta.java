@@ -1,5 +1,8 @@
 package cardio.com.cardio.common.model.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Consulta {
 
     private String id;
@@ -57,6 +60,15 @@ public class Consulta {
 
     public void setHorario(long horario) {
         this.horario = horario;
+    }
+
+    public Map<String,String> toMap (){
+        Map<String,String> result = new HashMap<>();
+
+        result.put("Localização: ", paciente);
+//        result.put("Horário: ", String.valueOf(quantity));
+
+        return result;
     }
 
 }

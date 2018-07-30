@@ -5,20 +5,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import cardio.com.cardio.R;
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.activities.LoginActivity;
 import cardio.com.cardio.common.util.PreferencesUtils;
-import cardio.com.cardio.patiente.fragments.AlimentacaoFragment;
-import cardio.com.cardio.patiente.fragments.ExercicioFragment;
-import cardio.com.cardio.patiente.fragments.HomeFragment;
-import cardio.com.cardio.patiente.fragments.MedicamentosFragment;
-import cardio.com.cardio.patiente.fragments.PesagemFragment;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 import cardio.com.cardio.professional.fragments.PatientListFragment;
 import cardio.com.cardio.professional.fragments.RegisterPatientFragment;
@@ -41,7 +36,7 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
             case R.id.menu_option_logout:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, LoginActivity.class));
-                PreferencesUtils.setString(this, getResources().getString(R.string.userKey), null);
+                PreferencesUtils.setString(this, FirebaseHelper.USER_KEY, null);
                 finish();
                 break;
         }
@@ -57,17 +52,17 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
         fragmentManager = getSupportFragmentManager();
 
         if(savedInstanceState == null){
-            if (PreferencesUtils.getString(this, getResources().getString(R.string.userKey)) != null){
+            if (PreferencesUtils.getString(this, FirebaseHelper.USER_KEY) != null){
                 PatientListFragment patientListFragment = new PatientListFragment();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.container, patientListFragment, "patientListFragment");
-                fragmentTransaction.addToBackStack(getResources().getString(R.string.pilha));
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.pile));
                 fragmentTransaction.commit();
             } else {
                 RegisterProfessionalFragment registerProfessionalFragment = new RegisterProfessionalFragment();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.container, registerProfessionalFragment, "registerProfessionalFragment");
-                fragmentTransaction.addToBackStack(getResources().getString(R.string.pilha));
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.pile));
                 fragmentTransaction.commit();
             }
         }
@@ -92,14 +87,14 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
             case R.layout.fragment_patient_list:
                 PatientListFragment patientListFragment = new PatientListFragment();
                 fragmentTransaction.replace(R.id.container, patientListFragment, "patientListFragment");
-                fragmentTransaction.addToBackStack(getResources().getString(R.string.pilha));
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.pile));
                 fragmentTransaction.commit();
                 break;
 
             case R.layout.fragment_register_patient:
                 RegisterPatientFragment registerPatientFragment = new RegisterPatientFragment();
                 fragmentTransaction.replace(R.id.container, registerPatientFragment, "registerPatientFragment");
-                fragmentTransaction.addToBackStack(getResources().getString(R.string.pilha));
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.pile));
                 fragmentTransaction.commit();
                 break;
         }
