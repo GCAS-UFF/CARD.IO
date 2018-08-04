@@ -1,6 +1,6 @@
 package cardio.com.cardio.common.model.model;
 
-import cardio.com.cardio.common.Firebase.ActionsFirebaseConstants;
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
 
 public class Exercicio extends Action {
 
@@ -10,7 +10,7 @@ public class Exercicio extends Action {
     private int duration;
 
     public Exercicio() {
-        super(ActionsFirebaseConstants.EXERCICIO_KEY);
+        super(FirebaseHelper.EXERCICIO_KEY);
     }
 
     public String getExercise() {

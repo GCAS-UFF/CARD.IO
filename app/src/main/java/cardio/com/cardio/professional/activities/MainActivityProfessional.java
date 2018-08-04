@@ -13,15 +13,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.activities.LoginActivity;
+import cardio.com.cardio.common.fragments.HomeFragment;
+import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 import cardio.com.cardio.professional.fragments.PatientListFragment;
+import cardio.com.cardio.professional.fragments.PrescribeFoodFragment;
 import cardio.com.cardio.professional.fragments.RegisterPatientFragment;
 import cardio.com.cardio.professional.fragments.RegisterProfessionalFragment;
 
-public class MainActivityProfessional extends AppCompatActivity implements ComunicatorFragmentActivity{
+public class MainActivityProfessional extends AppCompatActivity implements ComunicatorFragmentActivity, HomeFragment.ComunicadorHomeActivity {
 
     private FragmentManager fragmentManager;
+    private Paciente currentPatientSelected;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,13 +60,13 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
                 PatientListFragment patientListFragment = new PatientListFragment();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.container, patientListFragment, "patientListFragment");
-                fragmentTransaction.addToBackStack(getResources().getString(R.string.pile));
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
             } else {
                 RegisterProfessionalFragment registerProfessionalFragment = new RegisterProfessionalFragment();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.container, registerProfessionalFragment, "registerProfessionalFragment");
-                fragmentTransaction.addToBackStack(getResources().getString(R.string.pile));
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
             }
         }
@@ -87,16 +91,38 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
             case R.layout.fragment_patient_list:
                 PatientListFragment patientListFragment = new PatientListFragment();
                 fragmentTransaction.replace(R.id.container, patientListFragment, "patientListFragment");
-                fragmentTransaction.addToBackStack(getResources().getString(R.string.pile));
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
 
             case R.layout.fragment_register_patient:
                 RegisterPatientFragment registerPatientFragment = new RegisterPatientFragment();
                 fragmentTransaction.replace(R.id.container, registerPatientFragment, "registerPatientFragment");
-                fragmentTransaction.addToBackStack(getResources().getString(R.string.pile));
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+            case R.layout.fragment_home:
+                HomeFragment homeFragment = new HomeFragment();
+                fragmentTransaction.replace(R.id.container, homeFragment, "homeFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+            case R.id.ll_alimentacao:
+                PrescribeFoodFragment prescribeFoodFragment = new PrescribeFoodFragment();
+                fragmentTransaction.replace(R.id.container, prescribeFoodFragment, "prescribeFoodFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
         }
+    }
+
+    @Override
+    public void setPatientSelected(Paciente patient) {
+        this.currentPatientSelected = patient;
+    }
+
+    @Override
+    public Paciente getPatientSelected() {
+        return this.currentPatientSelected;
     }
 }

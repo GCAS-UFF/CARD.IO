@@ -195,8 +195,7 @@ public class RegisterPatientFragment extends Fragment {
 
             FirebaseHelper.getInstance().getPatientDatabaseReference(paciente.getId()).setValue(paciente);
 
-            String id = FirebaseHelper.getInstance().getCurrentPatientListDatabaseReference().push().getKey();
-            FirebaseHelper.getInstance().getCurrentPatientListDatabaseReference().child(id).setValue(paciente.getId());
+            FirebaseHelper.getInstance().getCurrentPatientListDatabaseReference().child(paciente.getId()).setValue(paciente.getId());
 
             Toast.makeText(getActivity(), getResources().getString(R.string.message_succes_register_user), Toast.LENGTH_SHORT).show();
             comunicatorFragmentActivity.trocaTela(R.layout.fragment_patient_list);

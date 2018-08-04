@@ -43,13 +43,13 @@ public class MedicinesFragments extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mRecVwListasMedicamentos = (RecyclerView) view.findViewById(R.id.recycle_view);
+        mRecVwListasMedicamentos = (RecyclerView) view.findViewById(R.id.recycle_view_prescribe_food);
         mRlAddMedicamento = (RelativeLayout) view.findViewById(R.id.rl_add_medicamento);
 
         mRlAddMedicamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dialogFragment = new DialogFragment();
+                PrescribeMedicineDialogFragment dialogFragment = new PrescribeMedicineDialogFragment();
                 dialogFragment.show(getActivity().getSupportFragmentManager(), "dialogFragment");
             }
         });

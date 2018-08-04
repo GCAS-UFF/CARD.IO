@@ -16,7 +16,7 @@ public class Action {
     private String id;
     private boolean performed;
     private String type;
-    private long createDate;
+    private long executedDate;
 
     public Action(String type) {
         this.type = type;
@@ -46,12 +46,12 @@ public class Action {
         return type;
     }
 
-    public long getCreateDate() {
-        return createDate;
+    public long getExecutedDate() {
+        return executedDate;
     }
 
-    public void setCreateDate(long createDate) {
-        this.createDate = createDate;
+    public void setExecutedDate(long executedDate) {
+        this.executedDate = executedDate;
     }
 
     @Exclude
@@ -66,7 +66,7 @@ public class Action {
         String performedStr = (isPerformed()) ? "Realizado" : "Não Realizado";
 
         result.put("Status: ", performedStr);
-        result.put("Data de Criação: ", Formater.getStringFromDate(new Date(getCreateDate())));
+        result.put("Data de Criação: ", Formater.getStringFromDate(new Date(getExecutedDate())));
 
         return result;
     }

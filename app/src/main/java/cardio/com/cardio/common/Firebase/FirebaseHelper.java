@@ -23,6 +23,10 @@ public class FirebaseHelper {
     public static final String RECOMMENDED_ACTION_KEY = "AcoesRecomendadas";
     public static final String PATIENT_LIST_KEY = "ListaDePacientes";
     public static final String USER_TYPE_KEY = "Tipo";
+    public static final String MEDICAO_DADOS_FISIOLOGICOS_KEY = "MedicaoDadosFisiologicos";
+    public static final String ALIMENTACAO_KEY = "Alimentacao";
+    public static final String EXERCICIO_KEY = "Exercicio";
+    public static final String QUANTIDADE_KEY = "quantity";
 
     private DatabaseReference genericPatientDatabaseReference = FirebaseDatabase.getInstance().getReference()
             .child(PACIENT_KEY);

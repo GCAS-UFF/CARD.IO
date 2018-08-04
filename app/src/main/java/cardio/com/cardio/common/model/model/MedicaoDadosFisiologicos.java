@@ -1,6 +1,6 @@
 package cardio.com.cardio.common.model.model;
 
-import cardio.com.cardio.common.Firebase.ActionsFirebaseConstants;
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
 
 public class MedicaoDadosFisiologicos extends Action {
     private float weigth;
@@ -10,7 +10,7 @@ public class MedicaoDadosFisiologicos extends Action {
     private String fatigue;
 
     public MedicaoDadosFisiologicos() {
-        super(ActionsFirebaseConstants.MEDICAO_DADOS_FISIOLOGICOS_KEY);
+        super(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
     }
 
     public float getWeigth() {

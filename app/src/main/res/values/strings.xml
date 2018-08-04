@@ -71,13 +71,26 @@
 
     <!--TELA LISTA PACIENTES-->
     <string name="add_patient">Cadastrar Paciente</string>
+    <string name="cpf_label">CPF:</string>
+    <string name="adress_label">Endereço:</string>
+    <string name="birthdate_label">Data de nascimento:</string>
+    <string name="btn_disassociate_patient">Dissociar</string>
+    <string name="btn_edit_patient">Editar</string>
 
+    <!--TELA PRESCREVER ALIMENTAÇÃO-->
+    <string name="prescription_label">Prescrição</string>
+    <string name="prescription_unit">mL/dia</string>
+    <string name="frequency_label">Frequência</string>
+    <string name="frequency_unit">vezes ao dia</string>
+    <string name="startDate_label">Data inicial</string>
+    <string name="finishDate_label">Data final</string>
 
     <!--GENERAL-->
-    <string name="pile">Pile</string>
+    <string name="stack">Stack</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancelar</string>
     <string name="btn_save">Salvar</string>
+    <string name="btn_prescribe">Adicionar recomendação</string>
 
 
     <!--MESSAGES-->
@@ -87,5 +100,11 @@
     <string name="message_succes_register_general">Registro realizado com sucesso!</string>
     <string name="message_error_register_general">Falha ao registrar informação!</string>
     <string name="message_not_registred">Caso seja um paciente ainda não cadastrado entre em contato com seu profissional de saúde para que faça seu cadastro. \n Caso seja um profissional de saúde autorizado basta clicar em \"Ok\" e seguir com seu cadastro.</string>
+    <string name="message_success_recomendation">Recomendação feita com sucesso!</string>
+    <string name="message_error_recomendation">Falha ao enviar recomendação!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

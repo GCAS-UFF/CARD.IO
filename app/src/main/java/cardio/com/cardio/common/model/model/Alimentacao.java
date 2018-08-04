@@ -1,25 +1,26 @@
 package cardio.com.cardio.common.model.model;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-import cardio.com.cardio.common.Firebase.ActionsFirebaseConstants;
+import cardio.com.cardio.common.Firebase.FirebaseHelper;
 
 public class Alimentacao extends Action {
 
-    private String aliment;
+    private String food;
     private int quantity;
 
     public Alimentacao() {
-        super(ActionsFirebaseConstants.ALIMENTACAO_KEY);
+        super(FirebaseHelper.ALIMENTACAO_KEY);
     }
 
-    public String getAliment() {
-        return aliment;
+    public String getFood() {
+        return food;
     }
 
-    public void setAliment(String aliment) {
-        this.aliment = aliment;
+    public void setFood(String food) {
+        this.food = food;
     }
 
     public int getQuantity() {
@@ -30,10 +31,13 @@ public class Alimentacao extends Action {
         this.quantity = quantity;
     }
 
+    @Override
     public Map<String,String> toMap (){
-        Map<String,String> result = new HashMap<>();
+        Map<String,String> result = new LinkedHashMap<>();
 
-        result.put("Alimento: ", aliment);
+        if (food != null) {
+            result.put("Alimento: ", food);
+        }
         result.put("Quantidade: ", String.valueOf(quantity));
 
         return result;

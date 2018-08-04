@@ -21,20 +21,20 @@ import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.model.view.DateTextBox;
 import cardio.com.cardio.common.model.view.Item;
 
-public class DialogFragment extends android.support.v4.app.DialogFragment {
+public class PrescribeMedicineDialogFragment extends android.support.v4.app.DialogFragment {
 
     private RecyclerView mRecView;
     private Button mBtnCancelar;
     private Button mBtnOk;
 
-    public DialogFragment() {
+    public PrescribeMedicineDialogFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dialog, container, false);
+        return inflater.inflate(R.layout.fragment_prescribe_medicine_dialog, container, false);
     }
 
     @Override

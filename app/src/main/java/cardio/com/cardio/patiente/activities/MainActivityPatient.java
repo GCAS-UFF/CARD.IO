@@ -16,7 +16,7 @@ import cardio.com.cardio.R;
 import cardio.com.cardio.common.activities.LoginActivity;
 import cardio.com.cardio.patiente.fragments.AlimentationFragment;
 import cardio.com.cardio.patiente.fragments.ExerciseFragment;
-import cardio.com.cardio.patiente.fragments.HomeFragment;
+import cardio.com.cardio.common.fragments.HomeFragment;
 import cardio.com.cardio.patiente.fragments.MedicinesFragments;
 import cardio.com.cardio.patiente.fragments.WeightFragment;
 
@@ -57,7 +57,7 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.container, homeFragment, "homeFragment");
-            fragmentTransaction.addToBackStack(getString(R.string.pile));
+            fragmentTransaction.addToBackStack(getString(R.string.stack));
             fragmentTransaction.commit();
         }
     }
@@ -80,25 +80,25 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
             case R.id.ll_controle_peso:
                 WeightFragment pesagemFragment = new WeightFragment();
                 fragmentTransaction.replace(R.id.container,pesagemFragment, "pesagemFragment");
-                fragmentTransaction.addToBackStack(getString(R.string.pile));
+                fragmentTransaction.addToBackStack(getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_medicacoes:
                 MedicinesFragments medicamentosFragment = new MedicinesFragments();
                 fragmentTransaction.replace(R.id.container, medicamentosFragment, "medicamentosFragment");
-                fragmentTransaction.addToBackStack(getString(R.string.pile));
+                fragmentTransaction.addToBackStack(getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_alimentacao:
                 AlimentationFragment alimentacaoFragment = new AlimentationFragment();
                 fragmentTransaction.replace(R.id.container, alimentacaoFragment, "alimentacaoFragment");
-                fragmentTransaction.addToBackStack(getString(R.string.pile));
+                fragmentTransaction.addToBackStack(getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_exercicios:
                 ExerciseFragment exercicioFragment = new ExerciseFragment();
                 fragmentTransaction.replace(R.id.container, exercicioFragment, "exercicioFragment");
-                fragmentTransaction.addToBackStack(getString(R.string.pile));
+                fragmentTransaction.addToBackStack(getString(R.string.stack));
                 fragmentTransaction.commit();
 
 

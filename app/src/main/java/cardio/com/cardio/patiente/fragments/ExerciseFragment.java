@@ -13,16 +13,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
-import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.Formater;
-import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.common.model.view.TextBox;
@@ -103,7 +100,7 @@ public class ExerciseFragment extends Fragment {
         exercicio.setIntensity(mCaixaDeTextoIntensity.getValue());
         exercicio.setDuration(Formater.getIntegerFromString(mCaixaDeTextoDuration.getValue()));
 
-        exercicio.setCreateDate((new Date()).getTime());
+        exercicio.setExecutedDate((new Date()).getTime());
         exercicio.setPerformed(true);
 
         saveIntoFirebase(exercicio);

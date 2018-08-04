@@ -6,7 +6,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
-        android:id="@+id/rl_add_medicamento"
+        android:id="@+id/rl_prescribe_food"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -17,7 +17,7 @@
             style="@style/SaveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_patient"
+            android:text="@string/btn_prescribe"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"

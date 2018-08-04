@@ -18,10 +18,13 @@ import cardio.com.cardio.common.model.model.Paciente;
 public class ItemExpandableListAdapter extends RecyclerView.Adapter<ItemExpandableListHolder>{
 
     private List<Paciente> mPatientsList;
+    private ItemExpandableListAdapter.ComunicatorExpandableItem comunicatorExpandableItem;
 
-    public ItemExpandableListAdapter() {
+    public ItemExpandableListAdapter(ItemExpandableListAdapter.ComunicatorExpandableItem comunicatorExpandableItem) {
         this.mPatientsList = new ArrayList<>();
+        this.comunicatorExpandableItem = comunicatorExpandableItem;
     }
+
 
     public List<Paciente> getmPatientsList() {
         return mPatientsList;
@@ -44,13 +47,17 @@ public class ItemExpandableListAdapter extends RecyclerView.Adapter<ItemExpandab
         }
     }
 
+    public void cleanList (){
+        mPatientsList.clear();
+    }
+
     @NonNull
     @Override
     public ItemExpandableListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View v = layoutInflater.inflate(R.layout.item_expandable_list, parent, false);
-        return new ItemExpandableListHolder(v);
+        return new ItemExpandableListHolder(v, comunicatorExpandableItem);
     }
 
     @Override
@@ -68,5 +75,11 @@ public class ItemExpandableListAdapter extends RecyclerView.Adapter<ItemExpandab
         if (mPatientsList != null)
             return mPatientsList.size();
         return 0;
+    }
+
+    public interface ComunicatorExpandableItem{
+        void disassociatePatient(Paciente paciente);
+
+        void editPatient(Paciente paciente);
     }
 }

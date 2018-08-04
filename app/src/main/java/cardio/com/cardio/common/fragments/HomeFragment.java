@@ -1,4 +1,4 @@
-package cardio.com.cardio.patiente.fragments;
+package cardio.com.cardio.common.fragments;
 
 
 import android.content.Context;

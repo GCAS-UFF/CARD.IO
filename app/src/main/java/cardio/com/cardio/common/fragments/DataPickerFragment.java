@@ -9,10 +9,10 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
-import cardio.com.cardio.patiente.fragments.DialogFragment;
+import cardio.com.cardio.patiente.fragments.PrescribeMedicineDialogFragment;
 
 @SuppressLint("ValidFragment")
-public class DataPickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+public class DataPickerFragment extends PrescribeMedicineDialogFragment implements DatePickerDialog.OnDateSetListener{
 
     private ComunicatorDataPicker comunicatorDataPicker;
 

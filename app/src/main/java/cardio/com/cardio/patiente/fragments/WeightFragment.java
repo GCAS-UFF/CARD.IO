@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +16,13 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
-import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.Formater;
-import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.common.model.view.TextBox;
@@ -113,7 +109,7 @@ public class WeightFragment extends Fragment {
             medicaoDadosFisiologicos.setFatigue(radioButton.getText().toString());
         }
 
-        medicaoDadosFisiologicos.setCreateDate((new Date()).getTime());
+        medicaoDadosFisiologicos.setExecutedDate((new Date()).getTime());
         medicaoDadosFisiologicos.setPerformed(true);
 
         saveIntoFirebase(medicaoDadosFisiologicos);
@@ -121,16 +117,12 @@ public class WeightFragment extends Fragment {
 
     private boolean isValidForm (){
         boolean isValid = true;
-        int i = 0;
         for (Item item : mItems){
             if (item.isEmpty()){
-                Log.d("DEBUG-JP: ", ""+i);
-                i++;
                 isValid = false;
                 break;
             }
         }
-        Log.d("DEBUG-JP: ", mRGFadiga.isSelected()+", "+mRGInchaco.isSelected());
         return isValid && mRGFadiga.getCheckedRadioButtonId() != -1 && mRGInchaco.getCheckedRadioButtonId() != -1;
     }
 
@@ -140,7 +132,6 @@ public class WeightFragment extends Fragment {
         DatabaseReference mDatabaseReference = FirebaseHelper.getInstance().getCurrentPatientDatabaseReference().
                 child(medicaoDadosFisiologicos.getConstantId()).
                 child(medicaoDadosFisiologicos.getType());
-        Log.d("DEBUG-JP: ", mDatabaseReference.toString());
         medicaoDadosFisiologicos.setId(mDatabaseReference.push().getKey());
         mDatabaseReference.child(medicaoDadosFisiologicos.getId()).setValue(medicaoDadosFisiologicos);
         Toast.makeText(getActivity(), getResources().getString(R.string.message_succes_register_general), Toast.LENGTH_SHORT).show();

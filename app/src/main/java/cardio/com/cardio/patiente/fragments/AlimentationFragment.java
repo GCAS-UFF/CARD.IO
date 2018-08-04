@@ -13,16 +13,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
-import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.Formater;
-import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.common.model.model.Alimentacao;
@@ -92,10 +89,10 @@ public class AlimentationFragment extends Fragment {
 
     private void saveObject(){
         Alimentacao alimentacao = new Alimentacao();
-        alimentacao.setAliment(mCaixaDeTextoAliment.getValue());
+        alimentacao.setFood(mCaixaDeTextoAliment.getValue());
         alimentacao.setQuantity(Formater.getIntegerFromString(mCaixaDeTextoQuantity.getValue()));
 
-        alimentacao.setCreateDate((new Date()).getTime());
+        alimentacao.setExecutedDate((new Date()).getTime());
         alimentacao.setPerformed(true);
 
         saveIntoFirebase(alimentacao);

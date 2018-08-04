@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +50,10 @@ public class PatientListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mRecVwListPatient = (RecyclerView) view.findViewById(R.id.recycle_view);
+        mRecVwListPatient = (RecyclerView) view.findViewById(R.id.recycle_view_prescribe_food);
         mRecVwListPatient.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        itemExpandableListAdapter = new ItemExpandableListAdapter();
+        itemExpandableListAdapter = new ItemExpandableListAdapter(comunicatorExpandableItem);
         mRecVwListPatient.setAdapter(itemExpandableListAdapter);
 
         mRlAddPatient = (RelativeLayout) view.findViewById(R.id.rl_add_medicamento);
@@ -71,7 +70,7 @@ public class PatientListFragment extends Fragment {
 
     public void populatePpatientList(){
         FirebaseHelper.getInstance().getCurrentPatientListDatabaseReference().
-                addListenerForSingleValueEvent(pacientListEventListener);
+                addValueEventListener(pacientListEventListener);
 
     }
 
@@ -79,12 +78,14 @@ public class PatientListFragment extends Fragment {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+            itemExpandableListAdapter.cleanList();
+
             for (DataSnapshot pacientSnapshot: dataSnapshot.getChildren()){
 
                 String id = pacientSnapshot.getValue(String.class);
                 if (id != null){
                     FirebaseHelper.getInstance().
-                            getPatientDatabaseReference(id).addListenerForSingleValueEvent(patientEventListener);
+                            getPatientDatabaseReference(id).addValueEventListener(patientEventListener);
                 }
             }
         }
@@ -109,4 +110,24 @@ public class PatientListFragment extends Fragment {
 
         }
     };
+
+    private ItemExpandableListAdapter.ComunicatorExpandableItem comunicatorExpandableItem =
+            new ItemExpandableListAdapter.ComunicatorExpandableItem() {
+        @Override
+        public void disassociatePatient(final Paciente paciente) {
+//            Log.d("DEBUG-JP",FirebaseHelper.getInstance().
+//                    getCurrentPatientListDatabaseReference().child(paciente.getId()).gettoString());
+            FirebaseHelper.getInstance().
+                    getCurrentPatientListDatabaseReference().child(paciente.getId()).removeValue();
+
+        }
+
+        @Override
+        public void editPatient(Paciente paciente) {
+            comunicatorFragmentActivity.setPatientSelected(paciente);
+            comunicatorFragmentActivity.trocaTela(R.layout.fragment_home);
+        }
+    };
+
+
 }
