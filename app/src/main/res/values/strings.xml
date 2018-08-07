@@ -77,13 +77,17 @@
     <string name="btn_disassociate_patient">Dissociar</string>
     <string name="btn_edit_patient">Editar</string>
 
-    <!--TELA PRESCREVER ALIMENTAÇÃO-->
-    <string name="prescription_label">Prescrição</string>
-    <string name="prescription_unit">mL/dia</string>
+    <!--TELAS PRESCREVER-->
+    <string name="food_prescription_label">Prescrição</string>
+    <string name="food_prescription_unit">mL/dia</string>
     <string name="frequency_label">Frequência</string>
     <string name="frequency_unit">vezes ao dia</string>
     <string name="startDate_label">Data inicial</string>
     <string name="finishDate_label">Data final</string>
+    <string name="exercise_prescription_label">Atividade física</string>
+    <string name="exercise_intensity_label">Intensidade</string>
+    <string name="exercise_duration_label">Duração</string>
+    <string name="exercise_duration_unit">min</string>
 
     <!--GENERAL-->
     <string name="stack">Stack</string>

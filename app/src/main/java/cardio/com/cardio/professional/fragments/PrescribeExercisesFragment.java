@@ -1,6 +1,7 @@
 package cardio.com.cardio.professional.fragments;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,29 +29,33 @@ import java.util.TreeMap;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.adapters.ItemExpandableSimpleListAdapter;
-import cardio.com.cardio.common.model.model.Alimentacao;
+import cardio.com.cardio.common.model.model.Exercicio;
 import cardio.com.cardio.common.model.model.Recomentation;
 import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
-public class PrescribeFoodFragment extends Fragment {
+
+public class PrescribeExercisesFragment extends Fragment {
 
     private RelativeLayout mRlPrescribe;
     private RecyclerView mRVHistory;
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
     private ItemExpandableSimpleListAdapter itemExpandableSimpleListAdapter;
 
+    public PrescribeExercisesFragment() {
+    }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_prescribe_food, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_prescribe_exercises, container, false);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        comunicatorFragmentActivity = (ComunicatorFragmentActivity) context;
+        if (context != null)
+            comunicatorFragmentActivity = (ComunicatorFragmentActivity) context;
     }
 
     @Override
@@ -61,8 +66,9 @@ public class PrescribeFoodFragment extends Fragment {
         mRlPrescribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PrescribeFoodDialogFragment prescribeFoodDialogFragment = new PrescribeFoodDialogFragment();
-                prescribeFoodDialogFragment.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+
+                PrescribeExercisesDialogFragment prescribeExercisesDialogFragment = new PrescribeExercisesDialogFragment();
+                prescribeExercisesDialogFragment.show(getActivity().getSupportFragmentManager(), "dialogFragment");
             }
         });
 
@@ -72,17 +78,16 @@ public class PrescribeFoodFragment extends Fragment {
         DatabaseReference prescriptionRef = FirebaseHelper.getInstance().
                 getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId()).
                 child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
-                child(FirebaseHelper.ALIMENTACAO_KEY);
+                child(FirebaseHelper.EXERCICIO_KEY);
 
         prescriptionRef.addValueEventListener(getPrescriptionListener);
 
         DatabaseReference ref = FirebaseHelper.getInstance().getPatientDatabaseReference(
                 comunicatorFragmentActivity.getPatientSelected().getId()).
                 child(FirebaseHelper.PERFORMED_ACTION_KEY).
-                child(FirebaseHelper.ALIMENTACAO_KEY);
+                child(FirebaseHelper.EXERCICIO_KEY);
 
         ref.addValueEventListener(updateList);
-
     }
 
     private Map<String, List<Map.Entry<String, String>>> getRecomendationByDate(List<Recomentation> recomentations) {
@@ -114,27 +119,6 @@ public class PrescribeFoodFragment extends Fragment {
         return sorted;
     }
 
-    private Map<String, List<Map.Entry<String, String>>> getAlimentationByDate(List<Alimentacao> alimentacaoList) {
-
-        Map<String, List<Map.Entry<String, String>>> result = new LinkedHashMap<>();
-
-        for (Alimentacao alimentacao : alimentacaoList){
-
-            String dateStr = Formater.getStringFromDate(new Date(alimentacao.getExecutedDate()));
-
-            if (!result.containsKey(dateStr)){
-                result.put(dateStr , new ArrayList<Map.Entry<String, String>>());
-            }
-            result.get(dateStr).addAll(alimentacao.toMap().entrySet());
-
-        }
-
-        Map<String, List<Map.Entry<String, String>>> sorted = new TreeMap<>();
-        sorted.putAll(result);
-
-        return sorted;
-    }
-
     private Map<String, List<Map.Entry<String, String>>> mergeMaps (Map<String, List<Map.Entry<String, String>>> recomendationsMap,
                                                                     Map<String, List<Map.Entry<String, String>>> realizedActionsMap){
 
@@ -150,6 +134,27 @@ public class PrescribeFoodFragment extends Fragment {
         return result;
     }
 
+    private Map<String, List<Map.Entry<String, String>>> getAlimentationByDate(List<Exercicio> exercicioList) {
+
+        Map<String, List<Map.Entry<String, String>>> result = new LinkedHashMap<>();
+
+        for (Exercicio exercicio : exercicioList){
+
+            String dateStr = Formater.getStringFromDate(new Date(exercicio.getExecutedDate()));
+
+            if (!result.containsKey(dateStr)){
+                result.put(dateStr , new ArrayList<Map.Entry<String, String>>());
+            }
+            result.get(dateStr).addAll(exercicio.toMap().entrySet());
+
+        }
+
+        Map<String, List<Map.Entry<String, String>>> sorted = new TreeMap<>();
+        sorted.putAll(result);
+
+        return sorted;
+    }
+
     private ValueEventListener getPrescriptionListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -159,14 +164,10 @@ public class PrescribeFoodFragment extends Fragment {
                 List<Recomentation> recomentations = new ArrayList<>();
 
                 for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
-                    Alimentacao alimentacao = new Alimentacao();
+                    Exercicio exercicio = new Exercicio();
                     Recomentation recomentation = entrySnapshot.getValue(Recomentation.class);
 
-                    alimentacao.setQuantity(Integer.parseInt(entrySnapshot.
-                            child(FirebaseHelper.QUANTITY_KEY).
-                            getValue(Long.class).toString()));
-
-                    recomentation.setAction(alimentacao);
+                    recomentation.setAction(exercicio);
 
                     recomentations.add(recomentation);
                 }
@@ -177,7 +178,7 @@ public class PrescribeFoodFragment extends Fragment {
                 DatabaseReference ref = FirebaseHelper.getInstance().getPatientDatabaseReference(
                         comunicatorFragmentActivity.getPatientSelected().getId()).
                         child(FirebaseHelper.PERFORMED_ACTION_KEY).
-                        child(FirebaseHelper.ALIMENTACAO_KEY);
+                        child(FirebaseHelper.EXERCICIO_KEY);
 
                 ref.addListenerForSingleValueEvent(getRealizedActionsListListener);
 
@@ -195,22 +196,20 @@ public class PrescribeFoodFragment extends Fragment {
     private ValueEventListener getRealizedActionsListListener = new ValueEventListener() {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            Log.d("debug_kelly", dataSnapshot.toString());
-
             try {
 
-                List<Alimentacao> alimentacaoList = new ArrayList<>();
+                List<Exercicio> exercicioList = new ArrayList<>();
 
                 for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
-                    Alimentacao alimentacao = entrySnapshot.getValue(Alimentacao.class);
-                    alimentacao.setPerformed(true);
+                    Exercicio exercicio = entrySnapshot.getValue(Exercicio.class);
+                    exercicio.setPerformed(true);
 
-                    alimentacaoList.add(alimentacao);
+                    exercicioList.add(exercicio);
                 }
 
                 itemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(
                         mergeMaps(itemExpandableSimpleListAdapter.getEntrysByDateMap(),
-                                  getAlimentationByDate(alimentacaoList)));
+                                getAlimentationByDate(exercicioList)));
 
                 mRVHistory.setAdapter(itemExpandableSimpleListAdapter);
 
@@ -231,7 +230,7 @@ public class PrescribeFoodFragment extends Fragment {
             DatabaseReference prescriptionRef = FirebaseHelper.getInstance().
                     getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId()).
                     child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
-                    child(FirebaseHelper.ALIMENTACAO_KEY);
+                    child(FirebaseHelper.EXERCICIO_KEY);
 
             prescriptionRef.addValueEventListener(getPrescriptionListener);
         }

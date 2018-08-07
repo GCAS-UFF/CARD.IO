@@ -1,5 +1,8 @@
 package cardio.com.cardio.common.model.model;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 
 public class Exercicio extends Action {
@@ -35,5 +38,21 @@ public class Exercicio extends Action {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    @Override
+    public Map<String,String> toMap (){
+        Map<String,String> result = new LinkedHashMap<>();
+
+        if (this.isPerformed()){
+            result.putAll(super.toMap());
+            result.put("Exercício: ", exercise);
+            result.put("Intensidade: ", intensity);
+            result.put("Duração: ", duration + " min");
+
+            result.put("", "");
+        }
+
+        return result;
     }
 }

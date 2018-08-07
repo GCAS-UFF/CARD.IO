@@ -18,6 +18,8 @@ import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 import cardio.com.cardio.professional.fragments.PatientListFragment;
+import cardio.com.cardio.professional.fragments.PrescribeBiometricsFragment;
+import cardio.com.cardio.professional.fragments.PrescribeExercisesFragment;
 import cardio.com.cardio.professional.fragments.PrescribeFoodFragment;
 import cardio.com.cardio.professional.fragments.RegisterPatientFragment;
 import cardio.com.cardio.professional.fragments.RegisterProfessionalFragment;
@@ -110,6 +112,18 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
             case R.id.ll_alimentacao:
                 PrescribeFoodFragment prescribeFoodFragment = new PrescribeFoodFragment();
                 fragmentTransaction.replace(R.id.container, prescribeFoodFragment, "prescribeFoodFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+            case R.id.ll_controle_peso:
+                PrescribeBiometricsFragment prescribeBiometricsFragment = new PrescribeBiometricsFragment();
+                fragmentTransaction.replace(R.id.container, prescribeBiometricsFragment, "prescribeBiometricsFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+            case R.id.ll_exercicios:
+                PrescribeExercisesFragment prescribeExercisesFragment = new PrescribeExercisesFragment();
+                fragmentTransaction.replace(R.id.container, prescribeExercisesFragment, "prescribeExercisesFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;

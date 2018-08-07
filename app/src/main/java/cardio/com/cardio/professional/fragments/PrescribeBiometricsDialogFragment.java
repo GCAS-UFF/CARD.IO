@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ import java.util.List;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
-import cardio.com.cardio.common.model.model.Alimentacao;
+import cardio.com.cardio.common.model.model.MedicaoDadosFisiologicos;
 import cardio.com.cardio.common.model.model.Recomentation;
 import cardio.com.cardio.common.model.view.DateTextBox;
 import cardio.com.cardio.common.model.view.Item;
@@ -30,10 +31,10 @@ import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
-public class PrescribeFoodDialogFragment extends android.support.v4.app.DialogFragment {
+public class PrescribeBiometricsDialogFragment extends android.support.v4.app.DialogFragment {
 
     private RecyclerView mRecView;
-    private TextBox quantityTextBox;
+    private TextBox frequencyTextBox;
     private DateTextBox startDateTextBox;
     private DateTextBox finishDateTextBox;
     private Button mBtnCancelar;
@@ -42,22 +43,21 @@ public class PrescribeFoodDialogFragment extends android.support.v4.app.DialogFr
 
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
-    public PrescribeFoodDialogFragment() {
+    public PrescribeBiometricsDialogFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_prescribe_food_dialog, container, false);
+        return inflater.inflate(R.layout.fragment_prescribe_biometrics_dialog, container, false);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if (context != null){
+        if (context != null)
             comunicatorFragmentActivity = (ComunicatorFragmentActivity) context;
-        }
     }
 
     @Override
@@ -71,8 +71,8 @@ public class PrescribeFoodDialogFragment extends android.support.v4.app.DialogFr
 
         mItems = new ArrayList<>();
 
-        quantityTextBox = new TextBox(getString(R.string.food_prescription_label), getString(R.string.food_prescription_unit), TextBox.INPUT_NUMBER);
-        mItems.add(quantityTextBox);
+        frequencyTextBox = new TextBox(getString(R.string.frequency_label), getString(R.string.frequency_unit), TextBox.INPUT_NUMBER);
+        mItems.add(frequencyTextBox);
 
         startDateTextBox = new DateTextBox(getString(R.string.startDate_label), DateTextBox.INPUT_DATE);
         mItems.add(startDateTextBox);
@@ -114,31 +114,29 @@ public class PrescribeFoodDialogFragment extends android.support.v4.app.DialogFr
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
-
     private void saveObject() throws ParseException {
 
-        Alimentacao alimentacao = new Alimentacao();
-        alimentacao.setQuantity(Formater.getIntegerFromString(quantityTextBox.getValue()));
+        MedicaoDadosFisiologicos medicaoDadosFisiologicos = new MedicaoDadosFisiologicos();
 
+        //É necessário criar um objeto da classe  MedicaoDadosFisiologicos só para colocar e recomendation?
         Recomentation recomentation = new Recomentation();
-        recomentation.setAction(alimentacao);
-        recomentation.setFrequencyByDay(1);
+        recomentation.setAction(medicaoDadosFisiologicos);
+        recomentation.setFrequencyByDay(Formater.getIntegerFromString(frequencyTextBox.getValue()));
         recomentation.setStartDate(Formater.getDateFromString(startDateTextBox.getValue()).getTime());
         recomentation.setFinishDate(Formater.getDateFromString(finishDateTextBox.getValue()).getTime());
 
         saveIntoFirebase(recomentation);
     }
 
-
-    private boolean isFormValid(){
+    public boolean isFormValid(){
         boolean isValid = true;
-        for (Item item : mItems){
-            if (item.isEmpty()){
+
+        for(Item item : mItems)
+            if (item.isEmpty()) {
                 isValid = false;
                 break;
             }
-        }
-        return isValid;
+        return  isValid;
     }
 
     private void saveIntoFirebase(Recomentation recomentation){
@@ -147,11 +145,10 @@ public class PrescribeFoodDialogFragment extends android.support.v4.app.DialogFr
             DatabaseReference mDbRef = FirebaseHelper.getInstance()
                     .getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId())
                     .child(FirebaseHelper.RECOMMENDED_ACTION_KEY)
-                    .child(FirebaseHelper.ALIMENTACAO_KEY);
+                    .child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
 
             recomentation.setId(mDbRef.push().getKey());
             mDbRef.child(recomentation.getId()).setValue(recomentation);
-            mDbRef.child(recomentation.getId()).child(FirebaseHelper.QUANTITY_KEY).setValue(((Alimentacao) recomentation.getAction()).getQuantity());
             Toast.makeText(getActivity(), getResources().getString(R.string.message_success_recomendation), Toast.LENGTH_SHORT).show();
             dismiss();
         }catch (Exception e){

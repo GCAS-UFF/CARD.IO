@@ -26,7 +26,7 @@ public class FirebaseHelper {
     public static final String MEDICAO_DADOS_FISIOLOGICOS_KEY = "MedicaoDadosFisiologicos";
     public static final String ALIMENTACAO_KEY = "Alimentacao";
     public static final String EXERCICIO_KEY = "Exercicio";
-    public static final String QUANTIDADE_KEY = "quantity";
+    public static final String QUANTITY_KEY = "Quantity";
 
     private DatabaseReference genericPatientDatabaseReference = FirebaseDatabase.getInstance().getReference()
             .child(PACIENT_KEY);

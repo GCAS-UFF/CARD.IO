@@ -28,23 +28,25 @@ import java.util.TreeMap;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.adapters.ItemExpandableSimpleListAdapter;
-import cardio.com.cardio.common.model.model.Alimentacao;
+import cardio.com.cardio.common.model.model.MedicaoDadosFisiologicos;
 import cardio.com.cardio.common.model.model.Recomentation;
 import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
-public class PrescribeFoodFragment extends Fragment {
+public class PrescribeBiometricsFragment extends Fragment {
 
     private RelativeLayout mRlPrescribe;
     private RecyclerView mRVHistory;
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
     private ItemExpandableSimpleListAdapter itemExpandableSimpleListAdapter;
 
+    public PrescribeBiometricsFragment() {
+    }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_prescribe_food, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_prescribe_biometrics, container, false);
     }
 
     @Override
@@ -61,8 +63,8 @@ public class PrescribeFoodFragment extends Fragment {
         mRlPrescribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PrescribeFoodDialogFragment prescribeFoodDialogFragment = new PrescribeFoodDialogFragment();
-                prescribeFoodDialogFragment.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+                PrescribeBiometricsDialogFragment prescribeBiometricsDialogFragment = new PrescribeBiometricsDialogFragment();
+                prescribeBiometricsDialogFragment.show(getActivity().getSupportFragmentManager(), "dialogFragment");
             }
         });
 
@@ -72,17 +74,16 @@ public class PrescribeFoodFragment extends Fragment {
         DatabaseReference prescriptionRef = FirebaseHelper.getInstance().
                 getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId()).
                 child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
-                child(FirebaseHelper.ALIMENTACAO_KEY);
+                child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
 
         prescriptionRef.addValueEventListener(getPrescriptionListener);
 
         DatabaseReference ref = FirebaseHelper.getInstance().getPatientDatabaseReference(
                 comunicatorFragmentActivity.getPatientSelected().getId()).
                 child(FirebaseHelper.PERFORMED_ACTION_KEY).
-                child(FirebaseHelper.ALIMENTACAO_KEY);
+                child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
 
         ref.addValueEventListener(updateList);
-
     }
 
     private Map<String, List<Map.Entry<String, String>>> getRecomendationByDate(List<Recomentation> recomentations) {
@@ -114,18 +115,18 @@ public class PrescribeFoodFragment extends Fragment {
         return sorted;
     }
 
-    private Map<String, List<Map.Entry<String, String>>> getAlimentationByDate(List<Alimentacao> alimentacaoList) {
+    private Map<String, List<Map.Entry<String, String>>> getAlimentationByDate(List<MedicaoDadosFisiologicos> medicaoDadosFisiologicosList) {
 
         Map<String, List<Map.Entry<String, String>>> result = new LinkedHashMap<>();
 
-        for (Alimentacao alimentacao : alimentacaoList){
+        for (MedicaoDadosFisiologicos medicaoDadosFisiologicos : medicaoDadosFisiologicosList){
 
-            String dateStr = Formater.getStringFromDate(new Date(alimentacao.getExecutedDate()));
+            String dateStr = Formater.getStringFromDate(new Date(medicaoDadosFisiologicos.getExecutedDate()));
 
             if (!result.containsKey(dateStr)){
                 result.put(dateStr , new ArrayList<Map.Entry<String, String>>());
             }
-            result.get(dateStr).addAll(alimentacao.toMap().entrySet());
+            result.get(dateStr).addAll(medicaoDadosFisiologicos.toMap().entrySet());
 
         }
 
@@ -159,14 +160,10 @@ public class PrescribeFoodFragment extends Fragment {
                 List<Recomentation> recomentations = new ArrayList<>();
 
                 for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
-                    Alimentacao alimentacao = new Alimentacao();
+                    MedicaoDadosFisiologicos medicaoDadosFisiologicos = new MedicaoDadosFisiologicos();
                     Recomentation recomentation = entrySnapshot.getValue(Recomentation.class);
 
-                    alimentacao.setQuantity(Integer.parseInt(entrySnapshot.
-                            child(FirebaseHelper.QUANTITY_KEY).
-                            getValue(Long.class).toString()));
-
-                    recomentation.setAction(alimentacao);
+                    recomentation.setAction(medicaoDadosFisiologicos);
 
                     recomentations.add(recomentation);
                 }
@@ -177,7 +174,7 @@ public class PrescribeFoodFragment extends Fragment {
                 DatabaseReference ref = FirebaseHelper.getInstance().getPatientDatabaseReference(
                         comunicatorFragmentActivity.getPatientSelected().getId()).
                         child(FirebaseHelper.PERFORMED_ACTION_KEY).
-                        child(FirebaseHelper.ALIMENTACAO_KEY);
+                        child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
 
                 ref.addListenerForSingleValueEvent(getRealizedActionsListListener);
 
@@ -195,22 +192,20 @@ public class PrescribeFoodFragment extends Fragment {
     private ValueEventListener getRealizedActionsListListener = new ValueEventListener() {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            Log.d("debug_kelly", dataSnapshot.toString());
-
             try {
 
-                List<Alimentacao> alimentacaoList = new ArrayList<>();
+                List<MedicaoDadosFisiologicos> medicaoDadosFisiologicosList = new ArrayList<>();
 
                 for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
-                    Alimentacao alimentacao = entrySnapshot.getValue(Alimentacao.class);
-                    alimentacao.setPerformed(true);
+                    MedicaoDadosFisiologicos medicaoDadosFisiologicos = entrySnapshot.getValue(MedicaoDadosFisiologicos.class);
+                    medicaoDadosFisiologicos.setPerformed(true);
 
-                    alimentacaoList.add(alimentacao);
+                    medicaoDadosFisiologicosList.add(medicaoDadosFisiologicos);
                 }
 
                 itemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(
                         mergeMaps(itemExpandableSimpleListAdapter.getEntrysByDateMap(),
-                                  getAlimentationByDate(alimentacaoList)));
+                                getAlimentationByDate(medicaoDadosFisiologicosList)));
 
                 mRVHistory.setAdapter(itemExpandableSimpleListAdapter);
 
@@ -231,7 +226,7 @@ public class PrescribeFoodFragment extends Fragment {
             DatabaseReference prescriptionRef = FirebaseHelper.getInstance().
                     getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId()).
                     child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
-                    child(FirebaseHelper.ALIMENTACAO_KEY);
+                    child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
 
             prescriptionRef.addValueEventListener(getPrescriptionListener);
         }
@@ -241,4 +236,5 @@ public class PrescribeFoodFragment extends Fragment {
 
         }
     };
+
 }
