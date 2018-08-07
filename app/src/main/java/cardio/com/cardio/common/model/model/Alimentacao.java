@@ -35,11 +35,16 @@ public class Alimentacao extends Action {
     public Map<String,String> toMap (){
         Map<String,String> result = new LinkedHashMap<>();
 
-        if (food != null) {
+        if (this.isPerformed()){
+            result.putAll(super.toMap());
             result.put("Alimento: ", food);
         }
+
         result.put("Quantidade: ", String.valueOf(quantity));
 
+        if (this.isPerformed()){
+            result.put("", "");
+        }
         return result;
     }
 }

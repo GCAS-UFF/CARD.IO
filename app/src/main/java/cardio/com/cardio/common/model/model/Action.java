@@ -65,8 +65,9 @@ public class Action {
 
         String performedStr = (isPerformed()) ? "Realizado" : "Não Realizado";
 
-        result.put("Status: ", performedStr);
-        result.put("Data de Criação: ", Formater.getStringFromDate(new Date(getExecutedDate())));
+        result.put("Realizado", "");
+        //result.put("Status: ", performedStr);
+        //result.put("Data de Criação: ", Formater.getStringFromDate(new Date(getExecutedDate())));
 
         return result;
     }

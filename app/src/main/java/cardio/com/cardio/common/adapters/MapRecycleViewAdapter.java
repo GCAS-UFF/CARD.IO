@@ -17,10 +17,8 @@ public class MapRecycleViewAdapter extends RecyclerView.Adapter<MapRecycleViewAd
 
     private List<Map.Entry<String, String>> mapEntrys;
 
-    public MapRecycleViewAdapter(Map<String, String> map) {
-        if (map != null) {
-            this.mapEntrys = new ArrayList<>(map.entrySet());
-        }
+    public MapRecycleViewAdapter(List<Map.Entry<String, String>> mapEntrys) {
+        this.mapEntrys = mapEntrys;
     }
 
     @NonNull

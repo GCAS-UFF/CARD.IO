@@ -21,12 +21,19 @@ import cardio.com.cardio.common.model.model.Paciente;
 
 public class ItemExpandableSimpleListAdapter extends RecyclerView.Adapter<ItemExpandableSimpleListHolder>{
 
-    private List<Map.Entry<String, Map<String, String>>> entrysByDateList;
+    private List<Map.Entry<String, List<Map.Entry<String, String>>>> entrysByDateList;
+    private Map<String, List<Map.Entry<String, String>>> entrysByDateMap;
 
-    public ItemExpandableSimpleListAdapter(Map<String, Map<String, String>> entrysByDateMap) {
+    public ItemExpandableSimpleListAdapter(final Map<String, List<Map.Entry<String, String>>> entrysByDateMap) {
+        this.entrysByDateMap = entrysByDateMap;
+
         if (entrysByDateMap != null){
             this.entrysByDateList = new ArrayList<>(entrysByDateMap.entrySet());
         }
+    }
+
+    public Map<String, List<Map.Entry<String, String>>> getEntrysByDateMap() {
+        return entrysByDateMap;
     }
 
     @NonNull

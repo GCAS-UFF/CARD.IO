@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import cardio.com.cardio.R;
@@ -37,7 +38,7 @@ public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder {
     }
 
 
-    public void bindType(Map.Entry<String, Map<String, String>> entry){
+    public void bindType(Map.Entry<String, List<Map.Entry<String, String>>> entry){
         try {
             mTvTitle.setText(entry.getKey());
 
