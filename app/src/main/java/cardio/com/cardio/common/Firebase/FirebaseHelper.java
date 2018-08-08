@@ -1,12 +1,10 @@
 package cardio.com.cardio.common.Firebase;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 
 public class FirebaseHelper {
@@ -16,7 +14,7 @@ public class FirebaseHelper {
     private Context context;
     private static FirebaseHelper firebaseHelper;
 
-    public static final String PACIENT_KEY = "Paciente";
+    public static final String PATIENT_KEY = "Paciente";
     public static final String PROFESSIONAL_KEY = "Profissional";
     public static final String USER_KEY = "Usuario";
     public static final String APPOINTMENT_KEY = "Consultas";
@@ -27,9 +25,17 @@ public class FirebaseHelper {
     public static final String MEDICAO_DADOS_FISIOLOGICOS_KEY = "MedicaoDadosFisiologicos";
     public static final String ALIMENTACAO_KEY = "Alimentacao";
     public static final String EXERCICIO_KEY = "Exercicio";
+    public static final String MEDICINE_KEY = "Medicamento";
     public static final String QUANTITY_KEY = "Quantity";
     public static final String METADATA_KEY = "Metadados";
     public static final String ADRESS_KEY = "Endereco";
+    public static final String MEDICINE_NAME_KEY = "Nome";
+    public static final String MEDICINE_DOSAGE_KEY = "Dosagem";
+    public static final String MEDICINE_START_HOUR_KEY = "HoraInicial";
+    public static final String MEDICINE_PROFESSIONAL_KEY = "ProfissionalResponsavel";
+    public static final String EXCERCISE_NAME_KEY = "Atividade";
+    public static final String EXCERCISE_INTENSITY_KEY = "Intensidade";
+    public static final String EXERCISE_DURATION_KEY = "Duração";
 
 //  DATABASE REFERENCES
 
@@ -41,7 +47,7 @@ public class FirebaseHelper {
             .child(APPOINTMENT_KEY);
 
     private DatabaseReference genericPatientDatabaseReference = FirebaseDatabase.getInstance().getReference()
-            .child(PACIENT_KEY);
+            .child(PATIENT_KEY);
 
     private DatabaseReference genericProfessionalDatabaseReference = FirebaseDatabase.getInstance().getReference()
             .child(PROFESSIONAL_KEY);

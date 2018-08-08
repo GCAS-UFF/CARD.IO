@@ -4,6 +4,7 @@ import com.google.firebase.database.Exclude;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import cardio.com.cardio.common.util.Formater;
@@ -61,7 +62,7 @@ public class Action {
     }
 
     public Map<String,String> toMap (){
-        Map<String,String> result = new HashMap<>();
+        Map<String,String> result = new LinkedHashMap<>();
 
         String performedStr = (isPerformed()) ? "Realizado" : "Não Realizado";
 

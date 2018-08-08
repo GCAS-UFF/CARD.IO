@@ -20,10 +20,9 @@ import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.MedicinesListRecycleViewAdapter;
 import cardio.com.cardio.common.model.model.MedicineList;
 import cardio.com.cardio.common.model.model.Medicamento;
+import cardio.com.cardio.professional.fragments.PrescribeMedicineDialogFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class MedicinesFragments extends Fragment {
 
     private RecyclerView mRecVwListasMedicamentos;
@@ -54,20 +53,21 @@ public class MedicinesFragments extends Fragment {
             }
         });
 
-        List<Medicamento> medicamentos = new ArrayList<>();
-        medicamentos.add(new Medicamento("Levoid", "50mg", (new Date()).getTime()));
-        medicamentos.add(new Medicamento("Levoid", "50mg", (new Date()).getTime()));
-        medicamentos.add(new Medicamento("Levoid", "50mg", (new Date()).getTime()));
-
-        List<MedicineList> listaMedicamentos = new ArrayList<>();
-        listaMedicamentos.add(new MedicineList("Manhã", medicamentos));
-        listaMedicamentos.add(new MedicineList("Tarde", medicamentos));
-        listaMedicamentos.add(new MedicineList("Noite", medicamentos));
-
-        MedicinesListRecycleViewAdapter listaMedicamentosRecycleViewAdapter =
-                new MedicinesListRecycleViewAdapter(listaMedicamentos, getActivity());
-
-        mRecVwListasMedicamentos.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecVwListasMedicamentos.setAdapter(listaMedicamentosRecycleViewAdapter);
+//        List<Medicamento> medicamentos = new ArrayList<>();
+//        medicamentos.add(new Medicamento("Levoid", "50mg", (new Date()).getTime()));
+//        medicamentos.add(new Medicamento("Levoid", "50mg", (new Date()).getTime()));
+//        medicamentos.add(new Medicamento("Levoid", "50mg", (new Date()).getTime()));
+//
+//        List<MedicineList> listaMedicamentos = new ArrayList<>();
+//        listaMedicamentos.add(new MedicineList("Manhã", medicamentos));
+//        listaMedicamentos.add(new MedicineList("Tarde", medicamentos));
+//        listaMedicamentos.add(new MedicineList("Noite", medicamentos));
+//
+//        MedicinesListRecycleViewAdapter listaMedicamentosRecycleViewAdapter =
+//                new MedicinesListRecycleViewAdapter(listaMedicamentos, getActivity());
+//
+//        mRecVwListasMedicamentos.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        mRecVwListasMedicamentos.setAdapter(listaMedicamentosRecycleViewAdapter);
         }
+
 }

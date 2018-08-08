@@ -84,12 +84,17 @@
     <string name="frequency_unit">vezes ao dia</string>
     <string name="startDate_label">Data inicial</string>
     <string name="finishDate_label">Data final</string>
+    <string name="startHour_label">Hora inicial</string>
     <string name="appointment_date_label">Data da consulta</string>
     <string name="appointment_hour_label">Hora da consulta</string>
     <string name="exercise_prescription_label">Atividade física</string>
     <string name="exercise_intensity_label">Intensidade</string>
     <string name="exercise_duration_label">Duração</string>
     <string name="exercise_duration_unit">min</string>
+    <string name="medicine_name_label">Nome do medicamento</string>
+    <string name="medicine_dosage_label">Dosagem</string>
+    <string name="medicine_history_old">Medicamentos antigos</string>
+    <string name="medicine_history_current">Medicamentos atuais</string>
 
     <!--GENERAL-->
     <string name="stack">Stack</string>
@@ -97,6 +102,7 @@
     <string name="cancel">Cancelar</string>
     <string name="btn_save">Salvar</string>
     <string name="btn_prescribe">Adicionar recomendação</string>
+    <string name="btn_history">Ver Histórico</string>
 
 
     <!--MESSAGES-->
@@ -110,9 +116,5 @@
     <string name="message_error_recomendation">Falha ao enviar recomendação!</string>
     <string name="message_success_appointment">Consulta agendada com sucesso!</string>
     <string name="message_error_appointment">Erro ao agendar consulta</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 </resources>

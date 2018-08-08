@@ -1,5 +1,6 @@
 package cardio.com.cardio.patiente.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +27,7 @@ import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.model.model.Exercicio;
 import cardio.com.cardio.common.model.view.Item;
+import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 
 public class ExerciseFragment extends Fragment {
@@ -36,7 +39,8 @@ public class ExerciseFragment extends Fragment {
     private TextBox mCaixaDeTextoExercise;
     private TextBox mCaixaDeTextoIntensity;
     private TextBox mCaixaDeTextoDuration;
-
+    private RelativeLayout mRlButtonHistory;
+    private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
     public ExerciseFragment() {
     }
@@ -44,6 +48,12 @@ public class ExerciseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_exercicio, container, false);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        comunicatorFragmentActivity = (ComunicatorFragmentActivity) context;
     }
 
     @Override
@@ -79,6 +89,14 @@ public class ExerciseFragment extends Fragment {
                 }else{
                     Toast.makeText(getActivity(), getResources().getString(R.string.message_error_field_empty), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        mRlButtonHistory = (RelativeLayout) view.findViewById(R.id.rl_history);
+        mRlButtonHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comunicatorFragmentActivity.trocaTela(R.id.ll_exercicios);
             }
         });
     }

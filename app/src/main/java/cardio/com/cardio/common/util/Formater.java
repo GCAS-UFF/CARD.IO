@@ -59,4 +59,10 @@ public class Formater {
 
         return resultStr.substring(resultStr.length() - 6,resultStr.length());
     }
+
+    public static Date getCurrentDateWithoutSeconds() throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String dateStr = formato.format(new Date());
+        return formato.parse(dateStr);
+    }
 }

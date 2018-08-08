@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
         mLlPesagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comunicadorHomeActivity.trocaTela(R.id.ll_controle_peso);
+                comunicadorHomeActivity.trocaTelaHome(R.id.ll_controle_peso);
             }
         });
 
@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
         mLlAlimentacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comunicadorHomeActivity.trocaTela(R.id.ll_alimentacao);
+                comunicadorHomeActivity.trocaTelaHome(R.id.ll_alimentacao);
             }
         });
 
@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
         mLlMedicamentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comunicadorHomeActivity.trocaTela(R.id.ll_medicacoes);
+                comunicadorHomeActivity.trocaTelaHome(R.id.ll_medicacoes);
             }
         });
 
@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
         mLlConsultas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comunicadorHomeActivity.trocaTela(R.id.ll_consultas);
+                comunicadorHomeActivity.trocaTelaHome(R.id.ll_consultas);
             }
         });
 
@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
         mLlExercicios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comunicadorHomeActivity.trocaTela(R.id.ll_exercicios);
+                comunicadorHomeActivity.trocaTelaHome(R.id.ll_exercicios);
             }
         });
 
@@ -95,6 +95,6 @@ public class HomeFragment extends Fragment {
     }
 
     public interface ComunicadorHomeActivity {
-        void trocaTela( int resId);
+        void trocaTelaHome(int resId);
     }
 }

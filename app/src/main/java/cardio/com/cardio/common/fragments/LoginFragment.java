@@ -112,7 +112,7 @@ public class LoginFragment extends Fragment {
                                         PreferencesUtils.setString(getActivity(), FirebaseHelper.USER_KEY, autentication.getUid());
                                         PreferencesUtils.setString(getActivity(), FirebaseHelper.USER_TYPE_KEY, tipo);
 
-                                        if (tipo.equals((new Paciente()).getTipo())){
+                                        if (tipo.equals(FirebaseHelper.PATIENT_KEY)){
                                             startActivity(new Intent(getActivity(), MainActivityPatient.class));
                                         } else {
                                             startActivity(new Intent(getActivity(), MainActivityProfessional.class));

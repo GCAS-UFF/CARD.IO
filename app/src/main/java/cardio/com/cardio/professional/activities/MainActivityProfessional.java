@@ -22,6 +22,7 @@ import cardio.com.cardio.professional.fragments.PrescribeAppointmentFragment;
 import cardio.com.cardio.professional.fragments.PrescribeBiometricsFragment;
 import cardio.com.cardio.professional.fragments.PrescribeExercisesFragment;
 import cardio.com.cardio.professional.fragments.PrescribeFoodFragment;
+import cardio.com.cardio.professional.fragments.PrescribeMedicineFragment;
 import cardio.com.cardio.professional.fragments.RegisterPatientFragment;
 import cardio.com.cardio.professional.fragments.RegisterProfessionalFragment;
 
@@ -133,7 +134,19 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
                 fragmentTransaction.replace(R.id.container, prescribeAppointmentFragment, "prescribeAppointmentFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
+                break;
+            case R.id.ll_medicacoes:
+                PrescribeMedicineFragment prescribeMedicineFragment = new PrescribeMedicineFragment();
+                fragmentTransaction.replace(R.id.container, prescribeMedicineFragment, "prescribeMedicineFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
         }
+    }
+
+    @Override
+    public void trocaTelaHome(int resId) {
+        trocaTela(resId);
     }
 
     @Override
@@ -144,5 +157,10 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
     @Override
     public Paciente getPatientSelected() {
         return this.currentPatientSelected;
+    }
+
+    @Override
+    public boolean isProfessionalActivity() {
+        return true;
     }
 }

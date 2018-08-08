@@ -1,6 +1,7 @@
 package cardio.com.cardio.patiente.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +30,7 @@ import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.model.view.Item;
 import cardio.com.cardio.common.model.model.MedicaoDadosFisiologicos;
+import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 public class WeightFragment extends Fragment {
 
@@ -40,6 +43,8 @@ public class WeightFragment extends Fragment {
     private RadioGroup mRGFadiga;
     private Button mButtonSave;
     private List<Item> mItems ;
+    private RelativeLayout mRlButtonHistory;
+    private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
     public WeightFragment() {
     }
@@ -50,6 +55,12 @@ public class WeightFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_pesagem, container, false);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        comunicatorFragmentActivity = (ComunicatorFragmentActivity) context;
     }
 
     @Override
@@ -89,6 +100,14 @@ public class WeightFragment extends Fragment {
                 else{
                     Toast.makeText(getActivity(), getResources().getString(R.string.message_error_field_empty), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        mRlButtonHistory = (RelativeLayout) view.findViewById(R.id.rl_history);
+        mRlButtonHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comunicatorFragmentActivity.trocaTela(R.id.ll_controle_peso);
             }
         });
 

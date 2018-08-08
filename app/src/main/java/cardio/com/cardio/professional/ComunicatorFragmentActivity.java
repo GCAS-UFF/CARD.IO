@@ -8,4 +8,6 @@ public interface ComunicatorFragmentActivity {
     void setPatientSelected(Paciente patient);
 
     Paciente getPatientSelected ();
+
+    boolean isProfessionalActivity ();
 }

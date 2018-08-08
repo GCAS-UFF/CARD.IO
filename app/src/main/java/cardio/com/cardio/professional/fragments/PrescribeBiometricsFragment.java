@@ -68,6 +68,12 @@ public class PrescribeBiometricsFragment extends Fragment {
             }
         });
 
+        if (comunicatorFragmentActivity.isProfessionalActivity()){
+            mRlPrescribe.setVisibility(View.VISIBLE);
+        } else {
+            mRlPrescribe.setVisibility(View.GONE);
+        }
+
         mRVHistory = (RecyclerView) view.findViewById(R.id.recycle_view_prescribe_food);
         mRVHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
 

@@ -1,11 +1,10 @@
 package cardio.com.cardio.professional.fragments;
 
+
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 import java.text.ParseException;
@@ -22,45 +22,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cardio.com.cardio.R;
+import cardio.com.cardio.common.Firebase.FirebaseConfig;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
-import cardio.com.cardio.common.model.model.Exercicio;
+import cardio.com.cardio.common.model.model.Medicamento;
 import cardio.com.cardio.common.model.model.Recomentation;
+import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.model.view.DateTextBox;
 import cardio.com.cardio.common.model.view.Item;
-import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.util.Formater;
+import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
-public class PrescribeExercisesDialogFragment extends  android.support.v4.app.DialogFragment {
+public class PrescribeMedicineDialogFragment extends android.support.v4.app.DialogFragment {
 
     private RecyclerView mRecView;
-    private TextBox exerciseTextBox;
-    private TextBox frequencyTextBox;
-    private TextBox intensityTextBox;
-    private TextBox durationTextBox;
-    private DateTextBox startDateTextBox;
-    private DateTextBox finishDateTextBox;
+    private TextBox mNameTextBox;
+    private TextBox mDosageTextBox;
+    private DateTextBox mStartDateTextBox;
+    private DateTextBox mStartHourTextBox;
+    private TextBox mFrequencyTextBox;
+    private DateTextBox mFinishDateTextBox;
     private Button mBtnCancelar;
     private Button mBtnOk;
     private List<Item> mItems;
 
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
-    public PrescribeExercisesDialogFragment() {
+    public PrescribeMedicineDialogFragment() {
+
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_prescribe_exercises_dialog, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_prescribe_medicine_dialog, container, false);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context != null)
+        if(context != null) {
             comunicatorFragmentActivity = (ComunicatorFragmentActivity) context;
+        }
     }
 
     @Override
@@ -71,26 +75,25 @@ public class PrescribeExercisesDialogFragment extends  android.support.v4.app.Di
         mBtnCancelar = (Button) view.findViewById(R.id.btn_cancelar);
         mBtnOk = (Button) view.findViewById(R.id.btn_ok);
 
-
         mItems = new ArrayList<>();
 
-        exerciseTextBox = new TextBox(getString(R.string.exercise_prescription_label), "", TextBox.INPUT_TEXT);
-        mItems.add(exerciseTextBox);
+        mNameTextBox = new TextBox(getResources().getString(R.string.medicine_name_label), "", TextBox.INPUT_TEXT);
+        mItems.add(mNameTextBox);
 
-        frequencyTextBox = new TextBox(getString(R.string.frequency_label), getString(R.string.frequency_unit), TextBox.INPUT_NUMBER);
-        mItems.add(frequencyTextBox);
+        mDosageTextBox = new TextBox(getResources().getString(R.string.medicine_dosage_label), "", TextBox.INPUT_TEXT);
+        mItems.add(mDosageTextBox);
 
-        intensityTextBox = new TextBox(getString(R.string.exercise_intensity_label), "", TextBox.INPUT_TEXT);
-        mItems.add(intensityTextBox);
+        mStartDateTextBox = new DateTextBox(getResources().getString(R.string.startDate_label), DateTextBox.INPUT_DATE);
+        mItems.add(mStartDateTextBox);
 
-        durationTextBox = new TextBox(getString(R.string.exercise_duration_label), getString(R.string.exercise_duration_unit), TextBox.INPUT_NUMBER);
-        mItems.add(durationTextBox);
+        mStartHourTextBox = new DateTextBox(getResources().getString(R.string.startHour_label), DateTextBox.INPUT_TIME);
+        mItems.add(mStartHourTextBox);
 
-        startDateTextBox = new DateTextBox(getString(R.string.startDate_label), DateTextBox.INPUT_DATE);
-        mItems.add(startDateTextBox);
+        mFrequencyTextBox = new TextBox(getResources().getString(R.string.frequency_label), getResources().getString(R.string.frequency_unit), TextBox.INPUT_NUMBER);
+        mItems.add(mFrequencyTextBox);
 
-        finishDateTextBox = new DateTextBox(getString(R.string.finishDate_label), DateTextBox.INPUT_DATE);
-        mItems.add(finishDateTextBox);
+        mFinishDateTextBox = new DateTextBox(getResources().getString(R.string.finishDate_label), DateTextBox.INPUT_DATE);
+        mItems.add(mFinishDateTextBox);
 
         ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
         itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
@@ -124,33 +127,37 @@ public class PrescribeExercisesDialogFragment extends  android.support.v4.app.Di
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.very_round_background_shape);
 
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
     }
+
 
     private void saveObject() throws ParseException {
 
-        Exercicio exercicio = new Exercicio();
-        exercicio.setExercise(exerciseTextBox.getValue());
-        exercicio.setIntensity(intensityTextBox.getValue());
-        exercicio.setDuration(Formater.getIntegerFromString(durationTextBox.getValue()));
+        Medicamento medicamento = new Medicamento();
+        medicamento.setName(mNameTextBox.getValue());
+        medicamento.setDosagem(mDosageTextBox.getValue());
+        medicamento.setHorario(mStartHourTextBox.getValue());
+        medicamento.setProfissionalId(FirebaseConfig.getFirebaseAuth().getUid());
 
         Recomentation recomentation = new Recomentation();
-        recomentation.setAction(exercicio);
-        recomentation.setFrequencyByDay(Formater.getIntegerFromString(frequencyTextBox.getValue()));
-        recomentation.setStartDate(Formater.getDateFromString(startDateTextBox.getValue()).getTime());
-        recomentation.setFinishDate(Formater.getDateFromString(finishDateTextBox.getValue()).getTime());
+        recomentation.setAction(medicamento);
+        recomentation.setFrequencyByDay(Formater.getIntegerFromString(mFrequencyTextBox.getValue()));
+        recomentation.setStartDate(Formater.getDateFromString(mStartDateTextBox.getValue()).getTime());
+        recomentation.setFinishDate(Formater.getDateFromString(mFinishDateTextBox.getValue()).getTime());
 
         saveIntoFirebase(recomentation);
     }
 
-    public boolean isFormValid(){
-        boolean isValid = true;
 
-        for(Item item : mItems)
-            if (item.isEmpty()) {
+    private boolean isFormValid(){
+        boolean isValid = true;
+        for (Item item : mItems){
+            if (item.isEmpty()){
                 isValid = false;
                 break;
             }
-        return  isValid;
+        }
+        return isValid;
     }
 
     private void saveIntoFirebase(Recomentation recomentation){
@@ -159,13 +166,14 @@ public class PrescribeExercisesDialogFragment extends  android.support.v4.app.Di
             DatabaseReference mDbRef = FirebaseHelper.getInstance()
                     .getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId())
                     .child(FirebaseHelper.RECOMMENDED_ACTION_KEY)
-                    .child(FirebaseHelper.EXERCICIO_KEY);
+                    .child(FirebaseHelper.MEDICINE_KEY);
 
             recomentation.setId(mDbRef.push().getKey());
             mDbRef.child(recomentation.getId()).setValue(recomentation);
-            mDbRef.child(recomentation.getId()).child(FirebaseHelper.EXCERCISE_NAME_KEY).setValue(((Exercicio) recomentation.getAction()).getExercise());
-            mDbRef.child(recomentation.getId()).child(FirebaseHelper.EXCERCISE_INTENSITY_KEY).setValue(((Exercicio) recomentation.getAction()).getIntensity());
-            mDbRef.child(recomentation.getId()).child(FirebaseHelper.EXERCISE_DURATION_KEY).setValue(((Exercicio) recomentation.getAction()).getDuration());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_NAME_KEY).setValue(((Medicamento) recomentation.getAction()).getName());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_DOSAGE_KEY).setValue(((Medicamento) recomentation.getAction()).getDosagem());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_START_HOUR_KEY).setValue(((Medicamento) recomentation.getAction()).getHorario());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_PROFESSIONAL_KEY).setValue(((Medicamento) recomentation.getAction()).getProfissionalId());
             Toast.makeText(getActivity(), getResources().getString(R.string.message_success_recomendation), Toast.LENGTH_SHORT).show();
             dismiss();
         }catch (Exception e){
@@ -175,3 +183,4 @@ public class PrescribeExercisesDialogFragment extends  android.support.v4.app.Di
 
     }
 }
+

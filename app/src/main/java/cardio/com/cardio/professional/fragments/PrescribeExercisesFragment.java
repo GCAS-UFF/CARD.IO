@@ -72,6 +72,12 @@ public class PrescribeExercisesFragment extends Fragment {
             }
         });
 
+        if (comunicatorFragmentActivity.isProfessionalActivity()){
+            mRlPrescribe.setVisibility(View.VISIBLE);
+        } else {
+            mRlPrescribe.setVisibility(View.GONE);
+        }
+
         mRVHistory = (RecyclerView) view.findViewById(R.id.recycle_view_prescribe_food);
         mRVHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -166,6 +172,14 @@ public class PrescribeExercisesFragment extends Fragment {
                 for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
                     Exercicio exercicio = new Exercicio();
                     Recomentation recomentation = entrySnapshot.getValue(Recomentation.class);
+
+                    exercicio.setExercise(entrySnapshot.child(FirebaseHelper.EXCERCISE_NAME_KEY).getValue(String.class));
+                    exercicio.setIntensity(entrySnapshot.child(FirebaseHelper.EXCERCISE_INTENSITY_KEY).getValue(String.class));
+                    if (entrySnapshot.child(FirebaseHelper.EXERCISE_DURATION_KEY).getValue(String.class) != null) {
+
+                        exercicio.setDuration(Integer.parseInt(entrySnapshot.
+                                child(FirebaseHelper.EXERCISE_DURATION_KEY).getValue(String.class)));
+                    }
 
                     recomentation.setAction(exercicio);
 
