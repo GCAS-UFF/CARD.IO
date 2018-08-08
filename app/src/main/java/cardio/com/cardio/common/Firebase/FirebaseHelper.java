@@ -19,6 +19,7 @@ public class FirebaseHelper {
     public static final String PACIENT_KEY = "Paciente";
     public static final String PROFESSIONAL_KEY = "Profissional";
     public static final String USER_KEY = "Usuario";
+    public static final String APPOINTMENT_KEY = "Consultas";
     public static final String PERFORMED_ACTION_KEY = "AcoesRealizadas";
     public static final String RECOMMENDED_ACTION_KEY = "AcoesRecomendadas";
     public static final String PATIENT_LIST_KEY = "ListaDePacientes";
@@ -27,6 +28,17 @@ public class FirebaseHelper {
     public static final String ALIMENTACAO_KEY = "Alimentacao";
     public static final String EXERCICIO_KEY = "Exercicio";
     public static final String QUANTITY_KEY = "Quantity";
+    public static final String METADATA_KEY = "Metadados";
+    public static final String ADRESS_KEY = "Endereco";
+
+//  DATABASE REFERENCES
+
+    public static final DatabaseReference adressDatabaseReference = FirebaseDatabase.getInstance().getReference()
+            .child(METADATA_KEY)
+            .child(ADRESS_KEY);
+
+    public static final DatabaseReference appointmentDatabaseReference = FirebaseDatabase.getInstance().getReference()
+            .child(APPOINTMENT_KEY);
 
     private DatabaseReference genericPatientDatabaseReference = FirebaseDatabase.getInstance().getReference()
             .child(PACIENT_KEY);

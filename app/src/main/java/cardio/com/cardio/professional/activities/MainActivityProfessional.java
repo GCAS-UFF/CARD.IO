@@ -18,6 +18,7 @@ import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 import cardio.com.cardio.professional.fragments.PatientListFragment;
+import cardio.com.cardio.professional.fragments.PrescribeAppointmentFragment;
 import cardio.com.cardio.professional.fragments.PrescribeBiometricsFragment;
 import cardio.com.cardio.professional.fragments.PrescribeExercisesFragment;
 import cardio.com.cardio.professional.fragments.PrescribeFoodFragment;
@@ -127,6 +128,11 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
+            case R.id.ll_consultas:
+                PrescribeAppointmentFragment prescribeAppointmentFragment = new PrescribeAppointmentFragment();
+                fragmentTransaction.replace(R.id.container, prescribeAppointmentFragment, "prescribeAppointmentFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
         }
     }
 

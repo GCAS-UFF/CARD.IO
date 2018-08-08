@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.holders.DateTextBoxHolder;
+import cardio.com.cardio.common.adapters.holders.DropDownHolder;
 import cardio.com.cardio.common.adapters.holders.TextBoxHolder;
 import cardio.com.cardio.common.adapters.holders.Holder;
 import cardio.com.cardio.common.model.view.LayoutConstantes;
@@ -24,7 +25,9 @@ public class LayoutDecodificator {
             case LayoutConstantes.DATE_TEXT_BOX_LAYOUT:
                 v = layoutInflater.inflate(R.layout.date_text_box_item, viewGroup, false);
                 return new DateTextBoxHolder(v, fragmentManager);
-
+            case LayoutConstantes.DROP_DOWN_LAYOUT:
+                v = layoutInflater.inflate(R.layout.item_dorpdown, viewGroup, false);
+                return new DropDownHolder(v);
         }
 
         return null;

@@ -84,6 +84,8 @@
     <string name="frequency_unit">vezes ao dia</string>
     <string name="startDate_label">Data inicial</string>
     <string name="finishDate_label">Data final</string>
+    <string name="appointment_date_label">Data da consulta</string>
+    <string name="appointment_hour_label">Hora da consulta</string>
     <string name="exercise_prescription_label">Atividade física</string>
     <string name="exercise_intensity_label">Intensidade</string>
     <string name="exercise_duration_label">Duração</string>
@@ -106,6 +108,8 @@
     <string name="message_not_registred">Caso seja um paciente ainda não cadastrado entre em contato com seu profissional de saúde para que faça seu cadastro. \n Caso seja um profissional de saúde autorizado basta clicar em \"Ok\" e seguir com seu cadastro.</string>
     <string name="message_success_recomendation">Recomendação feita com sucesso!</string>
     <string name="message_error_recomendation">Falha ao enviar recomendação!</string>
+    <string name="message_success_appointment">Consulta agendada com sucesso!</string>
+    <string name="message_error_appointment">Erro ao agendar consulta</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

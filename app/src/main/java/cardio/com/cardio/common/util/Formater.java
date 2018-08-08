@@ -2,6 +2,7 @@ package cardio.com.cardio.common.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Formater {
@@ -42,5 +43,20 @@ public class Formater {
         return formato.format(date);
     }
 
+    public static Date getDateFronStringDateAndTime (String dateStr, String timeStr) throws ParseException {
 
+        String result = dateStr + " " + timeStr;
+
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+        return fmt.parse(result);
+    }
+
+    public static String getTimeStringFromDate (Date date){
+
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String resultStr = fmt.format(date);
+
+        return resultStr.substring(resultStr.length() - 6,resultStr.length());
+    }
 }

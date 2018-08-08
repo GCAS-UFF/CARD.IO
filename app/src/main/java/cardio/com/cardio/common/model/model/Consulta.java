@@ -1,7 +1,13 @@
 package cardio.com.cardio.common.model.model;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
+import cardio.com.cardio.common.util.Formater;
 
 public class Consulta {
 
@@ -9,23 +15,30 @@ public class Consulta {
     private String paciente;
     private String profissional;
     private String localizacao;
-    private long horario;
+    private long data;
+    private boolean attended;
 
-    public Consulta(String id, String paciente, String profissional, String localizacao, long horario) {
+    private Paciente pacienteObject;
+    private Profissional profissionalObject;
+
+    public Consulta(String id, String paciente, String profissional, String localizacao, long data) {
         this.id = id;
         this.paciente = paciente;
         this.profissional = profissional;
         this.localizacao = localizacao;
-        this.horario = horario;
+        this.data = data;
+        this.attended = false;
     }
 
     public Consulta() {
     }
 
+    @Exclude
     public String getId() {
         return id;
     }
 
+    @Exclude
     public void setId(String id) {
         this.id = id;
     }
@@ -54,21 +67,57 @@ public class Consulta {
         this.localizacao = localizacao;
     }
 
-    public long getHorario() {
-        return horario;
+    public long getData() {
+        return data;
     }
 
-    public void setHorario(long horario) {
-        this.horario = horario;
+    public void setData(long data) {
+        this.data = data;
+    }
+
+    public boolean isAttended() {
+        return attended;
+    }
+
+    public void setAttended(boolean attended) {
+        this.attended = attended;
+    }
+
+    @Exclude
+    public Paciente getPacienteObject() {
+        return pacienteObject;
+    }
+
+    @Exclude
+    public void setPacienteObject(Paciente pacienteObject) {
+        this.pacienteObject = pacienteObject;
+    }
+
+    @Exclude
+    public Profissional getProfissionalObject() {
+        return profissionalObject;
+    }
+
+    @Exclude
+    public void setProfissionalObject(Profissional profissionalObject) {
+        this.profissionalObject = profissionalObject;
     }
 
     public Map<String,String> toMap (){
-        Map<String,String> result = new HashMap<>();
+        Map<String,String> result = new LinkedHashMap<>();
 
-        result.put("Localização: ", paciente);
-//        result.put("Horário: ", String.valueOf(quantity));
+        if (pacienteObject != null) {
+            result.put("Paciente: ", pacienteObject.getNome());
+        }
+
+        if (profissionalObject != null) {
+            result.put("Profissional: ", profissionalObject.getNome());
+        }
+        result.put("Data: ", Formater.getStringFromDate(new Date(data)));
+        result.put("Horário: ", Formater.getTimeStringFromDate(new Date(data)));
+        result.put("Comparecida: ", attended ? "Sim" : "Não");
+        result.put("Localização: ", localizacao);
 
         return result;
     }
-
 }
