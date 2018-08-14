@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,7 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
     private DateTextBox mDateTextBox;
     private DateTextBox mHourTextBox;
     private DropDown mAdressDropDown;
+    private DropDown mSpecialityDropDown;
     private Button mBtnCancelar;
     private Button mBtnOk;
     private List<Item> mItems;
@@ -107,6 +109,7 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
         });
 
         FirebaseHelper.adressDatabaseReference.addListenerForSingleValueEvent(getAdressMetadata);
+        FirebaseHelper.specialitiesDatabaseReference.addListenerForSingleValueEvent(getSpecialityMetadata);
 
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.very_round_background_shape);
 
@@ -131,8 +134,9 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
         consulta.setData(Formater.getDateFronStringDateAndTime(mDateTextBox.getValue(),
                 mHourTextBox.getValue()).getTime());
         consulta.setLocalizacao(mAdressDropDown.getValue());
+        consulta.setEspecialideProfissional(mSpecialityDropDown.getValue());
         consulta.setPaciente(comunicatorFragmentActivity.getPatientSelected().getId());
-        consulta.setProfissional(PreferencesUtils.getString(getActivity(), FirebaseHelper.USER_KEY));
+//        consulta.setProfissional(PreferencesUtils.getString(getActivity(), FirebaseHelper.USER_KEY));
 
         saveIntoFirebase(consulta);
     }
@@ -165,6 +169,31 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
 
             mAdressDropDown = new DropDown(options, "Endereço");
             mItems.add(mAdressDropDown);
+
+//            ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
+//            itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
+//
+//            mRecView.setAdapter(itemRecycleViewAdapter);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
+
+    private ValueEventListener getSpecialityMetadata = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            Map<String, String> options = new LinkedHashMap<>();
+
+            for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()){
+                options.put(entrySnapshot.getKey(), entrySnapshot.getValue(String.class));
+            }
+
+            mSpecialityDropDown = new DropDown(options, "Especialidade");
+            mItems.add(mSpecialityDropDown);
 
             ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
             itemRecycleViewAdapter.setFragmentManager(getFragmentManager());

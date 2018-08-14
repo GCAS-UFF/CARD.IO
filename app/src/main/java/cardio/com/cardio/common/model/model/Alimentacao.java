@@ -1,5 +1,7 @@
 package cardio.com.cardio.common.model.model;
 
+import android.content.Context;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -40,7 +42,7 @@ public class Alimentacao extends Action {
             result.put("Alimento: ", food);
         }
 
-        result.put("Quantidade: ", String.valueOf(quantity));
+        result.put("Quantidade: ", String.valueOf(quantity) + " ml");
 
         if (this.isPerformed()){
             result.put("", "");

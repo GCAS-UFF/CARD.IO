@@ -1,7 +1,6 @@
 package cardio.com.cardio.professional.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -140,7 +139,7 @@ public class PrescribeExercisesFragment extends Fragment {
         return result;
     }
 
-    private Map<String, List<Map.Entry<String, String>>> getAlimentationByDate(List<Exercicio> exercicioList) {
+    private Map<String, List<Map.Entry<String, String>>> getExercisesByDate(List<Exercicio> exercicioList) {
 
         Map<String, List<Map.Entry<String, String>>> result = new LinkedHashMap<>();
 
@@ -175,10 +174,9 @@ public class PrescribeExercisesFragment extends Fragment {
 
                     exercicio.setExercise(entrySnapshot.child(FirebaseHelper.EXCERCISE_NAME_KEY).getValue(String.class));
                     exercicio.setIntensity(entrySnapshot.child(FirebaseHelper.EXCERCISE_INTENSITY_KEY).getValue(String.class));
-                    if (entrySnapshot.child(FirebaseHelper.EXERCISE_DURATION_KEY).getValue(String.class) != null) {
+                    if (entrySnapshot.child(FirebaseHelper.EXERCISE_DURATION_KEY).getValue(Integer.class) != null) {
 
-                        exercicio.setDuration(Integer.parseInt(entrySnapshot.
-                                child(FirebaseHelper.EXERCISE_DURATION_KEY).getValue(String.class)));
+                        exercicio.setDuration(entrySnapshot.child(FirebaseHelper.EXERCISE_DURATION_KEY).getValue(Integer.class));
                     }
 
                     recomentation.setAction(exercicio);
@@ -223,7 +221,7 @@ public class PrescribeExercisesFragment extends Fragment {
 
                 itemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(
                         mergeMaps(itemExpandableSimpleListAdapter.getEntrysByDateMap(),
-                                getAlimentationByDate(exercicioList)));
+                                getExercisesByDate(exercicioList)));
 
                 mRVHistory.setAdapter(itemExpandableSimpleListAdapter);
 

@@ -14,6 +14,7 @@ public class Consulta {
     private String id;
     private String paciente;
     private String profissional;
+    private String especialideProfissional;
     private String localizacao;
     private long data;
     private boolean attended;
@@ -57,6 +58,14 @@ public class Consulta {
 
     public void setProfissional(String profissional) {
         this.profissional = profissional;
+    }
+
+    public String getEspecialideProfissional() {
+        return especialideProfissional;
+    }
+
+    public void setEspecialideProfissional(String especialideProfissional) {
+        this.especialideProfissional = especialideProfissional;
     }
 
     public String getLocalizacao() {
@@ -113,6 +122,7 @@ public class Consulta {
         if (profissionalObject != null) {
             result.put("Profissional: ", profissionalObject.getNome());
         }
+        result.put("Especialidade: ", especialideProfissional);
         result.put("Data: ", Formater.getStringFromDate(new Date(data)));
         result.put("Horário: ", Formater.getTimeStringFromDate(new Date(data)));
         result.put("Comparecida: ", attended ? "Sim" : "Não");

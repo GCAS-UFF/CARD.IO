@@ -112,12 +112,14 @@ public class PrescribeAppointmentFragment extends Fragment {
                 for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
                     Consulta consulta = entrySnapshot.getValue(Consulta.class);
 
-                    if (consulta.getProfissional().equals(PreferencesUtils.getString(getActivity(), FirebaseHelper.USER_KEY))
-                            && consulta.getPaciente().equals(comunicatorFragmentActivity.getPatientSelected().getId())){
-
-                        consulta.setPacienteObject(comunicatorFragmentActivity.getPatientSelected());
-                        appoitments.add(consulta);
-                    }
+//                    if (consulta.getProfissional().equals(PreferencesUtils.getString(getActivity(), FirebaseHelper.USER_KEY))
+//                            && consulta.getPaciente().equals(comunicatorFragmentActivity.getPatientSelected().getId())){
+//
+//                        consulta.setPacienteObject(comunicatorFragmentActivity.getPatientSelected());
+//                        appoitments.add(consulta);
+//                    }
+                    consulta.setPacienteObject(comunicatorFragmentActivity.getPatientSelected());
+                    appoitments.add(consulta);
                 }
 
                 itemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(getAppointmentByDate(appoitments));

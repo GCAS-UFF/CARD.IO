@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,8 +106,8 @@ public class RegisterPatientFragment extends Fragment {
         mEmailTextBox.setHint("email@email.com");
         mItens.add(mEmailTextBox);
 
-        mPasswordTextBox = new TextBox("Senha", "", TextBox.INPUT_PASSWORD);
-        mItens.add(mPasswordTextBox);
+//        mPasswordTextBox = new TextBox("Senha", "", TextBox.INPUT_PASSWORD);
+//        mItens.add(mPasswordTextBox);
 
         ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItens);
         itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
@@ -124,7 +125,7 @@ public class RegisterPatientFragment extends Fragment {
                         paciente.setCpf(mCPFTextBox.getValue());
                         paciente.setEmail(mEmailTextBox.getValue());
                         paciente.setEndereco(mAdressTextBox.getValue());
-                        paciente.setSenha(mPasswordTextBox.getValue());
+                        paciente.setSenha(mCPFTextBox.getValue());
 
                         Date date = Formater.getDateFromString(mDateTextBox.getValue());
                         paciente.setDataNasc(date.getTime());

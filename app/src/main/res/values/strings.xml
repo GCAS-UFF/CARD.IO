@@ -75,7 +75,7 @@
     <string name="adress_label">Endereço:</string>
     <string name="birthdate_label">Data de nascimento:</string>
     <string name="btn_disassociate_patient">Dissociar</string>
-    <string name="btn_edit_patient">Editar</string>
+    <string name="btn_open_patient">Abrir</string>
 
     <!--TELAS PRESCREVER-->
     <string name="food_prescription_label">Prescrição</string>
@@ -93,6 +93,7 @@
     <string name="exercise_duration_unit">min</string>
     <string name="medicine_name_label">Nome do medicamento</string>
     <string name="medicine_dosage_label">Dosagem</string>
+    <string name="medicine_quantity_label">Quantidade</string>
     <string name="medicine_history_old">Medicamentos antigos</string>
     <string name="medicine_history_current">Medicamentos atuais</string>
 

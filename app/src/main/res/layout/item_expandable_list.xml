@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/adress_label"
+                android:text="@string/cpf_label"
                 android:layout_gravity="left"
                 style="@style/TextSubtitle"/>
             <TextView
@@ -95,7 +95,7 @@
                 android:id="@+id/btn_edit_patient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_edit_patient"
+                android:text="@string/btn_open_patient"
                 style="@style/SaveButton"
                 />
         </LinearLayout>

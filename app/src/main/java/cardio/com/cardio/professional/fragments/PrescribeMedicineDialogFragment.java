@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
     private RecyclerView mRecView;
     private TextBox mNameTextBox;
     private TextBox mDosageTextBox;
+    private TextBox mQuantityTextBox;
     private DateTextBox mStartDateTextBox;
     private DateTextBox mStartHourTextBox;
     private TextBox mFrequencyTextBox;
@@ -82,6 +84,9 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
 
         mDosageTextBox = new TextBox(getResources().getString(R.string.medicine_dosage_label), "", TextBox.INPUT_TEXT);
         mItems.add(mDosageTextBox);
+
+        mQuantityTextBox = new TextBox(getResources().getString(R.string.medicine_quantity_label), "", TextBox.INPUT_TEXT);
+        mItems.add(mQuantityTextBox);
 
         mStartDateTextBox = new DateTextBox(getResources().getString(R.string.startDate_label), DateTextBox.INPUT_DATE);
         mItems.add(mStartDateTextBox);
@@ -134,8 +139,10 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
     private void saveObject() throws ParseException {
 
         Medicamento medicamento = new Medicamento();
+
         medicamento.setName(mNameTextBox.getValue());
         medicamento.setDosagem(mDosageTextBox.getValue());
+        medicamento.setQuantidade(mQuantityTextBox.getValue());
         medicamento.setHorario(mStartHourTextBox.getValue());
         medicamento.setProfissionalId(FirebaseConfig.getFirebaseAuth().getUid());
 
@@ -172,6 +179,7 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
             mDbRef.child(recomentation.getId()).setValue(recomentation);
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_NAME_KEY).setValue(((Medicamento) recomentation.getAction()).getName());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_DOSAGE_KEY).setValue(((Medicamento) recomentation.getAction()).getDosagem());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.QUANTITY_KEY).setValue(((Medicamento) recomentation.getAction()).getQuantidade());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_START_HOUR_KEY).setValue(((Medicamento) recomentation.getAction()).getHorario());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_PROFESSIONAL_KEY).setValue(((Medicamento) recomentation.getAction()).getProfissionalId());
             Toast.makeText(getActivity(), getResources().getString(R.string.message_success_recomendation), Toast.LENGTH_SHORT).show();

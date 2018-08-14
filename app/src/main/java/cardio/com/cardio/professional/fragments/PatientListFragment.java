@@ -65,10 +65,13 @@ public class PatientListFragment extends Fragment {
             }
         });
 
-        populatePpatientList();
+        populatePatientList();
     }
 
-    public void populatePpatientList(){
+    public void populatePatientList(){
+//        FirebaseHelper.getInstance().getAllPatientsListDatabaseReference().
+//                addValueEventListener(pacientListEventListener);
+
         FirebaseHelper.getInstance().getCurrentPatientListDatabaseReference().
                 addValueEventListener(pacientListEventListener);
 
@@ -115,8 +118,6 @@ public class PatientListFragment extends Fragment {
             new ItemExpandableListAdapter.ComunicatorExpandableItem() {
         @Override
         public void disassociatePatient(final Paciente paciente) {
-//            Log.d("DEBUG-JP",FirebaseHelper.getInstance().
-//                    getCurrentPatientListDatabaseReference().child(paciente.getId()).gettoString());
             FirebaseHelper.getInstance().
                     getCurrentPatientListDatabaseReference().child(paciente.getId()).removeValue();
 

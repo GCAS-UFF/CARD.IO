@@ -10,6 +10,7 @@ import cardio.com.cardio.common.Firebase.FirebaseHelper;
 public class Medicamento extends Action {
     private String name;
     private String dosagem;
+    private String quantidade;
     private String horario;
     private String profissionalId;
     private Profissional profissionalObject;
@@ -34,6 +35,14 @@ public class Medicamento extends Action {
 
     public void setDosagem(String dosagem) {
         this.dosagem = dosagem;
+    }
+
+    public String getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
     }
 
     public String getHorario() {
@@ -67,6 +76,7 @@ public class Medicamento extends Action {
         Map<String,String> result = new LinkedHashMap<>();
         result.put("Nome: ", name);
         result.put("Dosagem: ", dosagem);
+        result.put("Quantidade: ", quantidade);
         result.put("Hora de início: ", horario);
         if(profissionalObject != null)
             result.put("Profissional responsável: ", profissionalObject.getNome());
