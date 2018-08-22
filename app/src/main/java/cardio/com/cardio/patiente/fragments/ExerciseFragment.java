@@ -45,7 +45,6 @@ public class ExerciseFragment extends Fragment {
     private TextBox mCaixaDeTextoIntensity;
     private TextBox mCaixaDeTextoDuration;
     private CheckboxListItem mCheckboxListItem;
-    private RadioButtonList mRadioButtonList;
     private RelativeLayout mRlButtonHistory;
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
@@ -84,16 +83,16 @@ public class ExerciseFragment extends Fragment {
         mCaixaDeTextoDuration.setHint("30");
         mItems.add(mCaixaDeTextoDuration);
 
+        String[] exerciseSymptoms = getResources().getStringArray(R.array.exerciseSymptoms);
+
         Map<String, Boolean> options = new LinkedHashMap<>();
-        options.put("Opção 1", false);
-        options.put("Opção 2", false);
-        options.put("Opção 3", false);
 
-        mCheckboxListItem = new CheckboxListItem(options, "Questão");
+        for(String symptom : exerciseSymptoms){
+            options.put(symptom, false);
+        }
+
+        mCheckboxListItem = new CheckboxListItem(options, getResources().getString(R.string.exercise_symptoms_title));
         mItems.add(mCheckboxListItem);
-
-        mRadioButtonList = new RadioButtonList(options, "Questão 1");
-        mItems.add(mRadioButtonList);
 
         mItemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
         mRecView.setAdapter(mItemRecycleViewAdapter);
@@ -121,8 +120,6 @@ public class ExerciseFragment extends Fragment {
 
     private boolean isValidForm (){
 
-        Log.d("debug_kelly", mCheckboxListItem.isEmpty() + "");
-
         boolean isValid = true;
         for (Item item : mItems){
             if (item.isEmpty()){
@@ -138,6 +135,7 @@ public class ExerciseFragment extends Fragment {
         exercicio.setExercise(mCaixaDeTextoExercise.getValue());
         exercicio.setIntensity(mCaixaDeTextoIntensity.getValue());
         exercicio.setDuration(Formater.getIntegerFromString(mCaixaDeTextoDuration.getValue()));
+        exercicio.setSymptons(mCheckboxListItem.getOptions());
 
         exercicio.setExecutedDate((new Date()).getTime());
         exercicio.setPerformed(true);

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--TELA EXERCICIOS-->
+    <array name="exerciseSymptoms">
+        <item>Fadiga excessiva</item>
+        <item>Dores corporais</item>
+        <item>Falta de ar excessiva</item>
+        <item>Tontura</item>
+    </array>
+
+</resources>

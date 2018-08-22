@@ -11,6 +11,7 @@ public class Exercicio extends Action {
     private String exercise;
     private String intensity;
     private int duration;
+    private Map<String, Boolean> symptons;
 
     public Exercicio() {
         super(FirebaseHelper.EXERCICIO_KEY);
@@ -40,6 +41,14 @@ public class Exercicio extends Action {
         this.duration = duration;
     }
 
+    public Map<String, Boolean> getSymptons() {
+        return symptons;
+    }
+
+    public void setSymptons(Map<String, Boolean> symptons) {
+        this.symptons = symptons;
+    }
+
     @Override
     public Map<String,String> toMap (){
         Map<String,String> result = new LinkedHashMap<>();
@@ -49,6 +58,16 @@ public class Exercicio extends Action {
             result.put("Exercício: ", exercise);
             result.put("Intensidade: ", intensity);
             result.put("Duração: ", duration + " min");
+
+            if(getSymptons() != null) {
+                result.put("Sintomas:", "");
+                for (Map.Entry<String, Boolean> entry : getSymptons().entrySet()){
+                    if(entry.getValue())
+                        result.put("  "+entry.getKey(), "Houve");
+                    else
+                        result.put("  "+entry.getKey(), "Não houve");
+                }
+            }
 
             result.put("", "");
         }

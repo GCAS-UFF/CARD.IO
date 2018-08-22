@@ -68,7 +68,7 @@
 
     <!--TELA EXERCICIOS-->
     <string name="exercise_screen_title">Atividades Físicas</string>
-
+    <string name="exercise_symptoms_title">Sintomas</string>
     <!--TELA LISTA PACIENTES-->
     <string name="add_patient">Cadastrar Paciente</string>
     <string name="cpf_label">CPF:</string>
