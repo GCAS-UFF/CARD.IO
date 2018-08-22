@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.holders.DateTextBoxHolder;
 import cardio.com.cardio.common.adapters.holders.DropDownHolder;
+import cardio.com.cardio.common.adapters.holders.CheckBoxListHolder;
+import cardio.com.cardio.common.adapters.holders.RadioButtonListHolder;
 import cardio.com.cardio.common.adapters.holders.TextBoxHolder;
 import cardio.com.cardio.common.adapters.holders.Holder;
 import cardio.com.cardio.common.model.view.LayoutConstantes;
@@ -28,6 +30,12 @@ public class LayoutDecodificator {
             case LayoutConstantes.DROP_DOWN_LAYOUT:
                 v = layoutInflater.inflate(R.layout.item_dorpdown, viewGroup, false);
                 return new DropDownHolder(v);
+            case LayoutConstantes.CHECKBOX_LIST_LAYOUT:
+                v = layoutInflater.inflate(R.layout.item_checkbox_list, viewGroup, false);
+                return new CheckBoxListHolder(v);
+            case LayoutConstantes.RADIO_BUTTON_LIST_LAYOUT:
+                v = layoutInflater.inflate(R.layout.item_radio_button_list, viewGroup, false);
+                return new RadioButtonListHolder(v);
         }
 
         return null;

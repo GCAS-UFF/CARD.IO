@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,13 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
+import cardio.com.cardio.common.model.view.CheckboxListItem;
+import cardio.com.cardio.common.model.view.RadioButtonList;
 import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
@@ -39,6 +44,8 @@ public class ExerciseFragment extends Fragment {
     private TextBox mCaixaDeTextoExercise;
     private TextBox mCaixaDeTextoIntensity;
     private TextBox mCaixaDeTextoDuration;
+    private CheckboxListItem mCheckboxListItem;
+    private RadioButtonList mRadioButtonList;
     private RelativeLayout mRlButtonHistory;
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
@@ -77,6 +84,17 @@ public class ExerciseFragment extends Fragment {
         mCaixaDeTextoDuration.setHint("30");
         mItems.add(mCaixaDeTextoDuration);
 
+        Map<String, Boolean> options = new LinkedHashMap<>();
+        options.put("Opção 1", false);
+        options.put("Opção 2", false);
+        options.put("Opção 3", false);
+
+        mCheckboxListItem = new CheckboxListItem(options, "Questão");
+        mItems.add(mCheckboxListItem);
+
+        mRadioButtonList = new RadioButtonList(options, "Questão 1");
+        mItems.add(mRadioButtonList);
+
         mItemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
         mRecView.setAdapter(mItemRecycleViewAdapter);
         mRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -102,6 +120,9 @@ public class ExerciseFragment extends Fragment {
     }
 
     private boolean isValidForm (){
+
+        Log.d("debug_kelly", mCheckboxListItem.isEmpty() + "");
+
         boolean isValid = true;
         for (Item item : mItems){
             if (item.isEmpty()){
