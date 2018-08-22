@@ -154,10 +154,10 @@ public class PrescribeExercisesFragment extends Fragment {
 
         }
 
-        Map<String, List<Map.Entry<String, String>>> sorted = new TreeMap<>();
+        TreeMap<String, List<Map.Entry<String, String>>> sorted = new TreeMap<>();
         sorted.putAll(result);
 
-        return sorted;
+        return sorted.descendingMap();
     }
 
     private ValueEventListener getPrescriptionListener = new ValueEventListener() {
