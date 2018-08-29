@@ -21,6 +21,8 @@ public class HomeFragment extends Fragment {
     private LinearLayout mLlConsultas;
     private LinearLayout mLlExercicios;
     private LinearLayout mLlSobre;
+    private LinearLayout mLlOrientation;
+    private LinearLayout mLlHelp;
     private ComunicadorHomeActivity comunicadorHomeActivity;
 
     public HomeFragment() {
@@ -92,6 +94,21 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        mLlOrientation = (LinearLayout) view.findViewById(R.id.ll_orientation);
+        mLlOrientation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comunicadorHomeActivity.trocaTelaHome(R.id.ll_orientation);
+            }
+        });
+
+        mLlHelp = (LinearLayout) view.findViewById(R.id.ll_help);
+        mLlHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comunicadorHomeActivity.trocaTelaHome(R.id.ll_help);
+            }
+        });
     }
 
     public interface ComunicadorHomeActivity {

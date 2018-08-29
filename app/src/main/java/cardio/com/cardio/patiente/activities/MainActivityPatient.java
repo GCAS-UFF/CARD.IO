@@ -24,7 +24,9 @@ import cardio.com.cardio.patiente.fragments.AlimentationFragment;
 import cardio.com.cardio.patiente.fragments.ConsultasFragment;
 import cardio.com.cardio.patiente.fragments.ExerciseFragment;
 import cardio.com.cardio.common.fragments.HomeFragment;
+import cardio.com.cardio.patiente.fragments.HelpFragment;
 import cardio.com.cardio.patiente.fragments.MedicinesFragments;
+import cardio.com.cardio.patiente.fragments.OrientationFragment;
 import cardio.com.cardio.patiente.fragments.WeightFragment;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 import cardio.com.cardio.professional.fragments.PatientListFragment;
@@ -128,6 +130,18 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
             case R.id.ll_sobre:
                 AboutFragment aboutFragment = new AboutFragment();
                 fragmentTransaction.replace(R.id.container, aboutFragment, "aboutFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+            case R.id.ll_orientation:
+                OrientationFragment orientationFragment = new OrientationFragment();
+                fragmentTransaction.replace(R.id.container, orientationFragment,"orientationFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+            case R.id.ll_help:
+                HelpFragment helpFragment = new HelpFragment();
+                fragmentTransaction.replace(R.id.container, helpFragment, "helpFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;

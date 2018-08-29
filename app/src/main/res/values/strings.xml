@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Card.io</string>
-    
+
     <!--GENERAL-->
     <string name="stack">Stack</string>
     <string name="ok">Ok</string>
@@ -26,7 +26,7 @@
     <string name="btn_register">Cadastrar</string>
     <string name="title_activity_login">Login</string>
     <string name="label_not_registred">Ainda não é cadastrado?</string>
-    
+
     <!--TELA HOME-->
     <string name="weight_control_title">Biometria</string>
     <string name="alimentation_title">Alimentação</string>
@@ -34,7 +34,9 @@
     <string name="medical_appointment_title">Consultas</string>
     <string name="exercises_title">Exercícios</string>
     <string name="about_title">Sobre</string>
-    
+    <string name="oritation_title">Orientações</string>
+    <string name="help_title">Ajuda</string>
+
     <!--TELA PESAGEM-->
     <string name="weight_screen_title">Como eu estou hoje</string>
     <string name="label_weigth">Meu peso</string>
@@ -60,7 +62,7 @@
     <string name="label_evening">Tarde</string>
     <string name="label_night">Noite</string>
     <string name="label_dawn">Madrugada</string>
-    
+
     <!--TELA ALIMENTACAO-->
     <string name="alimentation_screen_title">Alimentação</string>
     <string name="measure">Medida</string>
@@ -84,7 +86,7 @@
     <!--TELA EXERCICIOS-->
     <string name="exercise_screen_title">Atividades Físicas</string>
     <string name="exercise_symptoms_title">Sintomas</string>
-   
+
     <!--TELA LISTA PACIENTES-->
     <string name="add_patient">Cadastrar Paciente</string>
     <string name="cpf_label">CPF:</string>
@@ -126,6 +128,8 @@
     <string name="idealizers_title">Idealizadoras</string>
     <string name="developers_title">Desenvolvedores</string>
 
-    
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
