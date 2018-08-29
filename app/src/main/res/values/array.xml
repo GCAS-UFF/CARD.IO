@@ -9,4 +9,27 @@
         <item>Tontura</item>
     </array>
 
+    <!--TELA SOBRE-->
+    <array name="contributors">
+        <item> - Prof Dra Ana Carla Dantas Cavalcanti
+            \n\u0009(Escola de Enfermagem/UFF)</item>
+        <item> - Prof Dra Paula Vanessa Peclat Flores
+            \n\u0009(Escola de Enfermagem/UFF)</item>
+        <item>\ - Enfermeira Doutoranda Lyvia da Silva Figueiredo
+            \n\u0009(Pós Graduação em Ciências Cardiovasculares/UFF)</item>
+    </array>
+
+    <array name="developers">
+        <item> - Prof Dr Flávio Luis Seixas
+            \n\u0009(Instituto de computação/UFF)</item>
+        <item> - José Paulo de Mello Gomes
+            \n\u0009(Instituto de computação/UFF)</item>
+        <item> - Kelly Maria Augusta Tavares Bentes
+            \n\u0009(Instituto de computação/UFF)</item>
+        <item> - Artur Ladeira Andrade
+            \n\u0009(Instituto de computação/UFF)</item>
+        <item> - Larissa Martins dos Blanco
+            \n\u0009(Instituto de computação/UFF)</item>
+    </array>
+
 </resources>

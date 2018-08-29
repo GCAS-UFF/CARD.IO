@@ -1,7 +1,32 @@
 <resources>
     <string name="app_name">Card.io</string>
+    
+    <!--GENERAL-->
+    <string name="stack">Stack</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
+    <string name="btn_save">Salvar</string>
+    <string name="btn_prescribe">Adicionar recomendação</string>
+    <string name="btn_history">Ver Histórico</string>
 
+    <!--MESSAGES-->
+    <string name="message_error_field_empty">Todos os campos devem ser preenchidos</string>
+    <string name="message_succes_register_user">Usuário cadastrado com sucesso!</string>
+    <string name="message_error_register_user">Falha ao cadastrar usuário!</string>
+    <string name="message_succes_register_general">Registro realizado com sucesso!</string>
+    <string name="message_error_register_general">Falha ao registrar informação!</string>
+    <string name="message_not_registred">Caso seja um paciente ainda não cadastrado entre em contato com seu profissional de saúde para que faça seu cadastro. \n Caso seja um profissional de saúde autorizado basta clicar em \"Ok\" e seguir com seu cadastro.</string>
+    <string name="message_success_recomendation">Recomendação feita com sucesso!</string>
+    <string name="message_error_recomendation">Falha ao enviar recomendação!</string>
+    <string name="message_success_appointment">Consulta agendada com sucesso!</string>
+    <string name="message_error_appointment">Erro ao agendar consulta</string>
 
+    <!--TELA LOGIN-->
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Cadastrar</string>
+    <string name="title_activity_login">Login</string>
+    <string name="label_not_registred">Ainda não é cadastrado?</string>
+    
     <!--TELA HOME-->
     <string name="weight_control_title">Biometria</string>
     <string name="alimentation_title">Alimentação</string>
@@ -9,8 +34,7 @@
     <string name="medical_appointment_title">Consultas</string>
     <string name="exercises_title">Exercícios</string>
     <string name="about_title">Sobre</string>
-
-
+    
     <!--TELA PESAGEM-->
     <string name="weight_screen_title">Como eu estou hoje</string>
     <string name="label_weigth">Meu peso</string>
@@ -30,15 +54,13 @@
     <string name="medium_fatigue_rg_opt">Fadiga média</string>
     <string name="much_fatigue_rg_opt">Muita fadiga</string>
 
-
     <!--TELA MEDICAMENTO-->
     <string name="register_medice_label">Cadastrar Medicamento</string>
     <string name="label_morning">Manhã</string>
     <string name="label_evening">Tarde</string>
     <string name="label_night">Noite</string>
     <string name="label_dawn">Madrugada</string>
-
-
+    
     <!--TELA ALIMENTACAO-->
     <string name="alimentation_screen_title">Alimentação</string>
     <string name="measure">Medida</string>
@@ -59,16 +81,10 @@
     <string name="qtd_half_requeijao_glass">125 ml</string>
     <string name="qtd_chalice">135 ml</string>
 
-
-    <!--TELA LOGIN-->
-    <string name="btn_login">Login</string>
-    <string name="btn_register">Cadastrar</string>
-    <string name="title_activity_login">Login</string>
-    <string name="label_not_registred">Ainda não é cadastrado?</string>
-
     <!--TELA EXERCICIOS-->
     <string name="exercise_screen_title">Atividades Físicas</string>
     <string name="exercise_symptoms_title">Sintomas</string>
+   
     <!--TELA LISTA PACIENTES-->
     <string name="add_patient">Cadastrar Paciente</string>
     <string name="cpf_label">CPF:</string>
@@ -97,25 +113,19 @@
     <string name="medicine_history_old">Medicamentos antigos</string>
     <string name="medicine_history_current">Medicamentos atuais</string>
 
-    <!--GENERAL-->
-    <string name="stack">Stack</string>
-    <string name="ok">Ok</string>
-    <string name="cancel">Cancelar</string>
-    <string name="btn_save">Salvar</string>
-    <string name="btn_prescribe">Adicionar recomendação</string>
-    <string name="btn_history">Ver Histórico</string>
+    <!--TELA SOBRE-->
+    <string name="about_fragment_title">Sobre</string>
+    <string name="about_fragment_text">\n\u0009Card.IO é um aplicativo para monitoramento de pacientes com Insuficiência Cardíaca Crônica,
+        acompanhados em um Programa de Extensão da Univerdade Federal Fluminense,
+        denominado Clínica de Insuficiência Cardíaca Coração Valente.
+        \n\u0009Este aplicativo tem como objetivo estimular o paciente a realizar mudanças de comportamento favorecendo o
+        contato direto com a equipe de saúde que o acompanha.
+        \n\n
+        \u0009Desenvolvido como projeto de Doutorado da Enfermeira Lyvia da Silva Figueiredo.</string>
+    <string name="contributors_title">Colaboradores</string>
+    <string name="idealizers_title">Idealizadoras</string>
+    <string name="developers_title">Desenvolvedores</string>
 
-
-    <!--MESSAGES-->
-    <string name="message_error_field_empty">Todos os campos devem ser preenchidos</string>
-    <string name="message_succes_register_user">Usuário cadastrado com sucesso!</string>
-    <string name="message_error_register_user">Falha ao cadastrar usuário!</string>
-    <string name="message_succes_register_general">Registro realizado com sucesso!</string>
-    <string name="message_error_register_general">Falha ao registrar informação!</string>
-    <string name="message_not_registred">Caso seja um paciente ainda não cadastrado entre em contato com seu profissional de saúde para que faça seu cadastro. \n Caso seja um profissional de saúde autorizado basta clicar em \"Ok\" e seguir com seu cadastro.</string>
-    <string name="message_success_recomendation">Recomendação feita com sucesso!</string>
-    <string name="message_error_recomendation">Falha ao enviar recomendação!</string>
-    <string name="message_success_appointment">Consulta agendada com sucesso!</string>
-    <string name="message_error_appointment">Erro ao agendar consulta</string>
+    
 
 </resources>

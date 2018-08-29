@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
+import cardio.com.cardio.common.fragments.AboutFragment;
 import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.R;
@@ -124,6 +125,12 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
+            case R.id.ll_sobre:
+                AboutFragment aboutFragment = new AboutFragment();
+                fragmentTransaction.replace(R.id.container, aboutFragment, "aboutFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
         }
     }
 
@@ -157,6 +164,14 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
+            case R.id.ll_sobre:
+                AboutFragment aboutFragment = new AboutFragment();
+                fragmentTransaction.replace(R.id.container, aboutFragment, "aboutFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+
+
         }
     }
 
