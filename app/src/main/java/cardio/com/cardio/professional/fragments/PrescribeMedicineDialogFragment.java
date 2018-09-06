@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 import java.text.ParseException;
@@ -32,7 +30,6 @@ import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.model.view.DateTextBox;
 import cardio.com.cardio.common.model.view.Item;
 import cardio.com.cardio.common.util.Formater;
-import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 public class PrescribeMedicineDialogFragment extends android.support.v4.app.DialogFragment {
@@ -45,6 +42,7 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
     private DateTextBox mStartHourTextBox;
     private TextBox mFrequencyTextBox;
     private DateTextBox mFinishDateTextBox;
+    private TextBox mNoteTextBox;
     private Button mBtnCancelar;
     private Button mBtnOk;
     private List<Item> mItems;
@@ -100,6 +98,9 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
         mFinishDateTextBox = new DateTextBox(getResources().getString(R.string.finishDate_label), DateTextBox.INPUT_DATE);
         mItems.add(mFinishDateTextBox);
 
+        mNoteTextBox = new TextBox(getResources().getString(R.string.medicine_note_label), "", TextBox.INPUT_TEXT);
+        mItems.add(mNoteTextBox);
+
         ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
         itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
 
@@ -144,6 +145,7 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
         medicamento.setDosagem(mDosageTextBox.getValue());
         medicamento.setQuantidade(mQuantityTextBox.getValue());
         medicamento.setHorario(mStartHourTextBox.getValue());
+        medicamento.setNote(mNoteTextBox.getValue());
         medicamento.setProfissionalId(FirebaseConfig.getFirebaseAuth().getUid());
 
         Recomentation recomentation = new Recomentation();
@@ -180,6 +182,7 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_NAME_KEY).setValue(((Medicamento) recomentation.getAction()).getName());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_DOSAGE_KEY).setValue(((Medicamento) recomentation.getAction()).getDosagem());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.QUANTITY_KEY).setValue(((Medicamento) recomentation.getAction()).getQuantidade());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_NOTE_KEY).setValue(((Medicamento) recomentation.getAction()).getNote());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_START_HOUR_KEY).setValue(((Medicamento) recomentation.getAction()).getHorario());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_PROFESSIONAL_KEY).setValue(((Medicamento) recomentation.getAction()).getProfissionalId());
             Toast.makeText(getActivity(), getResources().getString(R.string.message_success_recomendation), Toast.LENGTH_SHORT).show();

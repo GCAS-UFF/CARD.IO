@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +15,19 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
+import cardio.com.cardio.common.model.view.DropDown;
 import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
@@ -31,12 +38,13 @@ import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 public class AlimentationFragment extends Fragment {
 
-    private RecyclerView mRecViewInput;
+    private RecyclerView mRecView;
     private ItemRecycleViewAdapter mItemRecycleViewAdapter;
     private Button mBtnSave;
-    private List<Item> mItems;
-    private TextBox mCaixaDeTextoAliment;
+    private TextBox mCaixaDeTextoFood;
     private TextBox mCaixaDeTextoQuantity;
+    private DropDown mUnityDropDown;
+    private List<Item> mItems;
     private RelativeLayout mRlButtonHistory;
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
@@ -58,27 +66,27 @@ public class AlimentationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mRecViewInput = (RecyclerView) view.findViewById(R.id.rec_view_input);
+        mRecView = (RecyclerView) view.findViewById(R.id.rec_view_input);
         mBtnSave = (Button) view.findViewById(R.id.btn_save);
         mItems = new ArrayList<>();
 
-        mCaixaDeTextoAliment = new TextBox("Bebida", "", TextBox.INPUT_TEXT);
-        mCaixaDeTextoAliment.setHint("Água");
-        mItems.add(mCaixaDeTextoAliment);
+        mCaixaDeTextoFood = new TextBox("Bebida", "", TextBox.INPUT_TEXT);
+        mCaixaDeTextoFood.setHint("Água");
+        mItems.add(mCaixaDeTextoFood);
 
-        mCaixaDeTextoQuantity = new TextBox("Quantidade", "ml", TextBox.INPUT_NUMBER);
+        mCaixaDeTextoQuantity = new TextBox("Quantidade", "", TextBox.INPUT_NUMBER);
         mCaixaDeTextoQuantity.setHint("100");
         mItems.add(mCaixaDeTextoQuantity);
 
-        mItemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
-        mRecViewInput.setAdapter(mItemRecycleViewAdapter);
-        mRecViewInput.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        FirebaseHelper.quantidadeBebidasDatabaseReference.addListenerForSingleValueEvent(getBeverageQuantityMetadata);
 
         mBtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(isValidForm()) {
-                    saveObject();
+                       saveObject();
                 }
                 else{
                     Toast.makeText(getActivity(), getResources().getString(R.string.message_error_field_empty), Toast.LENGTH_SHORT).show();
@@ -93,6 +101,8 @@ public class AlimentationFragment extends Fragment {
                 comunicatorFragmentActivity.trocaTela(R.id.ll_alimentacao);
             }
         });
+
+
     }
 
     private boolean isValidForm (){
@@ -105,11 +115,12 @@ public class AlimentationFragment extends Fragment {
         }
         return isValid;
     }
-
     private void saveObject(){
         Alimentacao alimentacao = new Alimentacao();
-        alimentacao.setFood(mCaixaDeTextoAliment.getValue());
-        alimentacao.setQuantity(Formater.getIntegerFromString(mCaixaDeTextoQuantity.getValue()));
+        alimentacao.setFood(mCaixaDeTextoFood.getValue());
+        alimentacao.setQuantity(
+                Formater.getIntegerFromString(mCaixaDeTextoQuantity.getValue()) * Formater.getIntegerFromString(mUnityDropDown.getValue())
+        );
 
         alimentacao.setExecutedDate((new Date()).getTime());
         alimentacao.setPerformed(true);
@@ -133,4 +144,30 @@ public class AlimentationFragment extends Fragment {
         }
 
     }
+
+    private ValueEventListener getBeverageQuantityMetadata = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            Map<String, String> options = new LinkedHashMap<>();
+
+            for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()){
+                options.put(entrySnapshot.getKey(), String.valueOf(entrySnapshot.getValue()));
+            }
+
+            mUnityDropDown = new DropDown(options, "Medida");
+            mItems.add(mUnityDropDown);
+
+            ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
+            itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
+
+            mRecView.setAdapter(itemRecycleViewAdapter);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
+
 }

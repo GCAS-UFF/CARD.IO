@@ -126,7 +126,6 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
             }
         return  isValid;
     }
-
     private void saveObject() throws ParseException {
 
         Consulta consulta = new Consulta();
@@ -156,7 +155,6 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
         }
 
     }
-
     private ValueEventListener getAdressMetadata = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

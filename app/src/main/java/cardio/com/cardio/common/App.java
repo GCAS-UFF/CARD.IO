@@ -3,6 +3,7 @@ package cardio.com.cardio.common;
 import android.app.Application;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.util.PreferencesUtils;
@@ -18,5 +19,7 @@ public class App extends Application {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         FirebaseDatabase.getInstance().getReference().keepSynced(true);
         FirebaseHelper.initialize(getApplicationContext());
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+        FirebaseMessaging.getInstance().subscribeToTopic(FirebaseHelper.USER_KEY);
     }
 }

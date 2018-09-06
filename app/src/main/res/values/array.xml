@@ -32,4 +32,19 @@
             \n\u0009(Instituto de computação/UFF)</item>
     </array>
 
+    <!--TELA ALIMENTACAO-->
+    <array name="measure">
+        <item>Copo americano</item>
+        <item>Xícara</item>
+        <item>Copo de requeijão</item>
+        <item>Cálice</item>
+    </array>
+
+    <array name="quantity">
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>1</item>
+    </array>
+
 </resources>

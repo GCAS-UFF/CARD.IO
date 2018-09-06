@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.Co
 
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.container, loginFragment, "loginFragment");
-            fragmentTransaction.addToBackStack(getString(R.string.stack));
+//            fragmentTransaction.addToBackStack(getString(R.string.stack));
             fragmentTransaction.commit();
         }
 

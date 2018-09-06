@@ -111,6 +111,7 @@
     <string name="exercise_duration_unit">min</string>
     <string name="medicine_name_label">Nome do medicamento</string>
     <string name="medicine_dosage_label">Dosagem</string>
+    <string name="medicine_note_label">Observação</string>
     <string name="medicine_quantity_label">Quantidade</string>
     <string name="medicine_history_old">Medicamentos antigos</string>
     <string name="medicine_history_current">Medicamentos atuais</string>

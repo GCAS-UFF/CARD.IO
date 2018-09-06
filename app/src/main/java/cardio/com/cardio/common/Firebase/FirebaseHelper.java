@@ -4,10 +4,11 @@ import android.content.Context;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import cardio.com.cardio.common.util.PreferencesUtils;
 
-public class FirebaseHelper {
+public class FirebaseHelper{
 
 //    PARAMETROS
 
@@ -30,8 +31,10 @@ public class FirebaseHelper {
     public static final String METADATA_KEY = "Metadados";
     public static final String ADRESS_KEY = "Endereco";
     public static final String SPECIALITY_KEY = "Especialidades";
+    public static final String QUANTITY_BEVERAGE_KEY = "QuantidadeBebidas";
     public static final String MEDICINE_NAME_KEY = "Nome";
     public static final String MEDICINE_DOSAGE_KEY = "Dosagem";
+    public static final String MEDICINE_NOTE_KEY = "Observação";
     public static final String MEDICINE_START_HOUR_KEY = "HoraInicial";
     public static final String MEDICINE_PROFESSIONAL_KEY = "ProfissionalResponsavel";
     public static final String EXCERCISE_NAME_KEY = "Atividade";
@@ -40,14 +43,14 @@ public class FirebaseHelper {
 
 //  DATABASE REFERENCES
 
-    public static final DatabaseReference getAllPatientsListDatabaseReference(){
-        return FirebaseDatabase.getInstance().getReference().child(PATIENT_KEY);
-    }
-
     public static final DatabaseReference specialitiesDatabaseReference = FirebaseDatabase.getInstance()
             .getReference()
             .child(METADATA_KEY)
             .child(SPECIALITY_KEY);
+
+    public static final DatabaseReference quantidadeBebidasDatabaseReference = FirebaseDatabase.getInstance().getReference()
+            .child(METADATA_KEY)
+            .child(QUANTITY_BEVERAGE_KEY);
 
     public static final DatabaseReference adressDatabaseReference = FirebaseDatabase.getInstance().getReference()
             .child(METADATA_KEY)
@@ -65,7 +68,12 @@ public class FirebaseHelper {
     private DatabaseReference genericUserDatabaseReference = FirebaseDatabase.getInstance().getReference()
             .child(USER_KEY);
 
+
 //    METODOS
+
+    public static final DatabaseReference getAllPatientsListDatabaseReference(){
+        return FirebaseDatabase.getInstance().getReference().child(PATIENT_KEY);
+    }
 
     private FirebaseHelper(Context context){
         this.context = context;
@@ -79,11 +87,9 @@ public class FirebaseHelper {
         return firebaseHelper;
     }
 
-
     public DatabaseReference getPatientDatabaseReference(String id){
         return genericPatientDatabaseReference.child(id);
     }
-
 
     public DatabaseReference getProfessionalDatabaseReference(String id){
         return genericProfessionalDatabaseReference.child(id);
