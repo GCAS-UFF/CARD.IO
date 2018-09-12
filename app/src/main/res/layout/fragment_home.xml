@@ -33,7 +33,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/ico_corpo"
+                        android:src="@drawable/danilo_biometric"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -56,7 +56,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/ico_talheres"
+                        android:src="@drawable/danilo_liquid"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -87,7 +87,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/medicines"
+                        android:src="@drawable/danilo_medicine"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -110,7 +110,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/ico_consultas"
+                        android:src="@drawable/danilo_appointment"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -141,7 +141,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/exercises"
+                        android:src="@drawable/danilo_exercise"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -164,7 +164,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/about"
+                        android:src="@drawable/danilo_about"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -195,7 +195,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/orientations"
+                        android:src="@drawable/danilo_orientations"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -218,7 +218,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/help"
+                        android:src="@drawable/danilo_help"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView

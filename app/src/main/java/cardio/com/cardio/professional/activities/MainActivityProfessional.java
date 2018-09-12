@@ -1,16 +1,28 @@
 package cardio.com.cardio.professional.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
+import com.firebase.jobdispatcher.Trigger;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+
 import cardio.com.cardio.R;
+import cardio.com.cardio.common.Firebase.CardioJobService;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.activities.LoginActivity;
 import cardio.com.cardio.common.fragments.HomeFragment;
@@ -26,10 +38,13 @@ import cardio.com.cardio.professional.fragments.PrescribeMedicineFragment;
 import cardio.com.cardio.professional.fragments.RegisterPatientFragment;
 import cardio.com.cardio.professional.fragments.RegisterProfessionalFragment;
 
+import static android.provider.ContactsContract.Intents.Insert.ACTION;
+
 public class MainActivityProfessional extends AppCompatActivity implements ComunicatorFragmentActivity, HomeFragment.ComunicadorHomeActivity {
 
     private FragmentManager fragmentManager;
     private Paciente currentPatientSelected;
+    private InternalReceiver internalReceiver;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,6 +89,8 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
                 fragmentTransaction.commit();
             }
         }
+
+        internalReceiver = new InternalReceiver();
     }
 
     @Override
@@ -162,5 +179,34 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
     @Override
     public boolean isProfessionalActivity() {
         return true;
+    }
+
+    class InternalReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction() == "notification"){
+                ArrayList<String> arrayList = intent.getExtras().getStringArrayList("msg");
+                PushNotificationDialogFragment pndf = new PushNotificationDialogFragment();
+                pndf.show((MainActivityProfessional.this).getSupportFragmentManager(),"notification");
+                Bundle args = new Bundle();
+                args.putStringArrayList("msg", arrayList);
+                pndf.setArguments(args);
+            }
+        }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.i("MAIN LIFECYCLE:", "onResume()");
+        IntentFilter intentFilter = new IntentFilter(ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(internalReceiver,intentFilter);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.i("MAIN LIFECYCLE:", "onPause()");
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(internalReceiver);
     }
 }

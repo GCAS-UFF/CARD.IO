@@ -48,8 +48,6 @@ public class WeightFragment extends Fragment {
     private RelativeLayout mRlButtonHistory;
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
-    //Teste de senha Git
-
     public WeightFragment() {
     }
 
