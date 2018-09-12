@@ -48,6 +48,8 @@ public class WeightFragment extends Fragment {
     private RelativeLayout mRlButtonHistory;
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
+
+
     public WeightFragment() {
     }
 
