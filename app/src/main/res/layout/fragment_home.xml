@@ -87,7 +87,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/ico_medicamentos"
+                        android:src="@drawable/medicines"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -141,7 +141,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_exercise"
+                        android:src="@drawable/exercises"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -164,7 +164,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_about"
+                        android:src="@drawable/about"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -195,7 +195,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_orientations"
+                        android:src="@drawable/orientations"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView

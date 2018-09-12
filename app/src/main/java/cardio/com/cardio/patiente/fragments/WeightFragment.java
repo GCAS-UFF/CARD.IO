@@ -38,6 +38,8 @@ public class WeightFragment extends Fragment {
     private TextBox mCaixaDeTextoPeso;
     private TextBox mCaixaDeTextoBatimentos;
     private TextBox mCaixaDeTextoPressao;
+//    private TextBox mCaixaDeTextoPressaoSistolica;
+//    private TextBox mCaixaDeTextoPressaoDiastolica;
     private ItemRecycleViewAdapter mItemRecycleViewAdapter;
     private RadioGroup mRGInchaco;
     private RadioGroup mRGFadiga;
