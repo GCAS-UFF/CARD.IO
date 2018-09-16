@@ -4,8 +4,12 @@ import android.content.Context;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.text.ParseException;
+
+import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.common.util.PreferencesUtils;
 
 public class FirebaseHelper{
@@ -31,6 +35,8 @@ public class FirebaseHelper{
     public static final String METADATA_KEY = "Metadados";
     public static final String ADRESS_KEY = "Endereco";
     public static final String SPECIALITY_KEY = "Especialidades";
+    public static final String APPOINTMENT_PATIENT_KEY = "paciente";
+    public static final String APPOINTMENT_DATA_KEY = "data";
     public static final String QUANTITY_BEVERAGE_KEY = "QuantidadeBebidas";
     public static final String MEDICINE_NAME_KEY = "Nome";
     public static final String MEDICINE_DOSAGE_KEY = "Dosagem";
@@ -117,5 +123,12 @@ public class FirebaseHelper{
 
     public DatabaseReference getCurrentPatientListDatabaseReference (){
         return getPatientListDatabaseReference(PreferencesUtils.getString(context, FirebaseHelper.USER_KEY));
+    }
+
+    public Query getAppointmentByDateAndPatient (String dateStr, String userId) throws ParseException {
+        long dateLong = Formater.getDateFromString(dateStr).getTime();
+        long dayInMilliseconds = 86400000;
+
+        return appointmentDatabaseReference.orderByChild(APPOINTMENT_DATA_KEY).startAt(dateLong);
     }
 }

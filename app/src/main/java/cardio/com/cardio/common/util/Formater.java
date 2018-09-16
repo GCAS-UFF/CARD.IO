@@ -43,7 +43,7 @@ public class Formater {
         return formato.format(date);
     }
 
-    public static Date getDateFronStringDateAndTime (String dateStr, String timeStr) throws ParseException {
+    public static Date getDateFromStringDateAndTime(String dateStr, String timeStr) throws ParseException {
 
         String result = dateStr + " " + timeStr;
 

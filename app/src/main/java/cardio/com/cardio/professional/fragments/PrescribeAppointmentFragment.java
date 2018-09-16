@@ -13,12 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -36,6 +38,7 @@ import cardio.com.cardio.common.model.model.Profissional;
 import cardio.com.cardio.common.model.model.Recomentation;
 import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.common.util.PreferencesUtils;
+import cardio.com.cardio.patiente.fragments.ActionNotificationDialogFragment;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 public class PrescribeAppointmentFragment extends Fragment {
@@ -122,7 +125,7 @@ public class PrescribeAppointmentFragment extends Fragment {
                     appoitments.add(consulta);
                 }
 
-                itemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(getAppointmentByDate(appoitments));
+                itemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(getAppointmentByDate(appoitments), comunicatorItemClick);
                 mRVHistory.setAdapter(itemExpandableSimpleListAdapter);
 
             }catch (NullPointerException e){
@@ -133,6 +136,45 @@ public class PrescribeAppointmentFragment extends Fragment {
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
             Log.e(PrescribeFoodFragment.class.getName(), databaseError.getDetails());
+        }
+    };
+
+    private ValueEventListener getAppointmentByDateListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            try {
+                List<Consulta> appoitments = new ArrayList<>();
+
+                for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
+                    Consulta consulta = entrySnapshot.getValue(Consulta.class);
+                    consulta.setId(entrySnapshot.getKey());
+                    if (consulta.getPaciente().equals(comunicatorFragmentActivity.getPatientSelected().getId()))
+                        appoitments.add(consulta);
+                }
+
+                ActionNotificationDialogFragment actionNotificationDialogFragment = new ActionNotificationDialogFragment(appoitments);
+                actionNotificationDialogFragment.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+
+            }catch (NullPointerException e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            Log.e(PrescribeFoodFragment.class.getName(), databaseError.getDetails());
+        }
+    };
+
+    ItemExpandableSimpleListAdapter.ComunicatorItemClick comunicatorItemClick = new ItemExpandableSimpleListAdapter.ComunicatorItemClick() {
+        @Override
+        public void onClick(String dateStr) {
+
+            try {
+                FirebaseHelper.getInstance().getAppointmentByDateAndPatient(dateStr, comunicatorFragmentActivity.getPatientSelected().getId()).addListenerForSingleValueEvent(getAppointmentByDateListener);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     };
 }

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -130,7 +131,7 @@ public class ConsultasFragment extends Fragment {
                     }
 
                 }
-                itemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(getAppointmentByDate(appoitments));
+                itemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(getAppointmentByDate(appoitments), comunicatorItemClick);
                 mRVHistory.setAdapter(itemExpandableSimpleListAdapter);
 
             }catch (NullPointerException e){
@@ -141,6 +142,13 @@ public class ConsultasFragment extends Fragment {
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
 
+        }
+    };
+
+    ItemExpandableSimpleListAdapter.ComunicatorItemClick comunicatorItemClick = new ItemExpandableSimpleListAdapter.ComunicatorItemClick() {
+        @Override
+        public void onClick(String dateStr) {
+            Toast.makeText(getActivity(), dateStr, Toast.LENGTH_SHORT);
         }
     };
 }

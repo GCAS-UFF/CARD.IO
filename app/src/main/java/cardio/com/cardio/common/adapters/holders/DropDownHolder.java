@@ -31,7 +31,7 @@ public class DropDownHolder extends Holder{
             spinnerList.add(dropDown.getHint());
 
             if (dropDown.getOptions() != null) {
-                spinnerList.addAll(dropDown.getOptions().keySet());
+                spinnerList.addAll(dropDown.getOptions().values());
             }
 
             final ArrayAdapter<CharSequence> spinnerAdapter = new ArrayAdapter<CharSequence>(itemView.getContext(),

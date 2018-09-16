@@ -175,6 +175,7 @@ public class PrescribeBiometricsFragment extends Fragment {
                 }
 
                 itemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(getRecomendationByDate(recomentations));
+
                 mRVHistory.setAdapter(itemExpandableSimpleListAdapter);
 
                 DatabaseReference ref = FirebaseHelper.getInstance().getPatientDatabaseReference(

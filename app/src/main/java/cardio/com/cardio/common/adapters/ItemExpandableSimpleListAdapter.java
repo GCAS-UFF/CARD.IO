@@ -7,29 +7,35 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import cardio.com.cardio.R;
-import cardio.com.cardio.common.adapters.holders.ItemExpandableListHolder;
 import cardio.com.cardio.common.adapters.holders.ItemExpandableSimpleListHolder;
-import cardio.com.cardio.common.model.model.Paciente;
 
 public class ItemExpandableSimpleListAdapter extends RecyclerView.Adapter<ItemExpandableSimpleListHolder>{
 
     private List<Map.Entry<String, List<Map.Entry<String, String>>>> entrysByDateList;
     private Map<String, List<Map.Entry<String, String>>> entrysByDateMap;
+    private ComunicatorItemClick mComunicatorItemClick;
 
-    public ItemExpandableSimpleListAdapter(final Map<String, List<Map.Entry<String, String>>> entrysByDateMap) {
+    public ItemExpandableSimpleListAdapter(Map<String, List<Map.Entry<String, String>>> entrysByDateMap) {
         this.entrysByDateMap = entrysByDateMap;
 
         if (entrysByDateMap != null){
             this.entrysByDateList = new ArrayList<>(entrysByDateMap.entrySet());
         }
+    }
+
+    public ItemExpandableSimpleListAdapter(Map<String, List<Map.Entry<String, String>>> entrysByDateMap,
+                                           ComunicatorItemClick comunicatorItemClick) {
+        this.entrysByDateMap = entrysByDateMap;
+
+        if (entrysByDateMap != null){
+            this.entrysByDateList = new ArrayList<>(entrysByDateMap.entrySet());
+        }
+
+        this.mComunicatorItemClick = comunicatorItemClick;
     }
 
     public Map<String, List<Map.Entry<String, String>>> getEntrysByDateMap() {
@@ -42,7 +48,7 @@ public class ItemExpandableSimpleListAdapter extends RecyclerView.Adapter<ItemEx
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View v = layoutInflater.inflate(R.layout.item_expandable_simpelist, parent, false);
-        return new ItemExpandableSimpleListHolder(v);
+        return new ItemExpandableSimpleListHolder(v, mComunicatorItemClick);
     }
 
     @Override
@@ -58,5 +64,9 @@ public class ItemExpandableSimpleListAdapter extends RecyclerView.Adapter<ItemEx
         if (entrysByDateList != null)
             return entrysByDateList.size();
         return 0;
+    }
+
+    public interface ComunicatorItemClick {
+        void onClick(String dateStr);
     }
 }

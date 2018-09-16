@@ -17,6 +17,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
+import cardio.com.cardio.common.util.NotificationUltils;
 import cardio.com.cardio.common.util.PreferencesUtils;
 
 public class HomeFragment extends Fragment {
@@ -105,6 +106,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 comunicadorHomeActivity.trocaTelaHome(R.id.ll_orientation);
+                (new NotificationUltils(getActivity())).scheduleAlarme("tile", "text");
             }
         });
 

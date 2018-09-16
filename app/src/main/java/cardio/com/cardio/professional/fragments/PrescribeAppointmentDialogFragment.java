@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,12 +29,10 @@ import cardio.com.cardio.R;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.common.model.model.Consulta;
-import cardio.com.cardio.common.model.model.Recomentation;
 import cardio.com.cardio.common.model.view.DateTextBox;
 import cardio.com.cardio.common.model.view.DropDown;
 import cardio.com.cardio.common.model.view.Item;
 import cardio.com.cardio.common.util.Formater;
-import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 public class PrescribeAppointmentDialogFragment extends android.support.v4.app.DialogFragment {
@@ -130,7 +127,7 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
 
         Consulta consulta = new Consulta();
 
-        consulta.setData(Formater.getDateFronStringDateAndTime(mDateTextBox.getValue(),
+        consulta.setData(Formater.getDateFromStringDateAndTime(mDateTextBox.getValue(),
                 mHourTextBox.getValue()).getTime());
         consulta.setLocalizacao(mAdressDropDown.getValue());
         consulta.setEspecialideProfissional(mSpecialityDropDown.getValue());

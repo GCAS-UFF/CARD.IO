@@ -2,30 +2,31 @@ package cardio.com.cardio.common.adapters.holders;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import cardio.com.cardio.R;
-import cardio.com.cardio.common.adapters.ItemExpandableListAdapter;
+import cardio.com.cardio.common.adapters.ItemExpandableSimpleListAdapter;
 import cardio.com.cardio.common.adapters.MapRecycleViewAdapter;
-import cardio.com.cardio.common.model.model.Paciente;
-import cardio.com.cardio.common.util.Formater;
 
-public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder {
+public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
     private TextView mTvTitle;
     private RecyclerView mRecView;
     private LinearLayout mLlExpandable;
     private LinearLayout getmLlExpandableContainer;
+    private ItemExpandableSimpleListAdapter.ComunicatorItemClick ComunicatorItemClick;
+    private Map.Entry<String, List<Map.Entry<String, String>>> mEntry;
+    private ImageView imgVwBtnAdd;
 
-    public ItemExpandableSimpleListHolder(View itemView) {
+    public ItemExpandableSimpleListHolder(View itemView, ItemExpandableSimpleListAdapter.ComunicatorItemClick ComunicatorItemClick) {
         super(itemView);
 
         mLlExpandable = (LinearLayout) itemView.findViewById(R.id.ll_expandable);
@@ -35,11 +36,17 @@ public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder {
         mRecView = (RecyclerView) itemView.findViewById(R.id.rec_view);
 
         mRecView.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
+
+        imgVwBtnAdd = (ImageView) itemView.findViewById(R.id.img_vw_btn_add);
+
+        this.ComunicatorItemClick = ComunicatorItemClick;
     }
 
 
-    public void bindType(Map.Entry<String, List<Map.Entry<String, String>>> entry){
+    public void bindType(final Map.Entry<String, List<Map.Entry<String, String>>> entry){
         try {
+            this.mEntry = entry;
+
             mTvTitle.setText(entry.getKey());
 
             MapRecycleViewAdapter mapRecycleViewAdapter = new MapRecycleViewAdapter(entry.getValue());
@@ -48,13 +55,13 @@ public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder {
 
             mLlExpandable.setVisibility(View.VISIBLE);
 
-            getmLlExpandableContainer.setOnClickListener(new View.OnClickListener() {
+            getmLlExpandableContainer.setOnClickListener(this);
+            getmLlExpandableContainer.setOnLongClickListener(this);
+
+            imgVwBtnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mLlExpandable.getVisibility() == View.GONE)
-                        mLlExpandable.setVisibility(View.VISIBLE);
-                    else
-                        mLlExpandable.setVisibility(View.GONE);
+                    ComunicatorItemClick.onClick(entry.getKey());
                 }
             });
 
@@ -64,4 +71,18 @@ public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if (mLlExpandable.getVisibility() == View.GONE)
+            mLlExpandable.setVisibility(View.VISIBLE);
+        else
+            mLlExpandable.setVisibility(View.GONE);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        Log.d("debug_kelly", "fui clicado longamente");
+        Toast.makeText(itemView.getContext(), "fui longamente clicado", Toast.LENGTH_SHORT);
+        return true;
+    }
 }
