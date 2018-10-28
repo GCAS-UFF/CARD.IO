@@ -43,7 +43,7 @@ public class NotificationUltils {
     public void start(String contextTitle, String contextText){
 
         mBuilder = new NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.logo2)
+                .setSmallIcon(R.drawable.round_ico)
                 .setContentTitle(contextTitle)
                 .setContentText(contextText);
 

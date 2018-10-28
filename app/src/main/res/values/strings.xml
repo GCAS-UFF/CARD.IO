@@ -28,14 +28,14 @@
     <string name="label_not_registred">Ainda não é cadastrado?</string>
 
     <!--TELA HOME-->
-    <string name="weight_control_title">Biometria</string>
-    <string name="alimentation_title">Alimentação</string>
+    <string name="weight_control_title">Como estou hoje</string>
+    <string name="alimentation_title">Líquidos ingeridos</string>
     <string name="medicines_title">Medicações</string>
     <string name="medical_appointment_title">Consultas</string>
     <string name="exercises_title">Exercícios</string>
-    <string name="about_title">Sobre</string>
+    <string name="about_title">Informações</string>
     <string name="oritation_title">Orientações</string>
-    <string name="help_title">Ajuda</string>
+    <string name="help_title">Dúvidas</string>
 
     <!--TELA PESAGEM-->
     <string name="weight_screen_title">Como eu estou hoje</string>

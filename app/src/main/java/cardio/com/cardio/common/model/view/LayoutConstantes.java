@@ -6,4 +6,5 @@ public class LayoutConstantes {
     public final static int DROP_DOWN_LAYOUT = 2;
     public final static int CHECKBOX_LIST_LAYOUT = 3;
     public final static int RADIO_BUTTON_LIST_LAYOUT = 4;
+    public final static int ORIENTATION_ITEM = 5;
 }

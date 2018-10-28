@@ -25,7 +25,10 @@ import cardio.com.cardio.R;
 import cardio.com.cardio.common.Firebase.CardioJobService;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.activities.LoginActivity;
+import cardio.com.cardio.common.fragments.AboutFragment;
+import cardio.com.cardio.common.fragments.HelpFragment;
 import cardio.com.cardio.common.fragments.HomeFragment;
+import cardio.com.cardio.common.fragments.OrientationFragment;
 import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
@@ -155,6 +158,24 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
             case R.id.ll_medicacoes:
                 PrescribeMedicineFragment prescribeMedicineFragment = new PrescribeMedicineFragment();
                 fragmentTransaction.replace(R.id.container, prescribeMedicineFragment, "prescribeMedicineFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+            case R.id.ll_sobre:
+                AboutFragment aboutFragment = new AboutFragment();
+                fragmentTransaction.replace(R.id.container, aboutFragment, "aboutFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+            case R.id.ll_orientation:
+                OrientationFragment orientationFragment = new OrientationFragment();
+                fragmentTransaction.replace(R.id.container, orientationFragment,"orientationFragment");
+                fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
+                fragmentTransaction.commit();
+                break;
+            case R.id.ll_help:
+                HelpFragment helpFragment = new HelpFragment();
+                fragmentTransaction.replace(R.id.container, helpFragment, "helpFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;

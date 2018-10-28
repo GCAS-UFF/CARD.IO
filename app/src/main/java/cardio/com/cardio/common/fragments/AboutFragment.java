@@ -9,6 +9,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -40,7 +41,12 @@ public class AboutFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mTvAboutText = (TextView) view.findViewById(R.id.tv_about_text);
-//        mTvAboutText.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
+
+//        WebView wbAbout = (WebView) view.findViewById(R.id.wbAbout);
+//        String text = "<html><body><p align=\"justify\">"
+//                + getResources().getString(R.string.about_fragment_text)
+//                + "</p></body></html>";
+//        wbAbout.loadData(text, "text/html; charset=utf-8", "utf-8");
 
         mTvContributors = (TextView) view.findViewById(R.id.tv_contiburtors);
         mTvContributors.setText(Arrays.toString(getResources().getStringArray(R.array.contributors)).replaceAll("\\[|\\]|\\,", "\n"));

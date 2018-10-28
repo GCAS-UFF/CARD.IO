@@ -24,18 +24,14 @@ import cardio.com.cardio.patiente.fragments.AlimentationFragment;
 import cardio.com.cardio.patiente.fragments.ConsultasFragment;
 import cardio.com.cardio.patiente.fragments.ExerciseFragment;
 import cardio.com.cardio.common.fragments.HomeFragment;
-import cardio.com.cardio.patiente.fragments.HelpFragment;
-import cardio.com.cardio.patiente.fragments.MedicinesFragments;
-import cardio.com.cardio.patiente.fragments.OrientationFragment;
+import cardio.com.cardio.common.fragments.HelpFragment;
+import cardio.com.cardio.common.fragments.OrientationFragment;
 import cardio.com.cardio.patiente.fragments.WeightFragment;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
-import cardio.com.cardio.professional.fragments.PatientListFragment;
-import cardio.com.cardio.professional.fragments.PrescribeAppointmentFragment;
 import cardio.com.cardio.professional.fragments.PrescribeBiometricsFragment;
 import cardio.com.cardio.professional.fragments.PrescribeExercisesFragment;
 import cardio.com.cardio.professional.fragments.PrescribeFoodFragment;
 import cardio.com.cardio.professional.fragments.PrescribeMedicineFragment;
-import cardio.com.cardio.professional.fragments.RegisterPatientFragment;
 
 public class MainActivityPatient extends AppCompatActivity implements HomeFragment.ComunicadorHomeActivity, ComunicatorFragmentActivity {
 

@@ -11,12 +11,15 @@
 
     <!--TELA SOBRE-->
     <array name="contributors">
+        <item>\ - Enfermeira Doutoranda Lyvia da Silva Figueiredo
+            \n\u0009(Pós Graduação em Ciências Cardiovasculares/UFF)</item>
         <item> - Prof Dra Ana Carla Dantas Cavalcanti
             \n\u0009(Escola de Enfermagem/UFF)</item>
         <item> - Prof Dra Paula Vanessa Peclat Flores
             \n\u0009(Escola de Enfermagem/UFF)</item>
-        <item>\ - Enfermeira Doutoranda Lyvia da Silva Figueiredo
-            \n\u0009(Pós Graduação em Ciências Cardiovasculares/UFF)</item>
+        <item> - Danilo Corrêa
+            \n\u0009(Escola de Enfermagem/UFF)</item>
+
     </array>
 
     <array name="developers">
@@ -45,6 +48,96 @@
         <item>2</item>
         <item>2</item>
         <item>1</item>
+    </array>
+
+    <!--TÍTULO DE ORIENTAÇÕES-->
+    <array name="orienttion_title">
+        <item>O que é a Insuficiência Cardíaca?</item>
+        <item>Sinais e Sintomas da Insuficiência Cardíaca </item>
+        <item>Consumo de sal</item>
+        <item>Ingestão de gorduras</item>
+        <item>Tenha uma alimentação saudável!</item>
+        <item>Controle a ingestão de líquido</item>
+        <item>Pratique exercícios físicos</item>
+        <item>Controle seu peso</item>
+        <item>Tome as medicações</item>
+        <item>Tome as vacinas</item>
+        <item>Não falte as consultas</item>
+        <item>Não fume</item>
+        <item>Como parar de fumar?</item>
+        <item>Não tome as bebidas alcoólicas</item>
+        <item>Diminua o consumo de bebidas cafeinadas</item>
+        <item>Sono</item>
+        <item>Ansiedade e estresse</item>
+        <item>Diminuindo a ansiedade e estresse</item>
+        <item>Em caso de viagens</item>
+        <item>A gravidez é contra-indicada para mulheres com Insuficiência Cardíaca?</item>
+    </array>
+
+    <!--Descrição da orientação-->
+    <array name="orientation_description">
+        <item>
+            É a dificuldade do coração em se encher de sangue corretamente e bombeá-lo de forma suficiente para abastecer as necessidades do corpo.
+        </item>
+        <item>
+            Falta de ar; indisposição para realizar exercícios físicos; coração acelerado; cansaço; tosse noturna; edema (Inchaço) nas pernas, pés e mãos; vontade de urinar muitas vezes à noite; ganho de peso inexplicável; dificuldade para dormir; ansiedade; dor no peito; dificuldade de ter relações sexuais e às vezes de desenvolver atividades diárias.
+            \nPara que esses sintomas diminuam é necessário seguir o tratamento e realizar algumas mudanças no dia-a-dia.
+        </item>
+        <item>
+            deve-se diminuí-lo, pois o excesso de sal faz o corpo reter líquido e o coração passa a fazer mais força para bombeá-lo, com isso, piora os sintomas de edema (inchaço) e dispnéia (falta de ar).
+            \nAlimentos com Sal: Saleiro; caldo de carne, bacalhau, salsicha; enlatados; ketchup; fermento contém bicarbonato de sódio; refrigerantes; amendoim, grão de bico, sementes de abóbora e antiácidos.</item>
+        <item>
+            O consumo de gorduras deve ser evitado porque aumenta o colesterol levando a doença cardíaca chamada de doença arterial coronariana, que pode contribuir para piorar IC.
+            \nAlimentos com gordura: Carnes gordas, pele de frango, mortadela, bacon, leite integral, creme de leite, manteiga, queijos amarelos, miúdos (fígado, coração, rins).
+        </item>
+        <item>
+            Procure fazer uma alimentação rica em frutas, vegetais, legumes, queijos e carnes magras. Evite alimentos industrializados. O sal deve ser rigidamente evitado!
+        </item>
+        <item>
+            Não beba líquidos em excesso, mas também não deixe de ingerí-los. Tome entre 1,0 a 1,5 litros por dia.
+        </item>
+        <item>
+            Praticar atividade física pode melhorar os sintomas da IC, aumentar a capacidade de esforço e melhorar sua qualidade de vida! Converse com seu cardiologista e veja se está apto a praticar atividades e qual a mais apropriada para você.
+        </item>
+        <item>
+            Escolha um horário e crie o hábito de se pesar com roupas leves, isto deve ser feito todos os dias. O ganho de peso em excesso pode indicar IC descompensada
+        </item>
+        <item>
+            É muito importante tomar todos os remédios na hora certa! Não tomar nenhuma medicação que não seja indicada pelo médico.
+        </item>
+        <item>
+            Participe das campanhas de vacinação contra gripe (influenza) anualmente, e contra a pneumonia (pneumococcus) a cada 3 anos.
+        </item>
+        <item>
+            É muito importante que venha a todas as consultas para realizar um acompanhamento da sua doença
+        </item>
+        <item>
+            O cigarro contém substâncias tóxicas que provocam aumento do trabalho do coração
+        </item>
+        <item>
+            Faça uma lista com todas as suas razões para parar de fumar; escolha uma data para parar; mude hábitos que sempre te dão vontade de fumar, como: tomar um cafezinho depois do almoço; se não conseguir parar de uma vez, vá diminuindo a quantidade de maços por dia, até parar completamente; faça exercícios físicos (se puder) e tenha uma alimentação equilibrada; procure fazer atividades que te relaxem; não desista ou se desespere se tiver uma recaída, tenha força de vontade e recomece sempre.
+        </item>
+        <item>
+            A ingestão de bebidas alcoólicas deve ser eliminada, já que pode piorar a IC e causar alterações no ritmo cardíaco.
+        </item>
+        <item>
+            Bebidas como café, mate e chá preto contém cafeína, uma substância que acelera o trabalho cardíaco, e por isso devem ser evitadas.
+        </item>
+        <item>
+            Tente dormir pelo menos 8 horas por dia. Além disso, repouse caso tenha feito atividades de esforço moderado ou esteja sentindo algum sintoma.
+        </item>
+        <item>
+            Ansiedade e estresse são sentimentos comuns a todas as pessoas, porém se forem persistentes e interferirem nas atividades do dia-a-dia ou nas relações com outras pessoas, devemos prestar atenção e procurar ajuda.
+        </item>
+        <item>
+            Procurar um profissional de saúde (Psicólogo), para tratar esses sentimentos; conversar com pessoas de sua confiança sobre esses sentimentos. Pode ser um amigo, um familiar. Só o ato de falar e ouvir a opinião de uma pessoa querida, trará uma sensação melhor; não se isolar, dividir seus sentimentos e interagir com outras pessoas; realizar atividades que gosta, sozinho ou com os amigos, isso ajuda a esquecer os problemas; aprender sobre a doença que o acomete e como tratá-la. Isso fará com que o controle sobre a doença seja maior diminuindo o medo do desconhecido;
+        </item>
+        <item>
+            Informe ao seu médico para que o mesmo avalie a necessidade de profilaxia para evitar a formação de coágulos nas pernas, que possuiu chance maior de ocorrer em quem tem IC.
+        </item>
+        <item>
+            Sim, pois pode levar a piora da doença e muitos medicamentos adotados para o controle da Insuficiência Cardíaca não devem ser tomados durante a gravidez. Mas, caso a mulher tenha desejo de engravidar deve conversar antes com a equipe que a acompanha.
+        </item>
     </array>
 
 </resources>

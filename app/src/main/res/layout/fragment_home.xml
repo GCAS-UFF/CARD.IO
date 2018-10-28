@@ -61,7 +61,8 @@
 
                     <TextView
                         style="@style/HomeText"
-                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/alimentation_title"
                         android:layout_gravity="center_horizontal"/>
@@ -153,37 +154,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_sobre"
-                    android:layout_width="@dimen/ll_home_largura"
-                    android:layout_height="@dimen/ll_home_altura"
-                    android:orientation="vertical"
-                    android:background="@drawable/white_button_riple_effect"
-                    android:padding="@dimen/padding_icone_home"
-                    android:layout_margin="@dimen/margem_icone_homme">
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/danilo_about"
-                        android:layout_gravity="center_horizontal"/>
-
-                    <TextView
-                        style="@style/HomeText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/about_title"
-                        android:layout_gravity="center_horizontal"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <LinearLayout
                     android:id="@+id/ll_orientation"
                     android:layout_width="@dimen/ll_home_largura"
                     android:layout_height="@dimen/ll_home_altura"
@@ -203,6 +173,37 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/oritation_title"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/ll_sobre"
+                    android:layout_width="@dimen/ll_home_largura"
+                    android:layout_height="@dimen/ll_home_altura"
+                    android:orientation="vertical"
+                    android:background="@drawable/white_button_riple_effect"
+                    android:padding="@dimen/padding_icone_home"
+                    android:layout_margin="@dimen/margem_icone_homme">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/danilo_about"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        style="@style/HomeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_title"
                         android:layout_gravity="center_horizontal"/>
                 </LinearLayout>
 

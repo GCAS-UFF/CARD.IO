@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 comunicadorHomeActivity.trocaTelaHome(R.id.ll_orientation);
-                (new NotificationUltils(getActivity())).scheduleAlarme("tile", "text");
+//                (new NotificationUltils(getActivity())).scheduleAlarme("tile", "text");
             }
         });
 

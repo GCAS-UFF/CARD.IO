@@ -9,9 +9,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@drawable/grey_round_edge_shape"
             android:layout_marginTop="15dp"
@@ -19,6 +20,17 @@
             android:layout_marginLeft="25dp"
             android:layout_marginBottom="10dp"
             android:padding="15dp">
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:background="@drawable/grey_round_edge_shape"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_marginRight="25dp"-->
+            <!--android:layout_marginLeft="25dp"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:padding="15dp">-->
 
             <include
                 android:layout_width="wrap_content"
@@ -31,6 +43,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/about_fragment_text"/>
+
+            <!--<WebView-->
+                <!--android:id="@+id/wbAbout"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"/>-->
 
             <include
                 android:layout_width="wrap_content"

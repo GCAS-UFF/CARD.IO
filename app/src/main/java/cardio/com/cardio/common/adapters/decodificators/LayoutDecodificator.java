@@ -9,6 +9,7 @@ import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.holders.DateTextBoxHolder;
 import cardio.com.cardio.common.adapters.holders.DropDownHolder;
 import cardio.com.cardio.common.adapters.holders.CheckBoxListHolder;
+import cardio.com.cardio.common.adapters.holders.ItemOrientationHolder;
 import cardio.com.cardio.common.adapters.holders.RadioButtonListHolder;
 import cardio.com.cardio.common.adapters.holders.TextBoxHolder;
 import cardio.com.cardio.common.adapters.holders.Holder;
@@ -36,6 +37,9 @@ public class LayoutDecodificator {
             case LayoutConstantes.RADIO_BUTTON_LIST_LAYOUT:
                 v = layoutInflater.inflate(R.layout.item_radio_button_list, viewGroup, false);
                 return new RadioButtonListHolder(v);
+            case LayoutConstantes.ORIENTATION_ITEM:
+                v = layoutInflater.inflate(R.layout.item_orientation, viewGroup, false);
+                return new ItemOrientationHolder(v);
         }
 
         return null;
