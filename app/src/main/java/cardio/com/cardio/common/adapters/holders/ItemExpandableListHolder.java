@@ -11,7 +11,6 @@ import java.util.Date;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.ItemExpandableListAdapter;
 import cardio.com.cardio.common.model.model.Paciente;
-import cardio.com.cardio.common.model.view.Item;
 import cardio.com.cardio.common.util.Formater;
 
 public class ItemExpandableListHolder extends RecyclerView.ViewHolder {
@@ -21,7 +20,7 @@ public class ItemExpandableListHolder extends RecyclerView.ViewHolder {
     private TextView mTvAdress;
     private TextView mTvBirthdate;
     private LinearLayout mLlExpandable;
-    private LinearLayout getmLlExpandableContainer;
+    private LinearLayout mLlExpandableContainer;
     private Button mBtnDisassociatePatient;
     private Button mBtnEditPatient;
     private ItemExpandableListAdapter.ComunicatorExpandableItem comunicatorExpandableItem;
@@ -37,7 +36,7 @@ public class ItemExpandableListHolder extends RecyclerView.ViewHolder {
         mLlExpandable = (LinearLayout) itemView.findViewById(R.id.ll_expandable);
         mBtnDisassociatePatient = (Button) itemView.findViewById(R.id.btn_disassociate_patient);
         mBtnEditPatient = (Button) itemView.findViewById(R.id.btn_edit_patient);
-        getmLlExpandableContainer = (LinearLayout) itemView.findViewById(R.id.ll_expandable_container);
+        mLlExpandableContainer = (LinearLayout) itemView.findViewById(R.id.ll_expandable_container);
         this.comunicatorExpandableItem = comunicatorExpandableItem;
 
     }
@@ -51,7 +50,7 @@ public class ItemExpandableListHolder extends RecyclerView.ViewHolder {
             mTvBirthdate.setText(Formater.getStringFromDate(new Date(patient.getDataNasc())));
             mLlExpandable.setVisibility(View.GONE);
 
-            getmLlExpandableContainer.setOnClickListener(new View.OnClickListener() {
+            mLlExpandableContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mLlExpandable.getVisibility() == View.GONE)

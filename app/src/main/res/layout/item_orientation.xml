@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/black_round_edge_shape"
-    android:layout_marginBottom="15dp"
-    android:layout_margin="15dp"
+    android:layout_margin="5dp"
+    android:layout_marginBottom="10dp"
     >
 
     <TextView
@@ -20,6 +20,7 @@
         style="@style/TextTitle"/>
 
     <LinearLayout
+        android:id="@+id/ll_orientation_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
@@ -37,15 +38,4 @@
             android:text="É a dificuldade do coração em se encher e sangue corretamene e bombeá-lo de forma suficiente para abastecer as necessidades do corpo"/>
 
     </LinearLayout>
-
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="josé"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:padding="5dp"/>-->
-
-
-
 </LinearLayout>
