@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".common.fragments.HelpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/btnTesteFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Testar!"/>
 
 </FrameLayout>

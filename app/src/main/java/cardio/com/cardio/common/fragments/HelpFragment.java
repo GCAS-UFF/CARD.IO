@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
@@ -17,6 +18,7 @@ import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 public class HelpFragment extends Fragment {
 
     private ComunicatorFragmentActivity comunicatorFragmentActivity;
+    private Button btnTestar;
 
     public HelpFragment() {
     }
@@ -35,5 +37,14 @@ public class HelpFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        btnTestar = (Button) view.findViewById(R.id.btnTesteFirebase);
+
+        btnTestar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
