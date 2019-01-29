@@ -70,7 +70,7 @@ public class AlimentationFragment extends Fragment {
         mBtnSave = (Button) view.findViewById(R.id.btn_save);
         mItems = new ArrayList<>();
 
-        mCaixaDeTextoFood = new TextBox("Bebida", "", TextBox.INPUT_TEXT);
+        mCaixaDeTextoFood = new TextBox("Líquido", "", TextBox.INPUT_TEXT);
         mCaixaDeTextoFood.setHint("Água");
         mItems.add(mCaixaDeTextoFood);
 
@@ -152,7 +152,7 @@ public class AlimentationFragment extends Fragment {
             Map<String, String> options = new LinkedHashMap<>();
 
             for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()){
-                options.put(entrySnapshot.getKey(), String.valueOf(entrySnapshot.getValue()));
+                options.put(String.valueOf(entrySnapshot.getValue()), entrySnapshot.getKey());
             }
 
             mUnityDropDown = new DropDown(options, "Medida");

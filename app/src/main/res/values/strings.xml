@@ -64,7 +64,7 @@
     <string name="label_dawn">Madrugada</string>
 
     <!--TELA ALIMENTACAO-->
-    <string name="alimentation_screen_title">Alimentação</string>
+    <string name="alimentation_screen_title">Líquidos ingeridos</string>
     <string name="measure">Medida</string>
     <string name="glass">Um copo americano</string>
     <string name="half_glas">Meio copo americano</string>
@@ -128,9 +128,13 @@
     <string name="contributors_title">Colaboradores</string>
     <string name="idealizers_title">Idealizadoras</string>
     <string name="developers_title">Desenvolvedores</string>
+    <string name="designer_title">Design de ícones</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contributor_lyvia">\ - Enfermeira Doutoranda Lyvia da Silva Figueiredo
+            \n\u0009(Pós Graduação em Ciências Cardiovasculares/UFF)</string>
+
+    <string name="designer_danilo">\n - Danilo Corrêa
+            \n\u0009(Escola de Enfermagem/UFF)</string>
 
 
 </resources>

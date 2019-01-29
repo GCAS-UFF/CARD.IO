@@ -63,6 +63,12 @@
                 style="@style/TextSubtitle"
                 android:paddingTop="10dp"/>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextContent"
+                android:textStyle="bold"
+                android:text="@string/contributor_lyvia"/>
+            <TextView
                 android:id="@+id/tv_contiburtors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -78,6 +84,18 @@
                 android:id="@+id/tv_developers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_designer_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/designer_title"
+                style="@style/TextSubtitle"
+                android:paddingTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/designer_danilo"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

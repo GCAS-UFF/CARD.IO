@@ -114,7 +114,7 @@ public class HomeFragment extends Fragment {
         mLlHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comunicadorHomeActivity.trocaTelaHome(R.id.ll_help);
+                    comunicadorHomeActivity.trocaTelaHome(R.id.ll_help);
             }
         });
     }

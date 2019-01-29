@@ -11,15 +11,10 @@
 
     <!--TELA SOBRE-->
     <array name="contributors">
-        <item>\ - Enfermeira Doutoranda Lyvia da Silva Figueiredo
-            \n\u0009(Pós Graduação em Ciências Cardiovasculares/UFF)</item>
         <item> - Prof Dra Ana Carla Dantas Cavalcanti
             \n\u0009(Escola de Enfermagem/UFF)</item>
         <item> - Prof Dra Paula Vanessa Peclat Flores
             \n\u0009(Escola de Enfermagem/UFF)</item>
-        <item> - Danilo Corrêa
-            \n\u0009(Escola de Enfermagem/UFF)</item>
-
     </array>
 
     <array name="developers">
@@ -85,7 +80,7 @@
             \nCoração acelerado;
             \nCansaço;
             \nTosse noturna;
-            nEdema (Inchaço) nas pernas, pés e mãos;
+            \nEdema (Inchaço) nas pernas, pés e mãos;
             \nVontade de urinar muitas vezes à noite;
             \nGanho de peso inexplicável;
             \nDificuldade para dormir;
