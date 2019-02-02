@@ -13,16 +13,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.firebase.jobdispatcher.FirebaseJobDispatcher;
-import com.firebase.jobdispatcher.GooglePlayDriver;
-import com.firebase.jobdispatcher.Job;
-import com.firebase.jobdispatcher.Trigger;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 import cardio.com.cardio.R;
-import cardio.com.cardio.common.Firebase.CardioJobService;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.activities.LoginActivity;
 import cardio.com.cardio.common.fragments.AboutFragment;
@@ -31,13 +26,13 @@ import cardio.com.cardio.common.fragments.HomeFragment;
 import cardio.com.cardio.common.fragments.OrientationFragment;
 import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
+import cardio.com.cardio.medicine.view.MedicineFragment;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 import cardio.com.cardio.professional.fragments.PatientListFragment;
 import cardio.com.cardio.professional.fragments.PrescribeAppointmentFragment;
 import cardio.com.cardio.professional.fragments.PrescribeBiometricsFragment;
 import cardio.com.cardio.professional.fragments.PrescribeExercisesFragment;
 import cardio.com.cardio.professional.fragments.PrescribeFoodFragment;
-import cardio.com.cardio.professional.fragments.PrescribeMedicineFragment;
 import cardio.com.cardio.professional.fragments.RegisterPatientFragment;
 import cardio.com.cardio.professional.fragments.RegisterProfessionalFragment;
 
@@ -74,6 +69,9 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_patient);
+
+        PreferencesUtils.setBollean(this,
+                PreferencesUtils.IS_CURRENT_USER_PROFESSIONAL, true);
 
         fragmentManager = getSupportFragmentManager();
 
@@ -156,8 +154,8 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_medicacoes:
-                PrescribeMedicineFragment prescribeMedicineFragment = new PrescribeMedicineFragment();
-                fragmentTransaction.replace(R.id.container, prescribeMedicineFragment, "prescribeMedicineFragment");
+                MedicineFragment medicineFragment = new MedicineFragment();
+                fragmentTransaction.replace(R.id.container, medicineFragment, "medicineFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
@@ -190,6 +188,8 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
     @Override
     public void setPatientSelected(Paciente patient) {
         this.currentPatientSelected = patient;
+        PreferencesUtils.setString(this,
+                PreferencesUtils.CURRENT_PATIENT_KEY, patient.getId());
     }
 
     @Override

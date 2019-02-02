@@ -20,6 +20,7 @@ import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.activities.LoginActivity;
+import cardio.com.cardio.medicine.view.MedicineFragment;
 import cardio.com.cardio.patiente.fragments.AlimentationFragment;
 import cardio.com.cardio.patiente.fragments.ConsultasFragment;
 import cardio.com.cardio.patiente.fragments.ExerciseFragment;
@@ -31,7 +32,6 @@ import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 import cardio.com.cardio.professional.fragments.PrescribeBiometricsFragment;
 import cardio.com.cardio.professional.fragments.PrescribeExercisesFragment;
 import cardio.com.cardio.professional.fragments.PrescribeFoodFragment;
-import cardio.com.cardio.professional.fragments.PrescribeMedicineFragment;
 
 public class MainActivityPatient extends AppCompatActivity implements HomeFragment.ComunicadorHomeActivity, ComunicatorFragmentActivity {
 
@@ -63,6 +63,9 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_patient);
+
+        PreferencesUtils.setBollean(this,
+                PreferencesUtils.IS_CURRENT_USER_PROFESSIONAL, false);
 
         fragmentManager = getSupportFragmentManager();
 
@@ -112,8 +115,8 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_medicacoes:
-                PrescribeMedicineFragment prescribeMedicineFragment = new PrescribeMedicineFragment();
-                fragmentTransaction.replace(R.id.container, prescribeMedicineFragment, "prescribeMedicineFragment");
+                MedicineFragment medicineFragment = new MedicineFragment();
+                fragmentTransaction.replace(R.id.container, medicineFragment, "medicineFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
@@ -205,6 +208,9 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             currentPatient = dataSnapshot.getValue(Paciente.class);
             currentPatient.setId(dataSnapshot.getKey());
+            PreferencesUtils.setString(
+                    getBaseContext(),
+                    PreferencesUtils.CURRENT_PATIENT_KEY, dataSnapshot.getKey());
         }
 
         @Override

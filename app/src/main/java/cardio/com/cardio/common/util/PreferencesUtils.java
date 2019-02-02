@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class PreferencesUtils {
+    public static final String CURRENT_PATIENT_KEY = "currentPatientKey";
+    public static final String IS_CURRENT_USER_PROFESSIONAL = "currentUserType";
 
     private static final String PREF_ID = "CARDIO";
     private static SharedPreferences sharedpreferences;
