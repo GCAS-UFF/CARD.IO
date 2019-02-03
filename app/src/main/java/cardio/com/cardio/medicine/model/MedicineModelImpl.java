@@ -5,10 +5,14 @@ import android.support.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,6 +23,9 @@ import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.model.model.Medicamento;
 import cardio.com.cardio.common.model.model.Profissional;
 import cardio.com.cardio.common.model.model.Recomentation;
+import cardio.com.cardio.common.model.view.CustomMapObject;
+import cardio.com.cardio.common.model.view.CustomMapsList;
+import cardio.com.cardio.common.model.view.CustomPair;
 import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.medicine.presenter.MedicinePresenter;
@@ -38,7 +45,11 @@ public class MedicineModelImpl implements MedicineModel {
 
     @Override
     public void setRecomendationListener (){
-        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(rootEventListener);
+        FirebaseHelper.getInstance().
+                getPatientDatabaseReference(getCurrentPatientKey()).
+                child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
+                child(FirebaseHelper.MEDICINE_KEY).
+                addValueEventListener(medicineEventListener);
     }
 
     @Override
@@ -51,18 +62,14 @@ public class MedicineModelImpl implements MedicineModel {
         return PreferencesUtils.getString(mContext, PreferencesUtils.CURRENT_PATIENT_KEY);
     }
 
-    public List<Recomentation> getRecondationListFromDataSnapshot(DataSnapshot dataSnapshot) {
+    private List<Recomentation> getRecondationListFromDataSnapshot(DataSnapshot dataSnapshot) {
         List<Recomentation> recomentationList = new ArrayList<>();
 
         try {
-            DataSnapshot recomendationSnapshot = dataSnapshot.child(FirebaseHelper.PATIENT_KEY)
-                    .child(getCurrentPatientKey())
-                    .child(FirebaseHelper.RECOMMENDED_ACTION_KEY)
-                    .child(FirebaseHelper.MEDICINE_KEY);
 
             DataSnapshot professionalSnapshot = dataSnapshot.child(FirebaseHelper.PROFESSIONAL_KEY);
 
-            for (DataSnapshot entrySnapshot : recomendationSnapshot.getChildren()) {
+            for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
                 Medicamento medicamento = new Medicamento();
                 Recomentation recomendation = entrySnapshot.getValue(Recomentation.class);
 
@@ -90,32 +97,52 @@ public class MedicineModelImpl implements MedicineModel {
     }
 
     @Override
-    public Map<String, List<Map.Entry<String, String>>> getRecomendationByDate(List<Recomentation> recomentations) {
+    public List<CustomMapsList> getRecomendationByDate(List<Recomentation> recomentations) {
 
-        Map<String, List<Map.Entry<String, String>>> result = new LinkedHashMap<>();
+        Collections.sort(recomentations, new Comparator<Recomentation>() {
+            @Override
+            public int compare(Recomentation r1, Recomentation r2) {
+                try {
+                    return Formater.compareDates(new Date(r1.getStartDate()), new Date(r2.getStartDate()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return -1;
+            }
+        });
 
-        for (Recomentation recomentation : recomentations){
-
+        List<CustomMapsList> customMapsLists = new ArrayList<>();
+        for (Recomentation recomentation : recomentations) {
             Date startDate = new Date(recomentation.getStartDate());
             String dateStr = Formater.getStringFromDate(startDate);
 
-            if (!result.containsKey(dateStr)){
-                result.put(dateStr , new ArrayList<Map.Entry<String, String>>());
+            if (!Formater.containsInMapsLists(dateStr, customMapsLists)){
+                CustomMapsList customMapsList = new CustomMapsList(dateStr, new ArrayList<CustomMapObject>());
+                customMapsLists.add(customMapsList);
             }
-            result.get(dateStr).addAll(recomentation.toMap().entrySet());
+
+            Formater.addIntoMapsLists(dateStr, getCustomMapObjectFromRecomendation(recomentation), customMapsLists);
         }
 
-        Map<String, List<Map.Entry<String, String>>> sorted = new TreeMap<>();
-        sorted.putAll(result);
-
-        return sorted;
+        return customMapsLists;
     }
 
-    ValueEventListener rootEventListener = new ValueEventListener() {
+    private CustomMapObject getCustomMapObjectFromRecomendation (Recomentation recomentation){
+        Map<String, String> values = recomentation.toMap();
+        List<CustomPair> customPairs = new ArrayList<>();
+
+        for (Map.Entry<String, String> entry: values.entrySet()) {
+            customPairs.add(new CustomPair(entry.getKey(), entry.getValue()));
+        }
+
+        return new CustomMapObject(recomentation.getId(), customPairs);
+    }
+
+    private ValueEventListener medicineEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            List<Recomentation> recomentationList = getRecondationListFromDataSnapshot(dataSnapshot);
-            mMedicinePresenter.finishLoadedMedicationData(recomentationList);
+            List<Recomentation> recomendationList = getRecondationListFromDataSnapshot(dataSnapshot);
+            mMedicinePresenter.finishLoadedMedicationData(recomendationList);
         }
 
         @Override

@@ -1,9 +1,15 @@
 package cardio.com.cardio.common.util;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import cardio.com.cardio.common.model.view.CustomMapObject;
+import cardio.com.cardio.common.model.view.CustomMapsList;
 
 public class Formater {
     public static Date getDateFromString (String dateStr) throws ParseException {
@@ -60,9 +66,43 @@ public class Formater {
         return resultStr.substring(resultStr.length() - 6,resultStr.length());
     }
 
-    public static Date getCurrentDateWithoutSeconds() throws ParseException {
+    private static Date getDateWithoutSeconds (Date date) throws ParseException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String dateStr = formato.format(new Date());
+        String dateStr = formato.format(date);
         return formato.parse(dateStr);
+    }
+
+    public static int compareDates (Date date1, Date date2) throws ParseException {
+        Date date1Formated = getDateWithoutSeconds(date1);
+        Date date2Formated = getDateWithoutSeconds(date2);
+
+        if (date1Formated.getTime() == date2Formated.getTime())
+            return 0;
+        else if (date1Formated.getTime() < date2Formated.getTime())
+            return -1;
+        else
+            return 1;
+    }
+
+    public static boolean compareDates (Date date1) throws ParseException {
+        Date date1Formated = getDateWithoutSeconds(date1);
+
+        return System.currentTimeMillis() < date1Formated.getTime();
+    }
+
+    public static boolean containsInMapsLists (String key, List<CustomMapsList> customMapsLists){
+        for (CustomMapsList mCustomMapsList: customMapsLists) {
+            if (mCustomMapsList.getTitle().equals(key)) return true;
+        }
+
+        return false;
+    }
+
+    public static void addIntoMapsLists (String key, CustomMapObject customMapObject, List<CustomMapsList> customMapsLists) {
+        for (CustomMapsList mCustomMapsList: customMapsLists) {
+            if (mCustomMapsList.getTitle().equals(key)) {
+                mCustomMapsList.getCustomMapObjectList().add(customMapObject);
+            };
+        }
     }
 }

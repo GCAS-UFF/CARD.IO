@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import cardio.com.cardio.common.model.model.Recomentation;
+import cardio.com.cardio.common.model.view.CustomMapObject;
+import cardio.com.cardio.common.model.view.CustomMapsList;
 import cardio.com.cardio.medicine.presenter.MedicinePresenter;
 
 public interface MedicineModel {
@@ -16,5 +18,5 @@ public interface MedicineModel {
 
     void setRecomendationListener();
 
-    Map<String, List<Map.Entry<String, String>>> getRecomendationByDate(List<Recomentation> recomentations);
+    List<CustomMapsList> getRecomendationByDate(List<Recomentation> recomentations);
 }

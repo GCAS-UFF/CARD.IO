@@ -157,12 +157,12 @@ public class PrescribeMedicineFragment extends Fragment {
 
                     medicamento.setProfissionalObject(professionalSnapshot.child(medicamento.getProfissionalId()).getValue(Profissional.class));
 
-                    recomentation.setAction(medicamento);
-                    if ( Formater.getCurrentDateWithoutSeconds().compareTo(new Date(recomentation.getFinishDate())) == 1){
-                        oldRecomendations.add(recomentation);
-                    } else{
-                        currentRecomendations.add(recomentation);
-                    }
+//                    recomentation.setAction(medicamento);
+//                    if ( Formater.getCurrentDateWithoutSeconds().compareTo(new Date(recomentation.getFinishDate())) == 1){
+//                        oldRecomendations.add(recomentation);
+//                    } else{
+//                        currentRecomendations.add(recomentation);
+//                    }
                 }
 
                 currentItemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(getRecomendationByDate(currentRecomendations));
@@ -172,8 +172,6 @@ public class PrescribeMedicineFragment extends Fragment {
                 mRVOldMedicines.setAdapter(oldItemExpandableSimpleListAdapter);
 
             }catch (NullPointerException e){
-                e.printStackTrace();
-            } catch (ParseException e) {
                 e.printStackTrace();
             }
 

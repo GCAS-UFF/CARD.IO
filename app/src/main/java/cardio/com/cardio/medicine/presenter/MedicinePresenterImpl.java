@@ -49,10 +49,11 @@ public class MedicinePresenterImpl implements MedicinePresenter {
 
         try {
             for (Recomentation recomendation: recomentationList) {
-                if ( Formater.getCurrentDateWithoutSeconds().compareTo(new Date(recomendation.getFinishDate())) == 1){
-                    oldRecomendations.add(recomendation);
-                } else{
+
+                if (Formater.compareDates(new Date(recomendation.getFinishDate()))){
                     currentRecomendations.add(recomendation);
+                } else{
+                    oldRecomendations.add(recomendation);
                 }
             }
         } catch (ParseException e){

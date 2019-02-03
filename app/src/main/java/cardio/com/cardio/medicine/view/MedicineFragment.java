@@ -16,7 +16,10 @@ import java.util.List;
 import java.util.Map;
 
 import cardio.com.cardio.R;
+import cardio.com.cardio.common.adapters.CustomMapListRecycleViewAdapter;
 import cardio.com.cardio.common.adapters.ItemExpandableSimpleListAdapter;
+import cardio.com.cardio.common.model.view.CustomMapObject;
+import cardio.com.cardio.common.model.view.CustomMapsList;
 import cardio.com.cardio.medicine.presenter.MedicinePresenter;
 import cardio.com.cardio.medicine.presenter.MedicinePresenterImpl;
 import cardio.com.cardio.medicine.model.MedicineModelImpl;
@@ -79,16 +82,19 @@ public class MedicineFragment extends Fragment implements MedicineView, View.OnC
     }
 
     @Override
-    public void populateOldRecomendationsRecycleView(Map<String, List<Map.Entry<String, String>>> recomendationEntrysByDateMap) {
-        ItemExpandableSimpleListAdapter currentItemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(recomendationEntrysByDateMap);
-        mRVCurrentMedicines.setAdapter(currentItemExpandableSimpleListAdapter);
+    public void populateOldRecomendationsRecycleView(List<CustomMapsList> customMapsLists) {
+        CustomMapListRecycleViewAdapter oldCustomMapListRecycleViewAdapter =
+                new CustomMapListRecycleViewAdapter(customMapsLists);
 
+        mRVOldMedicines.setAdapter(oldCustomMapListRecycleViewAdapter);
     }
 
     @Override
-    public void populateCurrentRecomendationsRecycleView(Map<String, List<Map.Entry<String, String>>> recomendationEntrysByDateMap) {
-        ItemExpandableSimpleListAdapter oldItemExpandableSimpleListAdapter = new ItemExpandableSimpleListAdapter(recomendationEntrysByDateMap);
-        mRVOldMedicines.setAdapter(oldItemExpandableSimpleListAdapter);
+    public void populateCurrentRecomendationsRecycleView(List<CustomMapsList> customMapsLists) {
+        CustomMapListRecycleViewAdapter currentCustomMapListRecycleViewAdapter =
+                new CustomMapListRecycleViewAdapter(customMapsLists);
+
+        mRVCurrentMedicines.setAdapter(currentCustomMapListRecycleViewAdapter);
     }
 
     @Override
