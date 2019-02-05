@@ -14,7 +14,7 @@ public class Medicamento extends Action {
     private String horario;
     private String profissionalId;
     private String note;
-    private Profissional profissionalObject;
+    private Profissional professionalObject;
 
     private int duration;
 
@@ -71,13 +71,13 @@ public class Medicamento extends Action {
     }
 
     @Exclude
-    public Profissional getProfissionalObject() {
-        return profissionalObject;
+    public Profissional getProfessionalObject() {
+        return professionalObject;
     }
 
     @Exclude
-    public void setProfissionalObject(Profissional profissionalObject) {
-        this.profissionalObject = profissionalObject;
+    public void setProfessionalObject(Profissional professionalObject) {
+        this.professionalObject = professionalObject;
     }
 
     @Override
@@ -88,8 +88,8 @@ public class Medicamento extends Action {
         result.put("Quantidade: ", quantidade);
         result.put("Hora de início: ", horario);
         result.put("Observação: ", note);
-        if(profissionalObject != null)
-            result.put("Profissional responsável: ", profissionalObject.getNome());
+        if(professionalObject != null)
+            result.put("Profissional responsável: ", professionalObject.getNome());
 
         result.put("", "");
 

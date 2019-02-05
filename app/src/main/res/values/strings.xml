@@ -136,5 +136,9 @@
     <string name="designer_danilo">\n - Danilo Corrêa
             \n\u0009(Escola de Enfermagem/UFF)</string>
 
+    <!-- Tela Adicionar Ação de medicamento -->
+    <string name="medicine_performed_hour">Horário</string>
+    <string name="medicine_performed_date">Data</string>
+
 
 </resources>

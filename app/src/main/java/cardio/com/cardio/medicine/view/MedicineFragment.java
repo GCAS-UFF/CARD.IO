@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.CustomMapListRecycleViewAdapter;
+import cardio.com.cardio.common.adapters.CustomMapRecycleViewAdapter;
 import cardio.com.cardio.common.adapters.ItemExpandableSimpleListAdapter;
 import cardio.com.cardio.common.model.view.CustomMapObject;
 import cardio.com.cardio.common.model.view.CustomMapsList;
@@ -93,6 +95,14 @@ public class MedicineFragment extends Fragment implements MedicineView, View.OnC
     public void populateCurrentRecomendationsRecycleView(List<CustomMapsList> customMapsLists) {
         CustomMapListRecycleViewAdapter currentCustomMapListRecycleViewAdapter =
                 new CustomMapListRecycleViewAdapter(customMapsLists);
+
+        currentCustomMapListRecycleViewAdapter.setComunicatorOnAddClickItem(new CustomMapListRecycleViewAdapter.ComunicatorOnAddClickItem() {
+            @Override
+            public void onAddClickItemListener(String id, String title) {
+                DialogAddPerformMedicineFragment dialog = DialogAddPerformMedicineFragment.newInstance(id, title);
+                dialog.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+            }
+        });
 
         mRVCurrentMedicines.setAdapter(currentCustomMapListRecycleViewAdapter);
     }

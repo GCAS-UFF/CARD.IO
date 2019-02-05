@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -155,7 +154,7 @@ public class PrescribeMedicineFragment extends Fragment {
                     medicamento.setHorario(entrySnapshot.child(FirebaseHelper.MEDICINE_START_HOUR_KEY).getValue(String.class));
                     medicamento.setProfissionalId(entrySnapshot.child(FirebaseHelper.MEDICINE_PROFESSIONAL_KEY).getValue(String.class));
 
-                    medicamento.setProfissionalObject(professionalSnapshot.child(medicamento.getProfissionalId()).getValue(Profissional.class));
+                    medicamento.setProfessionalObject(professionalSnapshot.child(medicamento.getProfissionalId()).getValue(Profissional.class));
 
 //                    recomentation.setAction(medicamento);
 //                    if ( Formater.getCurrentDateWithoutSeconds().compareTo(new Date(recomentation.getFinishDate())) == 1){

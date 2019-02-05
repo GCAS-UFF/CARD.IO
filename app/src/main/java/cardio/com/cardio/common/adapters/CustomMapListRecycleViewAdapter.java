@@ -17,9 +17,15 @@ import cardio.com.cardio.common.model.view.CustomMapsList;
 public class CustomMapListRecycleViewAdapter extends RecyclerView.Adapter<CustomMapListRecycleViewAdapter.CustomMapListHolder> {
 
     private List<CustomMapsList> mCustomMapsLists;
+    private ComunicatorOnAddClickItem mComunicatorOnAddClickItem;
 
     public CustomMapListRecycleViewAdapter(List<CustomMapsList> customMapsLists) {
         this.mCustomMapsLists = customMapsLists;
+    }
+
+    public void setComunicatorOnAddClickItem(ComunicatorOnAddClickItem comunicatorOnAddClickItem) {
+        this.mComunicatorOnAddClickItem = comunicatorOnAddClickItem;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -48,6 +54,7 @@ public class CustomMapListRecycleViewAdapter extends RecyclerView.Adapter<Custom
         private RecyclerView mRecView;
         private LinearLayout mLlExpandable;
         private LinearLayout getmLlExpandableContainer;
+        private CustomMapsList mCustomMapsList;
 
         public CustomMapListHolder(View itemView) {
             super(itemView);
@@ -62,11 +69,16 @@ public class CustomMapListRecycleViewAdapter extends RecyclerView.Adapter<Custom
         }
 
         public void bindType(CustomMapsList customMapsList) {
+            mCustomMapsList = customMapsList;
+
             try {
-                mTvTitle.setText(customMapsList.getTitle());
+                mTvTitle.setText(mCustomMapsList.getTitle());
 
                 CustomMapRecycleViewAdapter customMapRecycleViewAdapter =
-                        new CustomMapRecycleViewAdapter(customMapsList.getCustomMapObjectList());
+                        new CustomMapRecycleViewAdapter(mCustomMapsList.getCustomMapObjectList());
+
+                if (mComunicatorOnAddClickItem != null)
+                    customMapRecycleViewAdapter.setComunicatorOnAddClick(mComunicatorOnAddClick);
 
                 mRecView.setAdapter(customMapRecycleViewAdapter);
 
@@ -84,5 +96,16 @@ public class CustomMapListRecycleViewAdapter extends RecyclerView.Adapter<Custom
             else
                 mLlExpandable.setVisibility(View.GONE);
         }
+
+        private CustomMapRecycleViewAdapter.ComunicatorOnAddClick mComunicatorOnAddClick = new CustomMapRecycleViewAdapter.ComunicatorOnAddClick() {
+            @Override
+            public void onAddClickListener(String id) {
+                mComunicatorOnAddClickItem.onAddClickItemListener(id, mCustomMapsList.getTitle());
+            }
+        };
+    }
+
+    public interface ComunicatorOnAddClickItem{
+        public void onAddClickItemListener(String id, String title);
     }
 }

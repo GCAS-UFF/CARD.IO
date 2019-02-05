@@ -7,10 +7,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +65,7 @@ public class MedicineModelImpl implements MedicineModel {
             for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
                 Medicamento medicamento = new Medicamento();
                 Recomentation recomendation = entrySnapshot.getValue(Recomentation.class);
+                recomendation.setId(entrySnapshot.getKey());
 
                 medicamento.setName(entrySnapshot.child(FirebaseHelper.MEDICINE_NAME_KEY).getValue(String.class));
                 medicamento.setDosagem(entrySnapshot.child(FirebaseHelper.MEDICINE_DOSAGE_KEY).getValue(String.class));
@@ -76,7 +74,7 @@ public class MedicineModelImpl implements MedicineModel {
                 medicamento.setHorario(entrySnapshot.child(FirebaseHelper.MEDICINE_START_HOUR_KEY).getValue(String.class));
                 medicamento.setProfissionalId(entrySnapshot.child(FirebaseHelper.MEDICINE_PROFESSIONAL_KEY).getValue(String.class));
 
-                medicamento.setProfissionalObject(professionalSnapshot.child(medicamento.getProfissionalId()).getValue(Profissional.class));
+                medicamento.setProfessionalObject(professionalSnapshot.child(medicamento.getProfissionalId()).getValue(Profissional.class));
 
                 recomendation.setAction(medicamento);
 

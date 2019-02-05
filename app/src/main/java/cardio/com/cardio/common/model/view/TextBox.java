@@ -15,6 +15,7 @@ public class TextBox extends Item {
     private int inputType;
     private String hint;
     private String value;
+    private boolean isEditable = true;
 
     public TextBox(String label, String unidade, int inputType) {
         super(LayoutConstantes.TEXT_BOX_LAYOUT);
@@ -59,8 +60,18 @@ public class TextBox extends Item {
         this.value = value;
     }
 
+    public boolean isEditable() {
+        return isEditable;
+    }
+
+    public void setEditable(boolean editable) {
+        isEditable = editable;
+    }
+
     @Override
     public boolean isEmpty() {
         return (value == null || value.isEmpty());
     }
+
+
 }
