@@ -5,8 +5,6 @@ import android.support.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
@@ -14,10 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.model.model.Medicamento;
@@ -62,7 +58,7 @@ public class MedicineModelImpl implements MedicineModel {
         return PreferencesUtils.getString(mContext, PreferencesUtils.CURRENT_PATIENT_KEY);
     }
 
-    private List<Recomentation> getRecondationListFromDataSnapshot(DataSnapshot dataSnapshot) {
+    private List<Recomentation> getRecomendationListFromDataSnapshot(DataSnapshot dataSnapshot) {
         List<Recomentation> recomentationList = new ArrayList<>();
 
         try {
@@ -99,32 +95,35 @@ public class MedicineModelImpl implements MedicineModel {
     @Override
     public List<CustomMapsList> getRecomendationByDate(List<Recomentation> recomentations) {
 
-        Collections.sort(recomentations, new Comparator<Recomentation>() {
-            @Override
-            public int compare(Recomentation r1, Recomentation r2) {
-                try {
-                    return Formater.compareDates(new Date(r1.getStartDate()), new Date(r2.getStartDate()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                return -1;
-            }
-        });
-
         List<CustomMapsList> customMapsLists = new ArrayList<>();
         for (Recomentation recomentation : recomentations) {
-            Date startDate = new Date(recomentation.getStartDate());
+            addCustomMapListForEachRecomendationDay(recomentation, customMapsLists);
+        }
+
+        Formater.sortCustomMapListsWhereTitleIsDate(customMapsLists);
+
+        return customMapsLists;
+    }
+
+    private void addCustomMapListForEachRecomendationDay(Recomentation recomentation, List<CustomMapsList> customMapsLists){
+
+        long dayInMiliseconds = 86400000;
+        Date startDate = new Date(recomentation.getStartDate());
+        Date finishDate = new Date(recomentation.getFinishDate() + dayInMiliseconds);
+
+        while (startDate.before(finishDate)) {
+
             String dateStr = Formater.getStringFromDate(startDate);
 
-            if (!Formater.containsInMapsLists(dateStr, customMapsLists)){
+            if (!Formater.containsInMapsLists(dateStr, customMapsLists)) {
                 CustomMapsList customMapsList = new CustomMapsList(dateStr, new ArrayList<CustomMapObject>());
                 customMapsLists.add(customMapsList);
             }
 
             Formater.addIntoMapsLists(dateStr, getCustomMapObjectFromRecomendation(recomentation), customMapsLists);
-        }
 
-        return customMapsLists;
+            startDate.setTime(startDate.getTime() + dayInMiliseconds);
+        }
     }
 
     private CustomMapObject getCustomMapObjectFromRecomendation (Recomentation recomentation){
@@ -141,7 +140,7 @@ public class MedicineModelImpl implements MedicineModel {
     private ValueEventListener medicineEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            List<Recomentation> recomendationList = getRecondationListFromDataSnapshot(dataSnapshot);
+            List<Recomentation> recomendationList = getRecomendationListFromDataSnapshot(dataSnapshot);
             mMedicinePresenter.finishLoadedMedicationData(recomendationList);
         }
 

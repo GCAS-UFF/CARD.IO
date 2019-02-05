@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import cardio.com.cardio.common.model.model.Recomentation;
+import cardio.com.cardio.common.model.view.CustomMapsList;
 import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.medicine.model.MedicineModel;
 import cardio.com.cardio.medicine.view.MedicineView;
@@ -44,28 +45,28 @@ public class MedicinePresenterImpl implements MedicinePresenter {
 
     @Override
     public void finishLoadedMedicationData(List<Recomentation> recomentationList) {
-        List <Recomentation> oldRecomendations = new ArrayList<>();
-        List <Recomentation> currentRecomendations = new ArrayList<>();
+
+        List<CustomMapsList> recomendatiosByDate = mMedicineModel.getRecomendationByDate(recomentationList);
+
+        List <CustomMapsList> oldRecomendations = new ArrayList<>();
+        List <CustomMapsList> currentRecomendations = new ArrayList<>();
 
         try {
-            for (Recomentation recomendation: recomentationList) {
+            for (CustomMapsList recomendationByDate: recomendatiosByDate) {
 
-                if (Formater.compareDates(new Date(recomendation.getFinishDate()))){
-                    currentRecomendations.add(recomendation);
+                if (Formater.compareDateWithCurrentDate(
+                        Formater.getDateFromString(recomendationByDate.getTitle())) <= 0){
+                    currentRecomendations.add(recomendationByDate);
                 } else{
-                    oldRecomendations.add(recomendation);
+                    oldRecomendations.add(recomendationByDate);
                 }
             }
         } catch (ParseException e){
             e.printStackTrace();
         }
 
-        mMedicineView.populateCurrentRecomendationsRecycleView(
-                mMedicineModel.getRecomendationByDate(currentRecomendations)
-        );
+        mMedicineView.populateCurrentRecomendationsRecycleView(currentRecomendations);
 
-        mMedicineView.populateOldRecomendationsRecycleView(
-                mMedicineModel.getRecomendationByDate(oldRecomendations)
-        );
+        mMedicineView.populateOldRecomendationsRecycleView(oldRecomendations);
     }
 }

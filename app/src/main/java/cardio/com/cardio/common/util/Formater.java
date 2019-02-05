@@ -5,6 +5,8 @@ import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -84,10 +86,8 @@ public class Formater {
             return 1;
     }
 
-    public static boolean compareDates (Date date1) throws ParseException {
-        Date date1Formated = getDateWithoutSeconds(date1);
-
-        return System.currentTimeMillis() < date1Formated.getTime();
+    public static int compareDateWithCurrentDate (Date date1) throws ParseException {
+        return compareDates(new Date(), date1);
     }
 
     public static boolean containsInMapsLists (String key, List<CustomMapsList> customMapsLists){
@@ -104,5 +104,20 @@ public class Formater {
                 mCustomMapsList.getCustomMapObjectList().add(customMapObject);
             };
         }
+    }
+
+    public static void sortCustomMapListsWhereTitleIsDate (List<CustomMapsList> customMapsLists){
+        Collections.sort(customMapsLists, new Comparator<CustomMapsList>() {
+            @Override
+            public int compare(CustomMapsList r1, CustomMapsList r2) {
+                try {
+                    return Formater.compareDates(Formater.getDateFromString(r1.getTitle()),
+                            Formater.getDateFromString(r2.getTitle()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return -1;
+            }
+        });
     }
 }
