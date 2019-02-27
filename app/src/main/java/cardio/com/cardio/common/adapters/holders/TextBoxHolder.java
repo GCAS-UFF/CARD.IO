@@ -34,6 +34,8 @@ public class TextBoxHolder extends Holder {
         mEdtInput.setInputType(textBox.getInputType());
         mEdtInput.setEnabled(textBox.isEditable());
         mEdtInput.setHint(textBox.getHint());
+        if (textBox.getValue() != null)
+            mEdtInput.setText(textBox.getValue());
 
         mEdtInput.addTextChangedListener(new TextWatcher() {
             @Override

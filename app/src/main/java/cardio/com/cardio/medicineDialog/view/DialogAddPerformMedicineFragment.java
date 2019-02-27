@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,15 +31,20 @@ import cardio.com.cardio.common.model.view.DateTextBox;
 import cardio.com.cardio.common.model.view.Item;
 import cardio.com.cardio.common.model.view.TextBox;
 import cardio.com.cardio.common.util.Formater;
+import cardio.com.cardio.medicineDialog.model.MedicineDialogModelImp;
+import cardio.com.cardio.medicineDialog.presenter.MedicineDialogPresenter;
+import cardio.com.cardio.medicineDialog.presenter.MedicineDialogPresenterImp;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
-public class DialogAddPerformMedicineFragment extends android.support.v4.app.DialogFragment {
+public class DialogAddPerformMedicineFragment extends android.support.v4.app.DialogFragment implements MedicineDialogView {
 
     public static final String ARG_PARAM1 = "id";
     public static final String ARG_PARAM2 = "date";
 
     private String mId;
     private String mDateStr;
+    private MedicineDialogPresenter mMedicineDialogPresenter;
+    private ItemRecycleViewAdapter mItemRecycleViewAdapter;
 
     private RecyclerView mRecView;
     private TextBox mNameTextBox;
@@ -85,7 +91,7 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
     public void onAttach(Context context) {
         super.onAttach(context);
         if(context != null) {
-            comunicatorFragmentActivity = (ComunicatorFragmentActivity) context;
+            mMedicineDialogPresenter = new MedicineDialogPresenterImp(this, new MedicineDialogModelImp(context));
         }
     }
 
@@ -100,31 +106,32 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         mItems = new ArrayList<>();
 
         mNameTextBox = new TextBox(getResources().getString(R.string.medicine_name_label), "", TextBox.INPUT_TEXT);
-//        mNameTextBox.setEditable(false);
+        mNameTextBox.setEditable(false);
         mItems.add(mNameTextBox);
 
         mDosageTextBox = new TextBox(getResources().getString(R.string.medicine_dosage_label), "", TextBox.INPUT_TEXT);
-//        mDosageTextBox.setEditable(false);
+        mDosageTextBox.setEditable(false);
         mItems.add(mDosageTextBox);
 
         mQuantityTextBox = new TextBox(getResources().getString(R.string.medicine_quantity_label), "", TextBox.INPUT_TEXT);
-//        mQuantityTextBox.setEditable(false);
+        mQuantityTextBox.setEditable(false);
         mItems.add(mQuantityTextBox);
 
         mDateTextBox = new TextBox(getResources().getString(R.string.medicine_performed_date), "", TextBox.INPUT_TEXT);
-//        mDateTextBox.setEditable(false);
+        mDateTextBox.setEditable(false);
         mItems.add(mDateTextBox);
 
         mHourTextBox = new DateTextBox(getResources().getString(R.string.medicine_performed_hour), DateTextBox.INPUT_TIME);
         mItems.add(mHourTextBox);
 
         mNoteTextBox = new TextBox(getResources().getString(R.string.medicine_note_label), "", TextBox.INPUT_TEXT);
+        mNoteTextBox.setEditable(false);
         mItems.add(mNoteTextBox);
 
-        ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
-        itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
+        mItemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
+        mItemRecycleViewAdapter.setFragmentManager(getFragmentManager());
 
-        mRecView.setAdapter(itemRecycleViewAdapter);
+        mRecView.setAdapter(mItemRecycleViewAdapter);
         mRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mBtnCancelar.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +160,9 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.very_round_background_shape);
 
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        mMedicineDialogPresenter.initializeMedicineInformation(mId);
+
 
     }
 
@@ -202,6 +212,19 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
             Toast.makeText(getActivity(), getResources().getString(R.string.message_error_recomendation), Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void showMedicineInformation(Recomentation recomentation) {
+        Medicamento medicamento = (Medicamento) recomentation.getAction();
+        mNameTextBox.setValue(medicamento.getName());
+        mDosageTextBox.setValue(medicamento.getDosagem());
+        mQuantityTextBox.setValue(medicamento.getQuantidade());
+        mNoteTextBox.setValue(medicamento.getNote());
+        mDateTextBox.setValue(mDateStr);
+        Log.d("DEBUN_JP", medicamento.getName());
+
+        mItemRecycleViewAdapter.notifyDataSetChanged();
     }
 }
 

@@ -6,7 +6,7 @@ import cardio.com.cardio.common.model.model.Recomentation;
 
 public interface MedicinePresenter {
 
-    void initializeProfileInformation ();
+    void initializeProfileInformation();
 
     void initilizeRecomendationList();
 
