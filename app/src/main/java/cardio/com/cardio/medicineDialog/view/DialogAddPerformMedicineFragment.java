@@ -36,7 +36,7 @@ import cardio.com.cardio.medicineDialog.presenter.MedicineDialogPresenter;
 import cardio.com.cardio.medicineDialog.presenter.MedicineDialogPresenterImp;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
-public class DialogAddPerformMedicineFragment extends android.support.v4.app.DialogFragment implements MedicineDialogView {
+public class DialogAddPerformMedicineFragment extends android.support.v4.app.DialogFragment implements MedicineDialogView, View.OnClickListener {
 
     public static final String ARG_PARAM1 = "id";
     public static final String ARG_PARAM2 = "date";
@@ -134,28 +134,9 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         mRecView.setAdapter(mItemRecycleViewAdapter);
         mRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mBtnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        mBtnCancelar.setOnClickListener(this);
 
-        mBtnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try{
-                    if (isFormValid()){
-                        saveObject();
-                    }
-                    else {
-                        Toast.makeText(getContext(), getResources().getString(R.string.message_error_field_empty), Toast.LENGTH_SHORT).show();
-                    }
-                }catch (ParseException e){
-                    e.printStackTrace();
-                }
-            }
-        });
+        mBtnOk.setOnClickListener(this);
 
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.very_round_background_shape);
 
@@ -166,8 +147,8 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
 
     }
 
-
-    private void saveObject() throws ParseException {
+    @Override
+    public Recomentation getRecomendation() throws ParseException {
 
         Medicamento medicamento = new Medicamento();
 
@@ -180,11 +161,11 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         recomentation.setAction(medicamento);
         recomentation.getAction().setExecutedDate((Formater.getDateFromStringDateAndTime(mDateStr, mHourTextBox.getValue())).getTime());
 
-        saveIntoFirebase(recomentation);
+        return recomentation;
     }
 
-
-    private boolean isFormValid(){
+    @Override
+    public boolean isFormValid(){
         boolean isValid = true;
         for (Item item : mItems){
             if (item.isEmpty()){
@@ -195,23 +176,9 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         return isValid;
     }
 
-    private void saveIntoFirebase(Recomentation recomentation){
-
-        try {
-            DatabaseReference mDbRef = FirebaseHelper.getInstance()
-                    .getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId())
-                    .child(FirebaseHelper.PERFORMED_ACTION_KEY)
-                    .child(FirebaseHelper.MEDICINE_KEY);
-
-            recomentation.setId(mDbRef.push().getKey());
-            mDbRef.child(recomentation.getId()).setValue(recomentation.getAction());
-            Toast.makeText(getActivity(), getResources().getString(R.string.message_success_recomendation), Toast.LENGTH_SHORT).show();
-            dismiss();
-        }catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(getActivity(), getResources().getString(R.string.message_error_recomendation), Toast.LENGTH_SHORT).show();
-        }
-
+    @Override
+    public void showMessage(int res) {
+        Toast.makeText(getContext(), getResources().getString(res), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -222,9 +189,21 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         mQuantityTextBox.setValue(medicamento.getQuantidade());
         mNoteTextBox.setValue(medicamento.getNote());
         mDateTextBox.setValue(mDateStr);
-        Log.d("DEBUN_JP", medicamento.getName());
+        Log.d("DEBUG_JP", medicamento.getName());
 
         mItemRecycleViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_cancelar:
+                dismiss();
+                break;
+            case R.id.btn_ok:
+                mMedicineDialogPresenter.onClickButtonOK();
+                break;
+        }
     }
 }
 

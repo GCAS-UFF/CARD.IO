@@ -1,5 +1,6 @@
 package cardio.com.cardio.medicineDialog.model;
 
+import cardio.com.cardio.common.model.model.Recomentation;
 import cardio.com.cardio.medicineDialog.presenter.MedicineDialogPresenter;
 
 public interface MedicineDialogModel {
@@ -10,4 +11,5 @@ public interface MedicineDialogModel {
 
     String getCurrentPatientKey();
 
+    void saveIntoFirebase(Recomentation recomentation);
 }

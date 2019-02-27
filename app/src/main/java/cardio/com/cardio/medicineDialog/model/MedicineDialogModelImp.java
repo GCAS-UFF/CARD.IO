@@ -3,13 +3,16 @@ package cardio.com.cardio.medicineDialog.model;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.EventListener;
 
+import cardio.com.cardio.R;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.model.model.Medicamento;
 import cardio.com.cardio.common.model.model.Profissional;
@@ -73,4 +76,24 @@ public class MedicineDialogModelImp implements MedicineDialogModel {
 
         return recomendation;
     }
+
+    public void saveIntoFirebase(Recomentation recomentation){
+
+        try {
+            DatabaseReference mDbRef = FirebaseHelper.getInstance()
+                    .getPatientDatabaseReference(getCurrentPatientKey())
+                    .child(FirebaseHelper.PERFORMED_ACTION_KEY)
+                    .child(FirebaseHelper.MEDICINE_KEY);
+
+            recomentation.setId(mDbRef.push().getKey());
+            mDbRef.child(recomentation.getId()).setValue(recomentation.getAction());
+            mMedicineDialogPresenter.finishSendRecomendation(true);
+        }catch (Exception e){
+            e.printStackTrace();
+            mMedicineDialogPresenter.finishSendRecomendation(false);
+        }
+
+    }
+
+
 }

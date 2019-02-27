@@ -8,4 +8,8 @@ public interface MedicineDialogPresenter {
     void initializeMedicineInformation(String id);
 
     void finishLoadedMedicationDialogData(Recomentation recomentation);
+
+    void onClickButtonOK();
+
+    void finishSendRecomendation(boolean success);
 }
