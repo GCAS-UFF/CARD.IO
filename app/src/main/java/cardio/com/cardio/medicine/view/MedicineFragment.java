@@ -7,24 +7,20 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import java.util.List;
-import java.util.Map;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.CustomMapListRecycleViewAdapter;
-import cardio.com.cardio.common.adapters.CustomMapRecycleViewAdapter;
-import cardio.com.cardio.common.adapters.ItemExpandableSimpleListAdapter;
-import cardio.com.cardio.common.model.view.CustomMapObject;
 import cardio.com.cardio.common.model.view.CustomMapsList;
 import cardio.com.cardio.medicine.presenter.MedicinePresenter;
 import cardio.com.cardio.medicine.presenter.MedicinePresenterImpl;
 import cardio.com.cardio.medicine.model.MedicineModelImpl;
+import cardio.com.cardio.medicineDialog.view.DialogAddPerformMedicineFragment;
 import cardio.com.cardio.professional.fragments.PrescribeMedicineDialogFragment;
 
 public class MedicineFragment extends Fragment implements MedicineView, View.OnClickListener {

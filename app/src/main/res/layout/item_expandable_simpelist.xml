@@ -24,13 +24,6 @@
             android:longClickable="false"
             android:layout_weight="1"
             />
-
-        <ImageView
-            android:id="@+id/img_vw_btn_add"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ico_add"
-            android:layout_marginEnd="20dp"/>
     </LinearLayout>
 
     <include layout="@layout/separator"/>
