@@ -14,7 +14,6 @@ import java.util.Map;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.model.model.Medicamento;
-import cardio.com.cardio.common.model.model.Profissional;
 import cardio.com.cardio.common.model.model.Recomentation;
 import cardio.com.cardio.common.model.view.CustomMapObject;
 import cardio.com.cardio.common.model.view.CustomMapsList;
@@ -37,12 +36,20 @@ public class MedicineModelImpl implements MedicineModel {
     }
 
     @Override
-    public void setRecomendationListener (){
+    public void setRecommendationListener(){
         FirebaseHelper.getInstance().
                 getPatientDatabaseReference(getCurrentPatientKey()).
                 child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
                 child(FirebaseHelper.MEDICINE_KEY).
-                addValueEventListener(medicineEventListener);
+                addValueEventListener(medicineRecommendedEventListener);
+    }
+
+    private void setPerformedListener(){
+        FirebaseHelper.getInstance().
+                getPatientDatabaseReference(getCurrentPatientKey()).
+                child(FirebaseHelper.PERFORMED_ACTION_KEY).
+                child(FirebaseHelper.MEDICINE_KEY).
+                addValueEventListener(medicinePerformedEventListener);
     }
 
     @Override
@@ -60,21 +67,21 @@ public class MedicineModelImpl implements MedicineModel {
 
         try {
 
-            DataSnapshot professionalSnapshot = dataSnapshot.child(FirebaseHelper.PROFESSIONAL_KEY);
-
             for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
-                Medicamento medicamento = new Medicamento();
+                Medicamento medicamento = entrySnapshot.getValue(Medicamento.class);
                 Recomentation recomendation = entrySnapshot.getValue(Recomentation.class);
                 recomendation.setId(entrySnapshot.getKey());
 
                 medicamento.setName(entrySnapshot.child(FirebaseHelper.MEDICINE_NAME_KEY).getValue(String.class));
                 medicamento.setDosagem(entrySnapshot.child(FirebaseHelper.MEDICINE_DOSAGE_KEY).getValue(String.class));
                 medicamento.setQuantidade(entrySnapshot.child(FirebaseHelper.QUANTITY_KEY).getValue(String.class));
-                medicamento.setNote(entrySnapshot.child(FirebaseHelper.MEDICINE_NOTE_KEY).getValue(String.class));
+                medicamento.setObservacao(entrySnapshot.child(FirebaseHelper.MEDICINE_NOTE_KEY).getValue(String.class));
                 medicamento.setHorario(entrySnapshot.child(FirebaseHelper.MEDICINE_START_HOUR_KEY).getValue(String.class));
-                medicamento.setProfissionalId(entrySnapshot.child(FirebaseHelper.MEDICINE_PROFESSIONAL_KEY).getValue(String.class));
 
-                medicamento.setProfessionalObject(professionalSnapshot.child(medicamento.getProfissionalId()).getValue(Profissional.class));
+                String executedDate = Long.toString(entrySnapshot.child(FirebaseHelper.PERFORMED_EXECUTED_DATE).getValue(Long.class));
+                if (executedDate != null)
+                    medicamento.setExecutedDate(Long.parseLong(executedDate));
+
 
                 recomendation.setAction(medicamento);
 
@@ -95,6 +102,29 @@ public class MedicineModelImpl implements MedicineModel {
 
         List<CustomMapsList> customMapsLists = new ArrayList<>();
         for (Recomentation recomentation : recomentations) {
+            addCustomMapListForEachRecomendationDay(recomentation, customMapsLists);
+        }
+
+        Formater.sortCustomMapListsWhereTitleIsDate(customMapsLists);
+
+        return customMapsLists;
+    }
+
+    @Override
+    public List<CustomMapsList> getPerformmedByDate(List<Recomentation> recomentations) {
+
+        List<CustomMapsList> customMapsLists = new ArrayList<>();
+        for (Recomentation recomentation : recomentations) {
+
+            String dateStr = Formater.getStringFromDate(new Date(recomentation.getAction().getExecutedDate()));
+
+            if (!Formater.containsInMapsLists(dateStr, customMapsLists)) {
+                CustomMapsList customMapsList = new CustomMapsList(dateStr, new ArrayList<CustomMapObject>());
+                customMapsLists.add(customMapsList);
+            }
+
+            Formater.addIntoMapsLists(dateStr, getCustomMapObjectFromRecomendation(recomentation), customMapsLists);
+
             addCustomMapListForEachRecomendationDay(recomentation, customMapsLists);
         }
 
@@ -135,11 +165,25 @@ public class MedicineModelImpl implements MedicineModel {
         return new CustomMapObject(recomentation.getId(), customPairs);
     }
 
-    private ValueEventListener medicineEventListener = new ValueEventListener() {
+    private ValueEventListener medicineRecommendedEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             List<Recomentation> recomendationList = getRecomendationListFromDataSnapshot(dataSnapshot);
-            mMedicinePresenter.finishLoadedMedicationData(recomendationList);
+            mMedicinePresenter.finishLoadRecommendedMedicationData(recomendationList);
+            setPerformedListener();
+
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+        }
+    };
+
+    private ValueEventListener medicinePerformedEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            List<Recomentation> recomendationList = getRecomendationListFromDataSnapshot(dataSnapshot);
+            mMedicinePresenter.finshedLoadedPerformedMedicationData(recomendationList);
         }
 
         @Override

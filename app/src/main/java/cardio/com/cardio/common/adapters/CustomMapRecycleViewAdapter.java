@@ -22,6 +22,10 @@ public class CustomMapRecycleViewAdapter extends RecyclerView.Adapter<CustomMapR
         this.mCustomMapObjects = customMapObjects;
     }
 
+    public List<CustomMapObject> getmCustomMapObjects() {
+        return mCustomMapObjects;
+    }
+
     @NonNull
     @Override
     public CustomMapHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

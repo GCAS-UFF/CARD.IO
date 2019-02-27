@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -119,5 +120,18 @@ public class Formater {
                 return -1;
             }
         });
+    }
+
+    public static List<CustomMapsList> mergeCustomMapLists(List<CustomMapsList> listA, List<CustomMapsList> listB){
+        List<CustomMapsList> result = listA;
+        for (CustomMapsList customMapsList : listB){
+            if (!containsInMapsLists(customMapsList.getTitle(), result)){
+                result.add(new CustomMapsList(customMapsList.getTitle(), new ArrayList<CustomMapObject>()));
+            }
+            for (CustomMapObject customMapObject : customMapsList.getCustomMapObjectList()){
+                addIntoMapsLists(customMapsList.getTitle(), customMapObject, result);
+            }
+        }
+        return result;
     }
 }

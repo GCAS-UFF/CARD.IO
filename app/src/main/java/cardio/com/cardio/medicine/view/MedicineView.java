@@ -14,7 +14,11 @@ public interface MedicineView {
 
     void hidePrescribeButton();
 
-    void populateOldRecomendationsRecycleView(List<CustomMapsList> customMapsLists);
+    void populateOldRecommendationsRecycleView(List<CustomMapsList> customMapsLists);
 
-    void populateCurrentRecomendationsRecycleView(List<CustomMapsList> customMapsLists);
+    void populateCurrentRecommendationsRecycleView(List<CustomMapsList> customMapsLists);
+
+    List<CustomMapsList> getCurrentRecommendationsRecycleView();
+
+    List<CustomMapsList> getOldRecommendationsRecycleView();
 }

@@ -2,7 +2,6 @@ package cardio.com.cardio.medicine.presenter;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import cardio.com.cardio.common.model.model.Recomentation;
@@ -35,7 +34,7 @@ public class MedicinePresenterImpl implements MedicinePresenter {
 
     @Override
     public void initilizeRecomendationList() {
-        mMedicineModel.setRecomendationListener();
+        mMedicineModel.setRecommendationListener();
     }
 
     @Override
@@ -44,8 +43,7 @@ public class MedicinePresenterImpl implements MedicinePresenter {
     }
 
     @Override
-    public void finishLoadedMedicationData(List<Recomentation> recomentationList) {
-
+    public void finishLoadRecommendedMedicationData(List<Recomentation> recomentationList) {
         List<CustomMapsList> recomendatiosByDate = mMedicineModel.getRecomendationByDate(recomentationList);
 
         List <CustomMapsList> oldRecomendations = new ArrayList<>();
@@ -65,8 +63,40 @@ public class MedicinePresenterImpl implements MedicinePresenter {
             e.printStackTrace();
         }
 
-        mMedicineView.populateCurrentRecomendationsRecycleView(currentRecomendations);
+        mMedicineView.populateCurrentRecommendationsRecycleView(currentRecomendations);
 
-        mMedicineView.populateOldRecomendationsRecycleView(oldRecomendations);
+        mMedicineView.populateOldRecommendationsRecycleView(oldRecomendations);
     }
+
+    @Override
+    public void finshedLoadedPerformedMedicationData(List<Recomentation> recomentationList) {
+        List<CustomMapsList> recomendatiosByDate = mMedicineModel.getPerformmedByDate( recomentationList);
+
+        List <CustomMapsList> oldRecomendations = new ArrayList<>();
+        List <CustomMapsList> currentRecomendations = new ArrayList<>();
+
+        try {
+            for (CustomMapsList recomendationByDate: recomendatiosByDate) {
+
+                if (Formater.compareDateWithCurrentDate(
+                        Formater.getDateFromString(recomendationByDate.getTitle())) <= 0){
+                    currentRecomendations.add(recomendationByDate);
+                } else{
+                    oldRecomendations.add(recomendationByDate);
+                }
+            }
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+
+        mMedicineView.populateCurrentRecommendationsRecycleView(Formater.mergeCustomMapLists(
+                mMedicineView.getCurrentRecommendationsRecycleView(),
+                currentRecomendations));
+
+        mMedicineView.populateOldRecommendationsRecycleView(Formater.mergeCustomMapLists(
+                mMedicineView.getOldRecommendationsRecycleView(),
+                oldRecomendations));
+    }
+
+
 }

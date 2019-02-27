@@ -16,7 +16,9 @@ public interface MedicineModel {
 
     String getCurrentPatientKey();
 
-    void setRecomendationListener();
+    void setRecommendationListener();
 
     List<CustomMapsList> getRecomendationByDate(List<Recomentation> recomentations);
+
+    List<CustomMapsList> getPerformmedByDate(List<Recomentation> recomentations);
 }

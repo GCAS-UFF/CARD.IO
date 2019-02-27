@@ -55,8 +55,6 @@ public class OrientationFragment extends Fragment {
         orientationList = new ArrayList<>();
         populateOrientationList(orientationList);
 
-//        Log.d("DEBUG_JP", orientationList.toString());
-
         mItemRecycleViewAdapter = new ItemRecycleViewAdapter(orientationList);
 
         mRecyclerView.setAdapter(mItemRecycleViewAdapter);

@@ -145,7 +145,7 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
         medicamento.setDosagem(mDosageTextBox.getValue());
         medicamento.setQuantidade(mQuantityTextBox.getValue());
         medicamento.setHorario(mStartHourTextBox.getValue());
-        medicamento.setNote(mNoteTextBox.getValue());
+        medicamento.setObservacao(mNoteTextBox.getValue());
         medicamento.setProfissionalId(FirebaseConfig.getFirebaseAuth().getUid());
 
         Recomentation recomentation = new Recomentation();
@@ -182,7 +182,7 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_NAME_KEY).setValue(((Medicamento) recomentation.getAction()).getName());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_DOSAGE_KEY).setValue(((Medicamento) recomentation.getAction()).getDosagem());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.QUANTITY_KEY).setValue(((Medicamento) recomentation.getAction()).getQuantidade());
-            mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_NOTE_KEY).setValue(((Medicamento) recomentation.getAction()).getNote());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_NOTE_KEY).setValue(((Medicamento) recomentation.getAction()).getObservacao());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_START_HOUR_KEY).setValue(((Medicamento) recomentation.getAction()).getHorario());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_PROFESSIONAL_KEY).setValue(((Medicamento) recomentation.getAction()).getProfissionalId());
             Toast.makeText(getActivity(), getResources().getString(R.string.message_success_recomendation), Toast.LENGTH_SHORT).show();

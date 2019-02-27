@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +14,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cardio.com.cardio.R;
-import cardio.com.cardio.common.Firebase.FirebaseConfig;
-import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.adapters.ItemRecycleViewAdapter;
 import cardio.com.cardio.common.model.model.Medicamento;
 import cardio.com.cardio.common.model.model.Recomentation;
@@ -34,7 +29,6 @@ import cardio.com.cardio.common.util.Formater;
 import cardio.com.cardio.medicineDialog.model.MedicineDialogModelImp;
 import cardio.com.cardio.medicineDialog.presenter.MedicineDialogPresenter;
 import cardio.com.cardio.medicineDialog.presenter.MedicineDialogPresenterImp;
-import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 public class DialogAddPerformMedicineFragment extends android.support.v4.app.DialogFragment implements MedicineDialogView, View.OnClickListener {
 
@@ -56,8 +50,6 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
     private Button mBtnCancelar;
     private Button mBtnOk;
     private List<Item> mItems;
-
-    private ComunicatorFragmentActivity comunicatorFragmentActivity;
 
     public static DialogAddPerformMedicineFragment newInstance (String id, String dateStr){
         DialogAddPerformMedicineFragment dialog = new DialogAddPerformMedicineFragment();
@@ -155,7 +147,7 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         medicamento.setName(mNameTextBox.getValue());
         medicamento.setDosagem(mDosageTextBox.getValue());
         medicamento.setQuantidade(mQuantityTextBox.getValue());
-        medicamento.setNote(mNoteTextBox.getValue());
+        medicamento.setObservacao(mNoteTextBox.getValue());
 
         Recomentation recomentation = new Recomentation();
         recomentation.setAction(medicamento);
@@ -187,9 +179,8 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         mNameTextBox.setValue(medicamento.getName());
         mDosageTextBox.setValue(medicamento.getDosagem());
         mQuantityTextBox.setValue(medicamento.getQuantidade());
-        mNoteTextBox.setValue(medicamento.getNote());
+        mNoteTextBox.setValue(medicamento.getObservacao());
         mDateTextBox.setValue(mDateStr);
-        Log.d("DEBUG_JP", medicamento.getName());
 
         mItemRecycleViewAdapter.notifyDataSetChanged();
     }

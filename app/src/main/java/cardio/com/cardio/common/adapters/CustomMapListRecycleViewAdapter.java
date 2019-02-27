@@ -23,6 +23,10 @@ public class CustomMapListRecycleViewAdapter extends RecyclerView.Adapter<Custom
         this.mCustomMapsLists = customMapsLists;
     }
 
+    public List<CustomMapsList> getmCustomMapsLists() {
+        return mCustomMapsLists;
+    }
+
     public void setComunicatorOnAddClickItem(ComunicatorOnAddClickItem comunicatorOnAddClickItem) {
         this.mComunicatorOnAddClickItem = comunicatorOnAddClickItem;
         notifyDataSetChanged();

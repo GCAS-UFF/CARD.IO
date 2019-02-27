@@ -13,7 +13,7 @@ public class Medicamento extends Action {
     private String quantidade;
     private String horario;
     private String profissionalId;
-    private String note;
+    private String observacao;
     private Profissional professionalObject;
 
     private int duration;
@@ -54,12 +54,12 @@ public class Medicamento extends Action {
         this.horario = horario;
     }
 
-    public String getNote() {
-        return note;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public String getProfissionalId() {
@@ -87,7 +87,7 @@ public class Medicamento extends Action {
         result.put("Dosagem: ", dosagem);
         result.put("Quantidade: ", quantidade);
         result.put("Hora de início: ", horario);
-        result.put("Observação: ", note);
+        result.put("Observação: ", observacao);
         if(professionalObject != null)
             result.put("Profissional responsável: ", professionalObject.getNome());
 

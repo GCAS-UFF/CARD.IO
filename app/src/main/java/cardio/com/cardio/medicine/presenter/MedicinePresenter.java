@@ -12,5 +12,7 @@ public interface MedicinePresenter {
 
     void onClickPrescribeMedicine();
 
-    void finishLoadedMedicationData(List<Recomentation> recomentationList);
+    void finishLoadRecommendedMedicationData(List<Recomentation> recomentationList);
+
+    void finshedLoadedPerformedMedicationData(List<Recomentation> recomentationList);
 }

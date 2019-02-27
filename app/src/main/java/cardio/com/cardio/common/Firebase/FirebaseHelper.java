@@ -31,21 +31,22 @@ public class FirebaseHelper{
     public static final String ALIMENTACAO_KEY = "Alimentacao";
     public static final String EXERCICIO_KEY = "Exercicio";
     public static final String MEDICINE_KEY = "Medicamento";
-    public static final String QUANTITY_KEY = "Quantidade";
+    public static final String QUANTITY_KEY = "quantidade";
     public static final String METADATA_KEY = "Metadados";
     public static final String ADRESS_KEY = "Endereco";
     public static final String SPECIALITY_KEY = "Especialidades";
     public static final String APPOINTMENT_PATIENT_KEY = "paciente";
     public static final String APPOINTMENT_DATA_KEY = "data";
     public static final String QUANTITY_BEVERAGE_KEY = "QuantidadeBebidas";
-    public static final String MEDICINE_NAME_KEY = "Nome";
-    public static final String MEDICINE_DOSAGE_KEY = "Dosagem";
-    public static final String MEDICINE_NOTE_KEY = "Observação";
-    public static final String MEDICINE_START_HOUR_KEY = "HoraInicial";
-    public static final String MEDICINE_PROFESSIONAL_KEY = "ProfissionalResponsavel";
+    public static final String MEDICINE_NAME_KEY = "nome";
+    public static final String MEDICINE_DOSAGE_KEY = "dosagem";
+    public static final String MEDICINE_NOTE_KEY = "observação";
+    public static final String MEDICINE_START_HOUR_KEY = "horaInicial";
+    public static final String MEDICINE_PROFESSIONAL_KEY = "profissionalResponsavel";
     public static final String EXCERCISE_NAME_KEY = "Atividade";
     public static final String EXCERCISE_INTENSITY_KEY = "Intensidade";
     public static final String EXERCISE_DURATION_KEY = "Duração";
+    public static final String PERFORMED_EXECUTED_DATE = "dataExecucao";
 
 //  DATABASE REFERENCES
 

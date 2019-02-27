@@ -16,6 +16,7 @@ import java.util.List;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.adapters.CustomMapListRecycleViewAdapter;
+import cardio.com.cardio.common.adapters.CustomMapRecycleViewAdapter;
 import cardio.com.cardio.common.model.view.CustomMapsList;
 import cardio.com.cardio.medicine.presenter.MedicinePresenter;
 import cardio.com.cardio.medicine.presenter.MedicinePresenterImpl;
@@ -80,7 +81,7 @@ public class MedicineFragment extends Fragment implements MedicineView, View.OnC
     }
 
     @Override
-    public void populateOldRecomendationsRecycleView(List<CustomMapsList> customMapsLists) {
+    public void populateOldRecommendationsRecycleView(List<CustomMapsList> customMapsLists) {
         CustomMapListRecycleViewAdapter oldCustomMapListRecycleViewAdapter =
                 new CustomMapListRecycleViewAdapter(customMapsLists);
 
@@ -88,7 +89,7 @@ public class MedicineFragment extends Fragment implements MedicineView, View.OnC
     }
 
     @Override
-    public void populateCurrentRecomendationsRecycleView(List<CustomMapsList> customMapsLists) {
+    public void populateCurrentRecommendationsRecycleView(List<CustomMapsList> customMapsLists) {
         CustomMapListRecycleViewAdapter currentCustomMapListRecycleViewAdapter =
                 new CustomMapListRecycleViewAdapter(customMapsLists);
 
@@ -101,6 +102,20 @@ public class MedicineFragment extends Fragment implements MedicineView, View.OnC
         });
 
         mRVCurrentMedicines.setAdapter(currentCustomMapListRecycleViewAdapter);
+    }
+
+    @Override
+    public List<CustomMapsList> getCurrentRecommendationsRecycleView() {
+        CustomMapListRecycleViewAdapter customMapRecycleViewAdapter =
+                (CustomMapListRecycleViewAdapter) mRVCurrentMedicines.getAdapter();
+        return customMapRecycleViewAdapter.getmCustomMapsLists();
+    }
+
+    @Override
+    public List<CustomMapsList> getOldRecommendationsRecycleView() {
+        CustomMapListRecycleViewAdapter customMapRecycleViewAdapter =
+                (CustomMapListRecycleViewAdapter) mRVOldMedicines.getAdapter();
+        return customMapRecycleViewAdapter.getmCustomMapsLists();
     }
 
     @Override
