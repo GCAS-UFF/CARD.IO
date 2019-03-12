@@ -201,8 +201,6 @@ public class PrescribeFoodFragment extends Fragment {
     private ValueEventListener getRealizedActionsListListener = new ValueEventListener() {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            Log.d("debug_kelly", dataSnapshot.toString());
-
             try {
 
                 List<Alimentacao> alimentacaoList = new ArrayList<>();

@@ -2,6 +2,7 @@ package cardio.com.cardio.medicine.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
+import cardio.com.cardio.common.model.model.Action;
 import cardio.com.cardio.common.model.model.Medicamento;
 import cardio.com.cardio.common.model.model.Recomentation;
 import cardio.com.cardio.common.model.view.CustomMapObject;
@@ -78,9 +80,15 @@ public class MedicineModelImpl implements MedicineModel {
                 medicamento.setObservacao(entrySnapshot.child(FirebaseHelper.MEDICINE_NOTE_KEY).getValue(String.class));
                 medicamento.setHorario(entrySnapshot.child(FirebaseHelper.MEDICINE_START_HOUR_KEY).getValue(String.class));
 
-                String executedDate = Long.toString(entrySnapshot.child(FirebaseHelper.PERFORMED_EXECUTED_DATE).getValue(Long.class));
-                if (executedDate != null)
-                    medicamento.setExecutedDate(Long.parseLong(executedDate));
+                try {
+                    Action action = entrySnapshot.getValue(Action.class);
+                    long executedDate = action.getExecutedDate();
+                    medicamento.setExecutedDate(executedDate);
+                    medicamento.setPerformed(true);
+
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
 
 
                 recomendation.setAction(medicamento);

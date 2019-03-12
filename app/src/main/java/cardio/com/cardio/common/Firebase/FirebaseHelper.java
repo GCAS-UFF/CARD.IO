@@ -38,7 +38,7 @@ public class FirebaseHelper{
     public static final String APPOINTMENT_PATIENT_KEY = "paciente";
     public static final String APPOINTMENT_DATA_KEY = "data";
     public static final String QUANTITY_BEVERAGE_KEY = "QuantidadeBebidas";
-    public static final String MEDICINE_NAME_KEY = "nome";
+    public static final String MEDICINE_NAME_KEY = "name";
     public static final String MEDICINE_DOSAGE_KEY = "dosagem";
     public static final String MEDICINE_NOTE_KEY = "observação";
     public static final String MEDICINE_START_HOUR_KEY = "horaInicial";
@@ -46,7 +46,7 @@ public class FirebaseHelper{
     public static final String EXCERCISE_NAME_KEY = "Atividade";
     public static final String EXCERCISE_INTENSITY_KEY = "Intensidade";
     public static final String EXERCISE_DURATION_KEY = "Duração";
-    public static final String PERFORMED_EXECUTED_DATE = "dataExecucao";
+    public static final String PERFORMED_EXECUTED_DATE = "executedDate";
 
 //  DATABASE REFERENCES
 

@@ -81,7 +81,6 @@ public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder impl
 
     @Override
     public boolean onLongClick(View v) {
-        Log.d("debug_kelly", "fui clicado longamente");
         Toast.makeText(itemView.getContext(), "fui longamente clicado", Toast.LENGTH_SHORT);
         return true;
     }

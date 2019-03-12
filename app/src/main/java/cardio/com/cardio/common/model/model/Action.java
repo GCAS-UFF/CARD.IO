@@ -19,6 +19,9 @@ public class Action {
     private String type;
     private long executedDate;
 
+    public Action() {
+    }
+
     public Action(String type) {
         this.type = type;
     }

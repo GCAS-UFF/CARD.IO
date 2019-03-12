@@ -30,7 +30,8 @@ import cardio.com.cardio.medicineDialog.model.MedicineDialogModelImp;
 import cardio.com.cardio.medicineDialog.presenter.MedicineDialogPresenter;
 import cardio.com.cardio.medicineDialog.presenter.MedicineDialogPresenterImp;
 
-public class DialogAddPerformMedicineFragment extends android.support.v4.app.DialogFragment implements MedicineDialogView, View.OnClickListener {
+public class DialogAddPerformMedicineFragment extends android.support.v4.app.DialogFragment
+        implements MedicineDialogView, View.OnClickListener {
 
     public static final String ARG_PARAM1 = "id";
     public static final String ARG_PARAM2 = "date";

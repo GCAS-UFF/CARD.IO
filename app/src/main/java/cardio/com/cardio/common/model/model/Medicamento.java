@@ -1,5 +1,7 @@
 package cardio.com.cardio.common.model.model;
 
+import android.util.Log;
+
 import com.google.firebase.database.Exclude;
 
 import java.util.LinkedHashMap;
@@ -86,9 +88,11 @@ public class Medicamento extends Action {
         result.put("Nome: ", name);
         result.put("Dosagem: ", dosagem);
         result.put("Quantidade: ", quantidade);
-        result.put("Hora de início: ", horario);
-        result.put("Observação: ", observacao);
-        if(professionalObject != null)
+        if (horario != null && !horario.isEmpty())
+            result.put("Hora de início: ", horario);
+        if (getExecutedDate() <= 0)
+            result.put("Observação: ", observacao);
+        if (professionalObject != null)
             result.put("Profissional responsável: ", professionalObject.getNome());
 
         result.put("", "");

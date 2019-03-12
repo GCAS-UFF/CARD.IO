@@ -1,5 +1,7 @@
 package cardio.com.cardio.common.model.model;
 
+import android.util.Log;
+
 import com.google.firebase.database.Exclude;
 
 import java.text.Format;
@@ -71,11 +73,20 @@ public class Recomentation {
     public Map<String, String> toMap (){
         Map<String,String> result = new LinkedHashMap<>();
 
-        result.put("Recomendado: ", "");
+        if (action.getExecutedDate() > 0) {
+            result.put("Realizado: ", "");
+            result.put("Hora da Realização: ", Formater.getTimeStringFromDate(new Date(action.getExecutedDate())));
+        }
+        else
+            result.put("Recomendado: ", "");
 
-        result.put("Frequência: ", frequencyByDay + " vezes ao dia");
-        result.put("Data de Inicio: ", Formater.getStringFromDate(new Date(startDate)));
-        result.put("Data de Fim: ", Formater.getStringFromDate(new Date(finishDate)));
+
+        if (frequencyByDay > 0)
+            result.put("Frequência: ", frequencyByDay + " vezes ao dia");
+        if (startDate > 0)
+            result.put("Data de Inicio: ", Formater.getStringFromDate(new Date(startDate)));
+        if (finishDate >0)
+            result.put("Data de Fim: ", Formater.getStringFromDate(new Date(finishDate)));
 
         result.putAll(action.toMap());
 
