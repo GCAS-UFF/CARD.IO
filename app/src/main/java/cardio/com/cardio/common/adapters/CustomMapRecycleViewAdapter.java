@@ -70,7 +70,7 @@ public class CustomMapRecycleViewAdapter extends RecyclerView.Adapter<CustomMapR
             mRecyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
             mRecyclerView.setNestedScrollingEnabled(false);
 
-            if (mComunicatorOnAddClick != null){
+            if (customMapObject.isHaveAddButton()){
                 mImgVwButtonAdd.setVisibility(View.VISIBLE);
                 mImgVwButtonAdd.setOnClickListener(new View.OnClickListener() {
                     @Override

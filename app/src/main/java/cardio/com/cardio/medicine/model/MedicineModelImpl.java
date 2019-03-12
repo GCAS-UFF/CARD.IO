@@ -43,7 +43,7 @@ public class MedicineModelImpl implements MedicineModel {
                 getPatientDatabaseReference(getCurrentPatientKey()).
                 child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
                 child(FirebaseHelper.MEDICINE_KEY).
-                addValueEventListener(medicineRecommendedEventListener);
+                addListenerForSingleValueEvent(medicineRecommendedEventListener);
     }
 
     private void setPerformedListener(){
@@ -51,7 +51,7 @@ public class MedicineModelImpl implements MedicineModel {
                 getPatientDatabaseReference(getCurrentPatientKey()).
                 child(FirebaseHelper.PERFORMED_ACTION_KEY).
                 child(FirebaseHelper.MEDICINE_KEY).
-                addValueEventListener(medicinePerformedEventListener);
+                addListenerForSingleValueEvent(medicinePerformedEventListener);
     }
 
     @Override
@@ -131,9 +131,7 @@ public class MedicineModelImpl implements MedicineModel {
                 customMapsLists.add(customMapsList);
             }
 
-            Formater.addIntoMapsLists(dateStr, getCustomMapObjectFromRecomendation(recomentation), customMapsLists);
-
-            addCustomMapListForEachRecomendationDay(recomentation, customMapsLists);
+            Formater.addIntoMapsLists(dateStr, getCustomMapObjectFromRecomendation(recomentation, true), customMapsLists);
         }
 
         Formater.sortCustomMapListsWhereTitleIsDate(customMapsLists);
@@ -156,13 +154,13 @@ public class MedicineModelImpl implements MedicineModel {
                 customMapsLists.add(customMapsList);
             }
 
-            Formater.addIntoMapsLists(dateStr, getCustomMapObjectFromRecomendation(recomentation), customMapsLists);
+            Formater.addIntoMapsLists(dateStr, getCustomMapObjectFromRecomendation(recomentation, false), customMapsLists);
 
             startDate.setTime(startDate.getTime() + dayInMiliseconds);
         }
     }
 
-    private CustomMapObject getCustomMapObjectFromRecomendation (Recomentation recomentation){
+    private CustomMapObject getCustomMapObjectFromRecomendation (Recomentation recomentation, boolean isPerformed){
         Map<String, String> values = recomentation.toMap();
         List<CustomPair> customPairs = new ArrayList<>();
 
@@ -170,7 +168,7 @@ public class MedicineModelImpl implements MedicineModel {
             customPairs.add(new CustomPair(entry.getKey(), entry.getValue()));
         }
 
-        return new CustomMapObject(recomentation.getId(), customPairs);
+        return new CustomMapObject(recomentation.getId(), customPairs, !isPerformed);
     }
 
     private ValueEventListener medicineRecommendedEventListener = new ValueEventListener() {

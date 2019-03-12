@@ -93,13 +93,14 @@ public class MedicineFragment extends Fragment implements MedicineView, View.OnC
         CustomMapListRecycleViewAdapter currentCustomMapListRecycleViewAdapter =
                 new CustomMapListRecycleViewAdapter(customMapsLists);
 
-        currentCustomMapListRecycleViewAdapter.setComunicatorOnAddClickItem(new CustomMapListRecycleViewAdapter.ComunicatorOnAddClickItem() {
-            @Override
-            public void onAddClickItemListener(String id, String title) {
-                DialogAddPerformMedicineFragment dialog = DialogAddPerformMedicineFragment.newInstance(id, title);
-                dialog.show(getActivity().getSupportFragmentManager(), "dialogFragment");
-            }
-        });
+            currentCustomMapListRecycleViewAdapter.setComunicatorOnAddClickItem(new CustomMapListRecycleViewAdapter.ComunicatorOnAddClickItem() {
+                @Override
+                public void onAddClickItemListener(String id, String title) {
+                    DialogAddPerformMedicineFragment dialog = DialogAddPerformMedicineFragment.newInstance(id, title);
+                    dialog.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+                }
+            });
+
 
         mRVCurrentMedicines.setAdapter(currentCustomMapListRecycleViewAdapter);
     }

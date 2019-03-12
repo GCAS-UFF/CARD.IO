@@ -1,0 +1,37 @@
+@startuml
+|MedicineView|
+start
+|#AntiqueWhite|MedicinePresenter|
+:initializeProfileInformation;
+|MedicineView|
+:hideOrShowPrescriptionButton;
+|#AntiqueWhite|MedicinePresenter|
+:initilizeRecomendationList;
+|MedicineModel|
+:setRecommendationListener;
+|Firebase|
+:addListenerForDataChange;
+|MedicineModel|
+:onDataChange (medicineRecommendedEventListener);
+:getRecomendationListFromDataSnapshot;
+fork
+    |MedicinePresenter|
+   :finishLoadRecommendedMedicationData;
+   |MedicineView|
+   :populateRecycleViews;
+   detach
+ fork again
+    |MedicineModel|
+   :setPerformedListener;
+   |Firebase|
+    :addListenerForDataChange;
+    |MedicineModel|
+    :onDataChange (medicinePerformedEventListener);
+    :getRecomendationListFromDataSnapshot;
+    |MedicinePresenter|
+   :finshedLoadedPerformedMedicationData;
+   |MedicineView|
+   :populateRecycleViews;
+   detach
+ endfork
+@enduml
