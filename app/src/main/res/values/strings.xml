@@ -103,6 +103,8 @@
     <string name="startDate_label">Data inicial</string>
     <string name="finishDate_label">Data final</string>
     <string name="startHour_label">Hora inicial</string>
+    <string name="appointment_history_old">Consultas passadas</string>
+    <string name="appointment_history_current">Consultas Futuras</string>
     <string name="appointment_date_label">Data da consulta</string>
     <string name="appointment_hour_label">Hora da consulta</string>
     <string name="exercise_prescription_label">Atividade física</string>
@@ -139,6 +141,9 @@
     <!-- Tela Adicionar Ação de medicamento -->
     <string name="medicine_performed_hour">Horário</string>
     <string name="medicine_performed_date">Data</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 import cardio.com.cardio.R;
+import cardio.com.cardio.appointment.view.AppointmentFragment;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.activities.LoginActivity;
 import cardio.com.cardio.common.fragments.AboutFragment;
@@ -148,8 +149,9 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_consultas:
-                PrescribeAppointmentFragment prescribeAppointmentFragment = new PrescribeAppointmentFragment();
-                fragmentTransaction.replace(R.id.container, prescribeAppointmentFragment, "prescribeAppointmentFragment");
+
+                AppointmentFragment appointmentFragment= new AppointmentFragment();
+                fragmentTransaction.replace(R.id.container, appointmentFragment, "appointmentFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;

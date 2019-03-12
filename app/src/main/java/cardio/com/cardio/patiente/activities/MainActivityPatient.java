@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import cardio.com.cardio.appointment.view.AppointmentFragment;
 import cardio.com.cardio.common.Firebase.FirebaseHelper;
 import cardio.com.cardio.common.fragments.AboutFragment;
 import cardio.com.cardio.common.model.model.Paciente;
@@ -121,8 +122,8 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_consultas:
-                ConsultasFragment consultasFragment = new ConsultasFragment();
-                fragmentTransaction.replace(R.id.container, consultasFragment, "consultasFragment");
+                AppointmentFragment appointmentFragment= new AppointmentFragment();
+                fragmentTransaction.replace(R.id.container, appointmentFragment, "appointmentFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;

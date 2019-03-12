@@ -1,5 +1,6 @@
 package cardio.com.cardio.common.adapters.holders;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,7 +32,7 @@ public class DropDownHolder extends Holder{
             spinnerList.add(dropDown.getHint());
 
             if (dropDown.getOptions() != null) {
-                spinnerList.addAll(dropDown.getOptions().values());
+                spinnerList.addAll(dropDown.getOptions().keySet());
             }
 
             final ArrayAdapter<CharSequence> spinnerAdapter = new ArrayAdapter<CharSequence>(itemView.getContext(),

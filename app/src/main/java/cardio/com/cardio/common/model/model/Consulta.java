@@ -31,6 +31,16 @@ public class Consulta {
         this.attended = false;
     }
 
+    public Consulta(String id, String paciente, String especialideProfissional,
+                    String localizacao, long data, boolean attended) {
+        this.id = id;
+        this.paciente = paciente;
+        this.especialideProfissional = especialideProfissional;
+        this.localizacao = localizacao;
+        this.data = data;
+        this.attended = attended;
+    }
+
     public Consulta() {
     }
 
