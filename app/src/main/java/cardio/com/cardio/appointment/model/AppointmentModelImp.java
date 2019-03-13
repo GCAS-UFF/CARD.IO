@@ -41,7 +41,7 @@ public class AppointmentModelImp implements AppointmentModel{
 
     public void setRecommendationListener(){
         FirebaseHelper.appointmentDatabaseReference.
-                addListenerForSingleValueEvent(appointmentEventListener);
+                addValueEventListener(appointmentEventListener);
     }
 
     public String getCurrentPatientKey() {

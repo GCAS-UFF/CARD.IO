@@ -8,6 +8,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.model.view.DropDown;
@@ -25,11 +26,12 @@ public class DropDownHolder extends Holder{
     public void bindType(Item item) {
 
         try {
-
             final DropDown dropDown = (DropDown) item;
 
             final List<String> spinnerList = new ArrayList<>();
             spinnerList.add(dropDown.getHint());
+
+            mSpinner.setEnabled(dropDown.isEditable());
 
             if (dropDown.getOptions() != null) {
                 spinnerList.addAll(dropDown.getOptions().keySet());
@@ -56,6 +58,9 @@ public class DropDownHolder extends Holder{
 
                 }
             });
+
+            if (dropDown.getValue() != null)
+                mSpinner.setSelection(spinnerList.indexOf(dropDown.getValue()));
 
         } catch (NullPointerException e){
             e.printStackTrace();

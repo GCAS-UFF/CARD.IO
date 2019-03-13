@@ -1,5 +1,7 @@
 package cardio.com.cardio.common.model.view;
 
+import android.util.Log;
+
 import java.util.Map;
 
 public class RadioButtonList extends Item {

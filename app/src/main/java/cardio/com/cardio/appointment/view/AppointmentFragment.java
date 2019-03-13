@@ -20,6 +20,7 @@ import cardio.com.cardio.R;
 import cardio.com.cardio.appointment.model.AppointmentModelImp;
 import cardio.com.cardio.appointment.presenter.AppointmentPresenter;
 import cardio.com.cardio.appointment.presenter.AppointmentPresenterImp;
+import cardio.com.cardio.appointmentDialog.view.AppointmentDialogFragment;
 import cardio.com.cardio.common.adapters.CustomMapListRecycleViewAdapter;
 import cardio.com.cardio.common.model.view.CustomMapsList;
 import cardio.com.cardio.professional.fragments.PrescribeAppointmentDialogFragment;
@@ -92,8 +93,8 @@ public class AppointmentFragment extends Fragment implements AppointmentView, Vi
         currentCustomMapListRecycleViewAdapter.setComunicatorOnAddClickItem(new CustomMapListRecycleViewAdapter.ComunicatorOnAddClickItem() {
             @Override
             public void onAddClickItemListener(String id, String title) {
-//                DialogAddPerformMedicineFragment dialog = DialogAddPerformMedicineFragment.newInstance(id, title);
-//                dialog.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+                AppointmentDialogFragment dialog = AppointmentDialogFragment.newInstance(id, title);
+                dialog.show(getActivity().getSupportFragmentManager(), "dialogFragment");
             }
         });
 

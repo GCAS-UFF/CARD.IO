@@ -165,11 +165,6 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
 
             mAdressDropDown = new DropDown(options, "Endereço");
             mItems.add(mAdressDropDown);
-
-//            ItemRecycleViewAdapter itemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
-//            itemRecycleViewAdapter.setFragmentManager(getFragmentManager());
-//
-//            mRecView.setAdapter(itemRecycleViewAdapter);
         }
 
         @Override

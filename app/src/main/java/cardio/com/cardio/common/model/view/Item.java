@@ -3,6 +3,7 @@ package cardio.com.cardio.common.model.view;
 public abstract class Item {
 
     private int tipo;
+    private boolean isEditable = true;
 
     public Item(int tipo) {
         this.tipo = tipo;
@@ -13,4 +14,12 @@ public abstract class Item {
     }
 
     public abstract boolean isEmpty();
+
+    public void setEditable(boolean editable) {
+        this.isEditable = editable;
+    }
+
+    public boolean isEditable() {
+        return isEditable;
+    }
 }

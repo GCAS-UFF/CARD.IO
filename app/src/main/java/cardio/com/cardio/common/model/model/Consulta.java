@@ -125,6 +125,8 @@ public class Consulta {
     public Map<String,String> toMap (){
         Map<String,String> result = new LinkedHashMap<>();
 
+        result.put("Consulta", "");
+
         if (pacienteObject != null) {
             result.put("Paciente: ", pacienteObject.getNome());
         }
@@ -137,6 +139,7 @@ public class Consulta {
         result.put("Horário: ", Formater.getTimeStringFromDate(new Date(data)));
         result.put("Comparecida: ", attended ? "Sim" : "Não");
         result.put("Localização: ", localizacao);
+        result.put("", "");
 
         return result;
     }

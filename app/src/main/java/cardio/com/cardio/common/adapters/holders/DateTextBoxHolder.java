@@ -31,6 +31,8 @@ public class DateTextBoxHolder extends Holder {
         final DateTextBox dateTextBox = (DateTextBox) item;
 
         mTvLabel.setText(dateTextBox.getLabel());
+        mTvInput.setEnabled(dateTextBox.isEditable());
+
         mTvInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +64,10 @@ public class DateTextBoxHolder extends Holder {
                 dateTextBox.setValue(mTvInput.getText().toString());
             }
         });
+
+        if (dateTextBox.getValue() != null) {
+            mTvInput.setText(dateTextBox.getValue());
+        }
     }
 
     private DataPickerFragment.ComunicatorDataPicker comunicatorDate = new DataPickerFragment.ComunicatorDataPicker() {
