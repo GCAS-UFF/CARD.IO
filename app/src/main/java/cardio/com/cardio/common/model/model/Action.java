@@ -67,12 +67,6 @@ public class Action {
     public Map<String,String> toMap (){
         Map<String,String> result = new LinkedHashMap<>();
 
-        String performedStr = (isPerformed()) ? "Realizado" : "Não Realizado";
-
-        result.put("Realizado", "");
-        //result.put("Status: ", performedStr);
-        //result.put("Data de Criação: ", Formater.getStringFromDate(new Date(getExecutedDate())));
-
         return result;
     }
 }

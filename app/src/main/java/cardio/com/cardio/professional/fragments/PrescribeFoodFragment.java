@@ -168,7 +168,7 @@ public class PrescribeFoodFragment extends Fragment {
                     Alimentacao alimentacao = new Alimentacao();
                     Recomentation recomentation = entrySnapshot.getValue(Recomentation.class);
 
-                    alimentacao.setQuantity(Integer.parseInt(entrySnapshot.
+                    alimentacao.setQuantidade(Integer.parseInt(entrySnapshot.
                             child(FirebaseHelper.QUANTITY_KEY).
                             getValue(Long.class).toString()));
 

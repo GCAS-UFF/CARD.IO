@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--TELA EXERCICIOS-->
-    <array name="exerciseSymptoms">
-        <item>Fadiga excessiva</item>
-        <item>Dores corporais</item>
-        <item>Falta de ar excessiva</item>
-        <item>Tontura</item>
-    </array>
-
     <!--TELA SOBRE-->
     <array name="contributors">
         <item> - Prof Dra Ana Carla Dantas Cavalcanti
@@ -38,7 +30,7 @@
         <item>Cálice</item>
     </array>
 
-    <array name="quantity">
+    <array name="quantidade">
         <item>2</item>
         <item>2</item>
         <item>2</item>

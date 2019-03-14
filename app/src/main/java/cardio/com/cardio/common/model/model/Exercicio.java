@@ -8,7 +8,7 @@ import cardio.com.cardio.common.Firebase.FirebaseHelper;
 public class Exercicio extends Action {
 
 
-    private String exercise;
+    private String name;
     private String intensity;
     private int duration;
     private Map<String, Boolean> symptons;
@@ -17,12 +17,12 @@ public class Exercicio extends Action {
         super(FirebaseHelper.EXERCICIO_KEY);
     }
 
-    public String getExercise() {
-        return exercise;
+    public String getName() {
+        return name;
     }
 
-    public void setExercise(String exercise) {
-        this.exercise = exercise;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getIntensity() {
@@ -53,12 +53,11 @@ public class Exercicio extends Action {
     public Map<String,String> toMap (){
         Map<String,String> result = new LinkedHashMap<>();
 
-        if (this.isPerformed()){
-            result.putAll(super.toMap());
-            result.put("Exercício: ", exercise);
-            result.put("Intensidade: ", intensity);
-            result.put("Duração: ", duration + " min");
+        result.put("Exercício: ", name);
+        result.put("Intensidade: ", intensity);
+        result.put("Duração: ", duration + " min");
 
+        if (this.getExecutedDate() > 0){
             if(getSymptons() != null) {
                 result.put("Sintomas:", "");
                 for (Map.Entry<String, Boolean> entry : getSymptons().entrySet()){

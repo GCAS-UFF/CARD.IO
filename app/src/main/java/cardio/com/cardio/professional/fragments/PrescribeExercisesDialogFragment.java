@@ -1,11 +1,9 @@
 package cardio.com.cardio.professional.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -129,7 +127,7 @@ public class PrescribeExercisesDialogFragment extends  android.support.v4.app.Di
     private void saveObject() throws ParseException {
 
         Exercicio exercicio = new Exercicio();
-        exercicio.setExercise(exerciseTextBox.getValue());
+        exercicio.setName(exerciseTextBox.getValue());
         exercicio.setIntensity(intensityTextBox.getValue());
         exercicio.setDuration(Formater.getIntegerFromString(durationTextBox.getValue()));
 
@@ -163,8 +161,8 @@ public class PrescribeExercisesDialogFragment extends  android.support.v4.app.Di
 
             recomentation.setId(mDbRef.push().getKey());
             mDbRef.child(recomentation.getId()).setValue(recomentation);
-            mDbRef.child(recomentation.getId()).child(FirebaseHelper.EXCERCISE_NAME_KEY).setValue(((Exercicio) recomentation.getAction()).getExercise());
-            mDbRef.child(recomentation.getId()).child(FirebaseHelper.EXCERCISE_INTENSITY_KEY).setValue(((Exercicio) recomentation.getAction()).getIntensity());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.EXERCISE_NAME_KEY).setValue(((Exercicio) recomentation.getAction()).getName());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.EXERCISE_INTENSITY_KEY).setValue(((Exercicio) recomentation.getAction()).getIntensity());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.EXERCISE_DURATION_KEY).setValue(((Exercicio) recomentation.getAction()).getDuration());
             Toast.makeText(getActivity(), getResources().getString(R.string.message_success_recomendation), Toast.LENGTH_SHORT).show();
             dismiss();

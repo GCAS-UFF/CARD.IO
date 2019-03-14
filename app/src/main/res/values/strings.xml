@@ -74,7 +74,7 @@
     <string name="half_requeijao_glass">Meio copo de requeijão</string>
     <string name="chalice">Um cálice</string>
 
-    <string name="quantity">Quantidade</string>
+    <string name="quantidade">Quantidade</string>
     <string name="qtd_glass">200 ml</string>
     <string name="qtd_half_glass">100 ml</string>
     <string name="qtd_cup">250 ml</string>
@@ -118,6 +118,9 @@
     <string name="medicine_history_old">Medicamentos antigos</string>
     <string name="medicine_history_current">Medicamentos atuais</string>
 
+    <string name="liquid_history_old">Recomendações antigas</string>
+    <string name="liquid_history_current">Recomendações atuais</string>
+
     <!--TELA SOBRE-->
     <string name="about_fragment_title">Sobre</string>
     <string name="about_fragment_text">\n\u0009Card.IO é um aplicativo para monitoramento de pacientes com Insuficiência Cardíaca Crônica,
@@ -141,9 +144,6 @@
     <!-- Tela Adicionar Ação de medicamento -->
     <string name="medicine_performed_hour">Horário</string>
     <string name="medicine_performed_date">Data</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

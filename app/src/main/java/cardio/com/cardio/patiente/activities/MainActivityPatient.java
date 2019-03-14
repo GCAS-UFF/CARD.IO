@@ -21,10 +21,9 @@ import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.activities.LoginActivity;
+import cardio.com.cardio.exercise.view.ExerciseFragment;
+import cardio.com.cardio.liquid.view.LiquidFragment;
 import cardio.com.cardio.medicine.view.MedicineFragment;
-import cardio.com.cardio.patiente.fragments.AlimentationFragment;
-import cardio.com.cardio.patiente.fragments.ConsultasFragment;
-import cardio.com.cardio.patiente.fragments.ExerciseFragment;
 import cardio.com.cardio.common.fragments.HomeFragment;
 import cardio.com.cardio.common.fragments.HelpFragment;
 import cardio.com.cardio.common.fragments.OrientationFragment;
@@ -104,14 +103,14 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_alimentacao:
-                AlimentationFragment alimentacaoFragment = new AlimentationFragment();
-                fragmentTransaction.replace(R.id.container, alimentacaoFragment, "alimentacaoFragment");
+                LiquidFragment liquidFragment = new LiquidFragment();
+                fragmentTransaction.replace(R.id.container, liquidFragment, "liquidFragment");
                 fragmentTransaction.addToBackStack(getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_exercicios:
-                ExerciseFragment exercicioFragment = new ExerciseFragment();
-                fragmentTransaction.replace(R.id.container, exercicioFragment, "exercicioFragment");
+                ExerciseFragment exerciseFragment = new ExerciseFragment();
+                fragmentTransaction.replace(R.id.container, exerciseFragment, "exerciseFragment");
                 fragmentTransaction.addToBackStack(getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;

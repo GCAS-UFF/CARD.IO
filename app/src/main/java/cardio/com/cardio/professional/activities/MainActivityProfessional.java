@@ -27,13 +27,12 @@ import cardio.com.cardio.common.fragments.HomeFragment;
 import cardio.com.cardio.common.fragments.OrientationFragment;
 import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
+import cardio.com.cardio.exercise.view.ExerciseFragment;
+import cardio.com.cardio.liquid.view.LiquidFragment;
 import cardio.com.cardio.medicine.view.MedicineFragment;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 import cardio.com.cardio.professional.fragments.PatientListFragment;
-import cardio.com.cardio.professional.fragments.PrescribeAppointmentFragment;
 import cardio.com.cardio.professional.fragments.PrescribeBiometricsFragment;
-import cardio.com.cardio.professional.fragments.PrescribeExercisesFragment;
-import cardio.com.cardio.professional.fragments.PrescribeFoodFragment;
 import cardio.com.cardio.professional.fragments.RegisterPatientFragment;
 import cardio.com.cardio.professional.fragments.RegisterProfessionalFragment;
 
@@ -131,8 +130,8 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_alimentacao:
-                PrescribeFoodFragment prescribeFoodFragment = new PrescribeFoodFragment();
-                fragmentTransaction.replace(R.id.container, prescribeFoodFragment, "prescribeFoodFragment");
+                LiquidFragment liquidFragment = new LiquidFragment();
+                fragmentTransaction.replace(R.id.container, liquidFragment, "liquidFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;
@@ -143,8 +142,8 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_exercicios:
-                PrescribeExercisesFragment prescribeExercisesFragment = new PrescribeExercisesFragment();
-                fragmentTransaction.replace(R.id.container, prescribeExercisesFragment, "prescribeExercisesFragment");
+                ExerciseFragment exerciseFragment = new ExerciseFragment();
+                fragmentTransaction.replace(R.id.container, exerciseFragment, "exerciseFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
                 break;

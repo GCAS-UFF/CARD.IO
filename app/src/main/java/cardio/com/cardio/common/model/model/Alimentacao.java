@@ -1,8 +1,5 @@
 package cardio.com.cardio.common.model.model;
 
-import android.content.Context;
-
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -11,7 +8,7 @@ import cardio.com.cardio.common.Firebase.FirebaseHelper;
 public class Alimentacao extends Action {
 
     private String food;
-    private int quantity;
+    private int quantidade;
 
     public Alimentacao() {
         super(FirebaseHelper.ALIMENTACAO_KEY);
@@ -25,12 +22,12 @@ public class Alimentacao extends Action {
         this.food = food;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     @Override
@@ -42,7 +39,7 @@ public class Alimentacao extends Action {
             result.put("Alimento: ", food);
         }
 
-        result.put("Quantidade: ", String.valueOf(quantity) + " ml");
+        result.put("Quantidade: ", String.valueOf(quantidade) + " ml");
 
         if (this.isPerformed()){
             result.put("", "");

@@ -157,6 +157,7 @@ public class AppointmentDialogFragment extends android.support.v4.app.DialogFrag
         mAdressDropDown = new DropDown(options, "Endereço");
         mAdressDropDown.setEditable(false);
         mItems.add(mAdressDropDown);
+        // Populando quando já existe informação prévia
         if (mAdressDropDown != null && mAdressDropDown.getOptions() != null){
             for(Map.Entry<String, String> entry : mAdressDropDown.getOptions().entrySet()){
                 if(entry.getValue().equals(mAppointment.getLocalizacao())){

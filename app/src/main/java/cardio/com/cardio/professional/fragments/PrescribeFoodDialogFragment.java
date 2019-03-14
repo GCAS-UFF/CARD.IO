@@ -118,7 +118,7 @@ public class PrescribeFoodDialogFragment extends android.support.v4.app.DialogFr
     private void saveObject() throws ParseException {
 
         Alimentacao alimentacao = new Alimentacao();
-        alimentacao.setQuantity(Formater.getIntegerFromString(quantityTextBox.getValue()));
+        alimentacao.setQuantidade(Formater.getIntegerFromString(quantityTextBox.getValue()));
 
         Recomentation recomentation = new Recomentation();
         recomentation.setAction(alimentacao);
@@ -151,7 +151,7 @@ public class PrescribeFoodDialogFragment extends android.support.v4.app.DialogFr
 
             recomentation.setId(mDbRef.push().getKey());
             mDbRef.child(recomentation.getId()).setValue(recomentation);
-            mDbRef.child(recomentation.getId()).child(FirebaseHelper.QUANTITY_KEY).setValue(((Alimentacao) recomentation.getAction()).getQuantity());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.QUANTITY_KEY).setValue(((Alimentacao) recomentation.getAction()).getQuantidade());
             Toast.makeText(getActivity(), getResources().getString(R.string.message_success_recomendation), Toast.LENGTH_SHORT).show();
             dismiss();
         }catch (Exception e){

@@ -43,10 +43,13 @@ public class FirebaseHelper{
     public static final String MEDICINE_NOTE_KEY = "observação";
     public static final String MEDICINE_START_HOUR_KEY = "horaInicial";
     public static final String MEDICINE_PROFESSIONAL_KEY = "profissionalResponsavel";
-    public static final String EXCERCISE_NAME_KEY = "Atividade";
-    public static final String EXCERCISE_INTENSITY_KEY = "Intensidade";
-    public static final String EXERCISE_DURATION_KEY = "Duração";
+    public static final String EXERCISE_NAME_KEY = "name";
+    public static final String EXERCISE_INTENSITY_KEY = "intensity";
+    public static final String EXERCISE_DURATION_KEY = "duration";
+    public static final String EXERCISE_SYMPTOMS_KEY = "symptons";
     public static final String PERFORMED_EXECUTED_DATE = "executedDate";
+    public static final String LIQUID_KEY = "food";
+    public static final String SYMPTOMS_KEY = "Sintomas";
 
 //  DATABASE REFERENCES
 
@@ -65,6 +68,10 @@ public class FirebaseHelper{
 
     public static final DatabaseReference appointmentDatabaseReference = FirebaseDatabase.getInstance().getReference()
             .child(APPOINTMENT_KEY);
+
+    public static final DatabaseReference symptomsDatabaseReference = FirebaseDatabase.getInstance().getReference()
+            .child(METADATA_KEY)
+            .child(SYMPTOMS_KEY);
 
     private DatabaseReference genericPatientDatabaseReference = FirebaseDatabase.getInstance().getReference()
             .child(PATIENT_KEY);
@@ -132,4 +139,5 @@ public class FirebaseHelper{
 
         return appointmentDatabaseReference.orderByChild(APPOINTMENT_DATA_KEY).startAt(dateLong);
     }
+
 }

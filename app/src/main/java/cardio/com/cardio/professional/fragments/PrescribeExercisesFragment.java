@@ -172,8 +172,8 @@ public class PrescribeExercisesFragment extends Fragment {
                     Exercicio exercicio = new Exercicio();
                     Recomentation recomentation = entrySnapshot.getValue(Recomentation.class);
 
-                    exercicio.setExercise(entrySnapshot.child(FirebaseHelper.EXCERCISE_NAME_KEY).getValue(String.class));
-                    exercicio.setIntensity(entrySnapshot.child(FirebaseHelper.EXCERCISE_INTENSITY_KEY).getValue(String.class));
+                    exercicio.setName(entrySnapshot.child(FirebaseHelper.EXERCISE_NAME_KEY).getValue(String.class));
+                    exercicio.setIntensity(entrySnapshot.child(FirebaseHelper.EXERCISE_INTENSITY_KEY).getValue(String.class));
                     if (entrySnapshot.child(FirebaseHelper.EXERCISE_DURATION_KEY).getValue(Integer.class) != null) {
 
                         exercicio.setDuration(entrySnapshot.child(FirebaseHelper.EXERCISE_DURATION_KEY).getValue(Integer.class));
