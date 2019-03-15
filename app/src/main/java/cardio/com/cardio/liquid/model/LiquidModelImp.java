@@ -2,6 +2,7 @@ package cardio.com.cardio.liquid.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -9,6 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -116,8 +118,7 @@ public class LiquidModelImp implements LiquidModel {
         return customMapsLists;
     }
 
-    @Override
-    public void addCustomMapListForEachRecomendationDay(Recomentation recomentation, List<CustomMapsList> customMapsLists) {
+    private void addCustomMapListForEachRecomendationDay(Recomentation recomentation, List<CustomMapsList> customMapsLists) {
 
         long dayInMiliseconds = 86400000;
         Date startDate = new Date(recomentation.getStartDate());
@@ -141,8 +142,11 @@ public class LiquidModelImp implements LiquidModel {
     @Override
     public List<CustomMapsList> getPerformmedByDate(List<Recomentation> recomentations) {
         List<CustomMapsList> customMapsLists = new ArrayList<>();
-        for (Recomentation recomentation : recomentations){
+        List<Recomentation> recomendationForDay = getPerformedLiquidForDay(recomentations);
+
+        for (Recomentation recomentation : recomendationForDay){
             String dateStr = Formater.getStringFromDate(new Date(recomentation.getAction().getExecutedDate()));
+            Alimentacao alimentation = new Alimentacao();
 
             if (!Formater.containsInMapsLists(dateStr, customMapsLists)) {
                 CustomMapsList customMapsList = new CustomMapsList(dateStr, new ArrayList<CustomMapObject>());
@@ -155,6 +159,38 @@ public class LiquidModelImp implements LiquidModel {
         Formater.sortCustomMapListsWhereTitleIsDate(customMapsLists);
 
         return customMapsLists;
+    }
+
+    private List<Recomentation> getPerformedLiquidForDay(List<Recomentation> recomentations) {
+        List<Recomentation> recomendationsForDay = new ArrayList<>();
+        Map<String, Recomentation> result = new HashMap<>();
+
+        for (Recomentation recomentation : recomentations){
+            long dateLong = recomentation.getAction().getExecutedDate();
+            String dateStr = Formater.getStringFromDate(new Date(dateLong));
+
+            if (!result.containsKey(dateStr)){
+                Recomentation recomentationBlank = new Recomentation();
+                Alimentacao alimentation = new Alimentacao();
+                alimentation.setExecutedDate(dateLong);
+                recomentationBlank.setAction(alimentation);
+
+                result.put(dateStr, recomentationBlank);
+            }
+
+            Recomentation recomentationCurrent = result.get(dateStr);
+            Alimentacao alimentationCurrent = ((Alimentacao) recomentationCurrent.getAction());
+            double currentQuantity = alimentationCurrent.getQuantidade() +
+                    ((Alimentacao) recomentation.getAction()).getQuantidade();
+
+            alimentationCurrent.setQuantidade(currentQuantity);
+            recomentationCurrent.setAction(alimentationCurrent);
+
+            result.put(dateStr, recomentationCurrent);
+        }
+
+        recomendationsForDay.addAll(result.values());
+        return recomendationsForDay;
     }
 
     private CustomMapObject getCustomMapObjectFromRecomendation (Recomentation recomentation, boolean isPerformed){

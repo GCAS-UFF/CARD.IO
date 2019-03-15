@@ -14,13 +14,11 @@ public interface LiquidModel {
 
     boolean isProfessionalProfile();
 
-    void setRecommendationListener();
-
     String getCurrentPatientKey();
 
-    List<CustomMapsList> getRecomendationByDate(List<Recomentation> recomentations);
+    void setRecommendationListener();
 
-    void addCustomMapListForEachRecomendationDay(Recomentation recomentation, List<CustomMapsList> customMapsLists);
+    List<CustomMapsList> getRecomendationByDate(List<Recomentation> recomentations);
 
     List<CustomMapsList> getPerformmedByDate(List<Recomentation> recomentations);
 }
