@@ -57,9 +57,11 @@ public class MedicineFragment extends Fragment implements MedicineView, View.OnC
 
         mRVOldMedicines = (RecyclerView) view.findViewById(R.id.recycle_view_old_medicine);
         mRVOldMedicines.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRVOldMedicines.setNestedScrollingEnabled(false);
 
         mRVCurrentMedicines = (RecyclerView) view.findViewById(R.id.recycle_view_current_medicine);
         mRVCurrentMedicines.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRVCurrentMedicines.setNestedScrollingEnabled(false);
 
         medicinePresenterImpl.initilizeRecomendationList();
     }

@@ -61,9 +61,11 @@ public class ExerciseFragment extends Fragment
 
         mRvCurrentExerciseRecomendation = (RecyclerView) view.findViewById(R.id.recycle_view_current_exercise);
         mRvCurrentExerciseRecomendation.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRvCurrentExerciseRecomendation.setNestedScrollingEnabled(false);
 
         mRvOldExerciseRecomendation = (RecyclerView) view.findViewById(R.id.recycle_view_old_exercise);
         mRvOldExerciseRecomendation.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRvOldExerciseRecomendation.setNestedScrollingEnabled(true);
 
         mExercisePresenterImp.initializeRecomendationList();
 

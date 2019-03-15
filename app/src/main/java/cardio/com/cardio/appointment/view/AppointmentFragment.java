@@ -59,9 +59,11 @@ public class AppointmentFragment extends Fragment implements AppointmentView, Vi
 
         mRVOldAppointments = (RecyclerView) view.findViewById(R.id.recycle_view_old_appointment);
         mRVOldAppointments.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRVOldAppointments.setNestedScrollingEnabled(false);
 
         mRVFutureAppointments = (RecyclerView) view.findViewById(R.id.recycle_view_future_appointment);
         mRVFutureAppointments.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRVFutureAppointments.setNestedScrollingEnabled(false);
 
         mAppointmentPresenterImp.initilizeRecomendationList();
     }

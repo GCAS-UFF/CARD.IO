@@ -1,63 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<ScrollView
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <RelativeLayout
-        android:id="@+id/rl_prescribe_food"
-        android:layout_width="match_parent"
+    <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/blue_button_riple_effect"
-        android:layout_marginBottom="15dp">
+        android:padding="16dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/rl_prescribe_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/blue_button_riple_effect"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                style="@style/SaveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_prescribe"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ico_add"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:tint="@color/white"/>
+        </RelativeLayout>
 
         <TextView
-            style="@style/SaveButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_prescribe"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            style="@style/TextTitle"
+            android:text="@string/medicine_history_current"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view_current_medicine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="10dp">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ico_add"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="20dp"
-            android:tint="@color/white"/>
-    </RelativeLayout>
+        <include
+            layout="@layout/separator" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TextTitle"
-        android:text="@string/medicine_history_current"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_view_current_medicine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    android:layout_marginLeft="25dp"
-    android:layout_marginBottom="10dp">
-
-    <include
-        layout="@layout/separator" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        style="@style/TextTitle"
-        android:text="@string/medicine_history_old"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_view_old_medicine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            style="@style/TextTitle"
+            android:text="@string/medicine_history_old"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view_old_medicine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>

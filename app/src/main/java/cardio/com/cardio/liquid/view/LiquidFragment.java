@@ -62,10 +62,11 @@ public class LiquidFragment extends Fragment
 
         mRvOldLiquidRecomendation = (RecyclerView) view.findViewById(R.id.recycle_view_old_liquid);
         mRvOldLiquidRecomendation.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        mRvOldLiquidRecomendation.setNestedScrollingEnabled(false);
 
         mRvCurrentLiquidRecomendation = (RecyclerView) view.findViewById(R.id.recycle_view_current_liquid);
         mRvCurrentLiquidRecomendation.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRvCurrentLiquidRecomendation.setNestedScrollingEnabled(false);
 
         mLiquidPresenterImp.initializeRecomendationList();
     }

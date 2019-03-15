@@ -46,14 +46,13 @@ public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder impl
     public void bindType(final Map.Entry<String, List<Map.Entry<String, String>>> entry){
         try {
             this.mEntry = entry;
+            mLlExpandable.setVisibility(View.GONE);
 
             mTvTitle.setText(entry.getKey());
 
             MapRecycleViewAdapter mapRecycleViewAdapter = new MapRecycleViewAdapter(entry.getValue());
 
             mRecView.setAdapter(mapRecycleViewAdapter);
-
-            mLlExpandable.setVisibility(View.VISIBLE);
 
             getmLlExpandableContainer.setOnClickListener(this);
             getmLlExpandableContainer.setOnLongClickListener(this);

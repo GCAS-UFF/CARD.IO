@@ -74,6 +74,7 @@ public class CustomMapListRecycleViewAdapter extends RecyclerView.Adapter<Custom
 
         public void bindType(CustomMapsList customMapsList) {
             mCustomMapsList = customMapsList;
+            mLlExpandable.setVisibility(View.GONE);
 
             try {
                 mTvTitle.setText(mCustomMapsList.getTitle());
