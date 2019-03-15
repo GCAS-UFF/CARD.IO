@@ -27,7 +27,7 @@ public class LiquidDialogPresenterImp implements LiquidDialogPresenter {
     public double calculateLiquid(String quantity, String dosageReference) {
 
         double dousage = Double.valueOf(dosageReference);
-        int quantityInt = Integer.valueOf(quantity);
+        double quantityInt = Double.valueOf(quantity);
 
         return dousage * quantityInt;
     }

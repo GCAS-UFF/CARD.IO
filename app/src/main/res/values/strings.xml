@@ -21,6 +21,11 @@
     <string name="message_success_appointment">Consulta agendada com sucesso!</string>
     <string name="message_error_appointment">Erro ao agendar consulta</string>
 
+    <!--THRESHOLD MESSAGES-->
+    <string name="threshold_notification_title">Atenção!!</string>
+    <string name="message_surpassed_liquid_threshold">Você extrapolou seu limite diário de ingestão de líquido. \n Procure um profissional de saúde</string>
+    <string name="message_liquid_threshold">Você está se aproximando do seu limite diário de ingestão de líquido.</string>
+
     <!--TELA LOGIN-->
     <string name="btn_login">Login</string>
     <string name="btn_register">Cadastrar</string>

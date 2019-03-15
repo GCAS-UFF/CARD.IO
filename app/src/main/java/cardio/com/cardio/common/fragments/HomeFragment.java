@@ -5,20 +5,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.Fragment;;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
-
 import cardio.com.cardio.R;
-import cardio.com.cardio.common.Firebase.FirebaseHelper;
-import cardio.com.cardio.common.util.NotificationUltils;
-import cardio.com.cardio.common.util.PreferencesUtils;
 
 public class HomeFragment extends Fragment {
 
@@ -106,7 +99,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 comunicadorHomeActivity.trocaTelaHome(R.id.ll_orientation);
-//                (new NotificationUltils(getActivity())).scheduleAlarme("tile", "text");
             }
         });
 
@@ -114,7 +106,7 @@ public class HomeFragment extends Fragment {
         mLlHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    comunicadorHomeActivity.trocaTelaHome(R.id.ll_help);
+                comunicadorHomeActivity.trocaTelaHome(R.id.ll_help);
             }
         });
     }
