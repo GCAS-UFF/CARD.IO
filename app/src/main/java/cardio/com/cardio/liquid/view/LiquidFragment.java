@@ -21,6 +21,8 @@ import cardio.com.cardio.common.model.view.CustomMapsList;
 import cardio.com.cardio.liquid.model.LiquidModelImp;
 import cardio.com.cardio.liquid.presenter.LiquidPresenter;
 import cardio.com.cardio.liquid.presenter.LiquidPresenterImp;
+import cardio.com.cardio.liquidDialog.presenter.LiquidDialogPresenter;
+import cardio.com.cardio.liquidDialog.view.LiquidDialogFragment;
 import cardio.com.cardio.professional.fragments.PrescribeFoodDialogFragment;
 
 public class LiquidFragment extends Fragment
@@ -83,13 +85,13 @@ public class LiquidFragment extends Fragment
         CustomMapListRecycleViewAdapter currentCustomMapListRecycleViewAdapter =
                 new CustomMapListRecycleViewAdapter(customMapsLists);
 
-//        currentCustomMapListRecycleViewAdapter.setComunicatorOnAddClickItem(new CustomMapListRecycleViewAdapter.ComunicatorOnAddClickItem() {
-//            @Override
-//            public void onAddClickItemListener(String id, String title) {
-//                DialogAddPerformMedicineFragment dialog = DialogAddPerformMedicineFragment.newInstance(id, title);
-//                dialog.show(getActivity().getSupportFragmentManager(), "dialogFragment");
-//            }
-//        });
+        currentCustomMapListRecycleViewAdapter.setComunicatorOnAddClickItem(new CustomMapListRecycleViewAdapter.ComunicatorOnAddClickItem() {
+            @Override
+            public void onAddClickItemListener(String id, String title) {
+                LiquidDialogFragment dialog = LiquidDialogFragment.newInstance(id, title);
+                dialog.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+            }
+        });
 
         mRvCurrentLiquidRecomendation.setAdapter(currentCustomMapListRecycleViewAdapter);
     }

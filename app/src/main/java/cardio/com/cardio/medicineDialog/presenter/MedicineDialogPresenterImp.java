@@ -19,7 +19,6 @@ public class MedicineDialogPresenterImp implements MedicineDialogPresenter {
         medicineDialogModel.setmMedicineDialogPresenter(this);
     }
 
-
     @Override
     public void initializeMedicineInformation(String id) {
         mMedicineDialogModel.setRecomendationListener(id);

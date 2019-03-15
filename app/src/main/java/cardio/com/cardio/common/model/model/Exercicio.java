@@ -7,7 +7,6 @@ import cardio.com.cardio.common.Firebase.FirebaseHelper;
 
 public class Exercicio extends Action {
 
-
     private String name;
     private String intensity;
     private int duration;
