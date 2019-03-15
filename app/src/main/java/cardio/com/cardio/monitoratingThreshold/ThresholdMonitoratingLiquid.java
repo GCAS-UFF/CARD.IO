@@ -1,6 +1,5 @@
 package cardio.com.cardio.monitoratingThreshold;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -35,14 +34,15 @@ public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
 
     public void start(){
         FirebaseHelper.getInstance().
-                getPatientDatabaseReference(getCurrentPatientKey()).addValueEventListener(monitorateLiquidThreshold);
+        getPatientDatabaseReference(getCurrentPatientKey())
+        .addValueEventListener(monitorateLiquidThreshold);
     }
 
     public String getCurrentPatientKey() {
         return PreferencesUtils.getString(mContext, PreferencesUtils.CURRENT_PATIENT_KEY);
     }
 
-    private List<Recomentation> getAlimentationListFromDataSnapshot(DataSnapshot dataSnapshot){
+    private List<Recomentation> getRecomendationFromDataSnapshot(DataSnapshot dataSnapshot){
         List<Recomentation> recomentationList = new ArrayList<>();
 
         try {
@@ -113,13 +113,10 @@ public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
     }
 
     private void testLiquidTrashHold (double recomended, double performed){
-
-        Log.d("debug_kelly", recomended + " " + performed);
-
         String title = mContext.getResources().getString(R.string.threshold_notification_title);
         Intent intent = new Intent(mContext, MainActivityPatient.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra("trocaTela", R.id.ll_alimentacao);
+        intent.putExtra("trocaTelaHome", R.id.ll_alimentacao);
 
         if (recomended != 0 && performed != 0) {
             if (recomended < performed) {
@@ -143,8 +140,8 @@ public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
             DataSnapshot performed = dataSnapshot.child(FirebaseHelper.PERFORMED_ACTION_KEY)
                     .child(FirebaseHelper.ALIMENTACAO_KEY);
 
-            List<Recomentation> recomendedList = getAlimentationListFromDataSnapshot(recomended);
-            List<Recomentation> performedList = getAlimentationListFromDataSnapshot(performed);
+            List<Recomentation> recomendedList = getRecomendationFromDataSnapshot(recomended);
+            List<Recomentation> performedList = getRecomendationFromDataSnapshot(performed);
 
             try {
 

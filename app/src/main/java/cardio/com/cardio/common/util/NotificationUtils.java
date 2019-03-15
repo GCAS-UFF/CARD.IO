@@ -8,10 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.activities.SplashActivity;
@@ -36,7 +33,7 @@ public class NotificationUtils {
     private NotificationUtils() {}
 
     public void showNotification (Context context, String title, String content, Intent intent){
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, createRandomID(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ico_add)
@@ -48,7 +45,7 @@ public class NotificationUtils {
                 .setAutoCancel(true);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        notificationManager.notify(createNotificationID(), builder.build());
+        notificationManager.notify(createRandomID(), builder.build());
     }
 
     public void showNotification (Context context, String title, String content){
@@ -76,8 +73,8 @@ public class NotificationUtils {
         }
     }
 
-    public int createNotificationID(){
-        Date now = new Date();
-        return Integer.parseInt(new SimpleDateFormat("ddHHmmss",  Locale.US).format(now));
+    private int createRandomID(){
+        Long now = new Date().getTime();
+        return now.intValue();
     }
 }

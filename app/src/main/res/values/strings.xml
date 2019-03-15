@@ -25,6 +25,7 @@
     <string name="threshold_notification_title">Atenção!!</string>
     <string name="message_surpassed_liquid_threshold">Você extrapolou seu limite diário de ingestão de líquido. \n Procure um profissional de saúde</string>
     <string name="message_liquid_threshold">Você está se aproximando do seu limite diário de ingestão de líquido.</string>
+    <string name="message_weight_threshold">Você teve uma alteração de peso significativa nos últimos dias. \n Procure um profissional de saúde</string>
 
     <!--TELA LOGIN-->
     <string name="btn_login">Login</string>

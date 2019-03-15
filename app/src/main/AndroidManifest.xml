@@ -9,7 +9,7 @@
 
     <application
         android:name="cardio.com.cardio.common.App"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/square_ico"
         android:roundIcon="@drawable/round_ico"
         android:label="@string/app_name"

@@ -12,6 +12,7 @@ import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.monitoratingThreshold.ThreshholdMonitorating;
 import cardio.com.cardio.monitoratingThreshold.ThresholdMonitoratingLiquid;
+import cardio.com.cardio.monitoratingThreshold.ThresholdMonitoratingWeigth;
 import cardio.com.cardio.patiente.activities.MainActivityPatient;
 import cardio.com.cardio.professional.activities.MainActivityProfessional;
 
@@ -48,8 +49,11 @@ public class SplashActivity extends AppCompatActivity {
             if (type.equals((new Paciente()).getTipo())) {
                 startActivity(new Intent(this, MainActivityPatient.class));
 
-                ThreshholdMonitorating thresholdMonitoratingLiquid = new ThresholdMonitoratingLiquid(this);
+                ThresholdMonitoratingLiquid thresholdMonitoratingLiquid = new ThresholdMonitoratingLiquid(this);
                 thresholdMonitoratingLiquid.start();
+
+                ThresholdMonitoratingWeigth thresholdMonitoratingWeight = new ThresholdMonitoratingWeigth(this);
+                thresholdMonitoratingWeight.start();
             } else {
                 startActivity(new Intent(this, MainActivityProfessional.class));
             }

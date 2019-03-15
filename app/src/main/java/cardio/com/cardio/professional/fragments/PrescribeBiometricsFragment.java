@@ -31,6 +31,7 @@ import cardio.com.cardio.common.adapters.ItemExpandableSimpleListAdapter;
 import cardio.com.cardio.common.model.model.MedicaoDadosFisiologicos;
 import cardio.com.cardio.common.model.model.Recomentation;
 import cardio.com.cardio.common.util.Formater;
+import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.professional.ComunicatorFragmentActivity;
 
 public class PrescribeBiometricsFragment extends Fragment {
@@ -78,18 +79,22 @@ public class PrescribeBiometricsFragment extends Fragment {
         mRVHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         DatabaseReference prescriptionRef = FirebaseHelper.getInstance().
-                getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId()).
+                getPatientDatabaseReference(getCurrentPatientKey()).
                 child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
                 child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
 
         prescriptionRef.addValueEventListener(getPrescriptionListener);
 
         DatabaseReference ref = FirebaseHelper.getInstance().getPatientDatabaseReference(
-                comunicatorFragmentActivity.getPatientSelected().getId()).
+                getCurrentPatientKey()).
                 child(FirebaseHelper.PERFORMED_ACTION_KEY).
                 child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
 
         ref.addValueEventListener(updateList);
+    }
+
+    public String getCurrentPatientKey() {
+        return PreferencesUtils.getString(getContext(), PreferencesUtils.CURRENT_PATIENT_KEY);
     }
 
     private Map<String, List<Map.Entry<String, String>>> getRecomendationByDate(List<Recomentation> recomentations) {
@@ -179,7 +184,7 @@ public class PrescribeBiometricsFragment extends Fragment {
                 mRVHistory.setAdapter(itemExpandableSimpleListAdapter);
 
                 DatabaseReference ref = FirebaseHelper.getInstance().getPatientDatabaseReference(
-                        comunicatorFragmentActivity.getPatientSelected().getId()).
+                        getCurrentPatientKey()).
                         child(FirebaseHelper.PERFORMED_ACTION_KEY).
                         child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
 
@@ -231,7 +236,7 @@ public class PrescribeBiometricsFragment extends Fragment {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             DatabaseReference prescriptionRef = FirebaseHelper.getInstance().
-                    getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId()).
+                    getPatientDatabaseReference(getCurrentPatientKey()).
                     child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
                     child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY);
 

@@ -24,7 +24,6 @@ public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder impl
     private LinearLayout getmLlExpandableContainer;
     private ItemExpandableSimpleListAdapter.ComunicatorItemClick ComunicatorItemClick;
     private Map.Entry<String, List<Map.Entry<String, String>>> mEntry;
-    private ImageView imgVwBtnAdd;
 
     public ItemExpandableSimpleListHolder(View itemView, ItemExpandableSimpleListAdapter.ComunicatorItemClick ComunicatorItemClick) {
         super(itemView);
@@ -36,8 +35,6 @@ public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder impl
         mRecView = (RecyclerView) itemView.findViewById(R.id.rec_view);
 
         mRecView.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
-
-        imgVwBtnAdd = (ImageView) itemView.findViewById(R.id.img_vw_btn_add);
 
         this.ComunicatorItemClick = ComunicatorItemClick;
     }
@@ -56,13 +53,6 @@ public class ItemExpandableSimpleListHolder extends RecyclerView.ViewHolder impl
 
             getmLlExpandableContainer.setOnClickListener(this);
             getmLlExpandableContainer.setOnLongClickListener(this);
-
-            imgVwBtnAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ComunicatorItemClick.onClick(entry.getKey());
-                }
-            });
 
         } catch (NullPointerException e){
             e.printStackTrace();

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -21,8 +22,6 @@ import cardio.com.cardio.common.model.model.Paciente;
 import cardio.com.cardio.common.util.PreferencesUtils;
 import cardio.com.cardio.R;
 import cardio.com.cardio.common.activities.LoginActivity;
-import cardio.com.cardio.monitoratingThreshold.ThreshholdMonitorating;
-import cardio.com.cardio.monitoratingThreshold.ThresholdMonitoratingLiquid;
 import cardio.com.cardio.exercise.view.ExerciseFragment;
 import cardio.com.cardio.liquid.view.LiquidFragment;
 import cardio.com.cardio.medicine.view.MedicineFragment;
@@ -79,12 +78,13 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
             fragmentTransaction.addToBackStack(getString(R.string.stack));
             fragmentTransaction.commit();
         }
-
         setPatientSelected(null);
 
-        int telaRes = getIntent().getIntExtra("trocaTela", -1);
-        if (telaRes > 0) trocaTelaHome(telaRes);
+        int telaHomeRes = getIntent().getIntExtra("trocaTelaHome", -1);
+        if (telaHomeRes > 0) trocaTelaHome(telaHomeRes);
 
+        int telaRes = getIntent().getIntExtra("trocaTela", -1);
+        if (telaRes > 0) trocaTela(telaRes);
     }
 
     @Override
