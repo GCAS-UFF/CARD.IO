@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="cardio.com.cardio">
+    package="cardio.uff.cardio">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
 
 
     <application
-        android:name="cardio.com.cardio.common.App"
+        android:name="cardio.uff.cardio.common.App"
         android:allowBackup="false"
         android:icon="@drawable/square_ico"
         android:roundIcon="@drawable/round_ico"
@@ -17,33 +17,33 @@
         android:theme="@style/AppTheme"
         android:debuggable="false"
         tools:ignore="HardcodedDebugMode">
-        <activity android:name=".common.activities.SplashActivity">
+        <activity android:name="cardio.uff.cardio.common.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".common.activities.LoginActivity" />
-        <activity android:name=".patiente.activities.MainActivityPatient" />
-        <activity android:name=".professional.activities.MainActivityProfessional"/>
+        <activity android:name="cardio.uff.cardio.common.activities.LoginActivity" />
+        <activity android:name="cardio.uff.cardio.patiente.activities.MainActivityPatient" />
+        <activity android:name="cardio.uff.cardio.professional.activities.MainActivityProfessional"/>
 
         <!--<meta-data android:name="firebase_messaging_auto_init_enabled"-->
             <!--android:value="false" />-->
 
-        <service android:name=".common.Firebase.MyFirebaseMessagingService">
+        <service android:name="cardio.uff.cardio.common.Firebase.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
-        <service android:name=".common.Firebase.MyFirebaseInstanceIDService">
+        <service android:name="cardio.uff.cardio.common.Firebase.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
 
-        <service android:name=".common.Firebase.CardioJobService">
+        <service android:name="cardio.uff.cardio.common.Firebase.CardioJobService">
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
             </intent-filter>

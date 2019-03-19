@@ -13,3 +13,5 @@
 app/libs/*SNAPSHOT*/**/*
 app/release/*
 *.iml
+/chave
+app/debug/*

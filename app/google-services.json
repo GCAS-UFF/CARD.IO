@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:294002723508:android:39d605ee0da5242d",
         "android_client_info": {
-          "package_name": "cardio.com.cardio"
+          "package_name": "cardio.uff.cardio"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "294002723508-72t8l58e6ch8uad63u3btepskvtndlm1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "cardio.com.cardio",
+            "package_name": "cardio.uff.cardio",
             "certificate_hash": "b4bb1dff4e4401acc80fa9f11c2324d8d7f15fca"
           }
         },
