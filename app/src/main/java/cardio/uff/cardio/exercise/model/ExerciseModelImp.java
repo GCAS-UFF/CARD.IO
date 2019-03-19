@@ -159,7 +159,6 @@ public class ExerciseModelImp implements ExerciseModel {
         try{
             for (DataSnapshot entryDataSnapshot : dataSnapshot.getChildren()){
                 Exercicio exercicio = entryDataSnapshot.getValue(Exercicio.class);
-                Log.d("debug_jp", exercicio.getSymptons() + "");
                 Recomentation recomentation = entryDataSnapshot.getValue(Recomentation.class);
                 recomentation.setId(entryDataSnapshot.getKey());
 

@@ -27,6 +27,10 @@
     <string name="message_liquid_threshold">Você está se aproximando do seu limite diário de ingestão de líquido.</string>
     <string name="message_weight_threshold">Você teve uma alteração de peso significativa nos últimos dias. \n Procure um profissional de saúde</string>
 
+    <!--MONITORING PERFORMED-->
+    <string name="message_excercise_monitoring">Você ainda não cumpriu sua recomendação de exercício hoje!</string>
+    <string name="message_weight_monitoring">Você ainda não cumpriu sua recomendação de dados biométricos hoje!</string>
+
     <!--TELA LOGIN-->
     <string name="btn_login">Login</string>
     <string name="btn_register">Cadastrar</string>

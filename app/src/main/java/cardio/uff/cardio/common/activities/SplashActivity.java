@@ -5,6 +5,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import cardio.uff.cardio.alarms.AlarmForPerformed;
+import cardio.uff.cardio.alarms.PerformedBroadcastReceiver;
 import cardio.uff.cardio.common.Firebase.FirebaseConfig;
 import cardio.uff.cardio.R;
 import cardio.uff.cardio.common.Firebase.FirebaseHelper;
@@ -12,6 +14,8 @@ import cardio.uff.cardio.common.model.model.Paciente;
 import cardio.uff.cardio.common.util.PreferencesUtils;
 import cardio.uff.cardio.monitoratingThreshold.ThresholdMonitoratingLiquid;
 import cardio.uff.cardio.monitoratingThreshold.ThresholdMonitoratingWeigth;
+import cardio.uff.cardio.monitoringPerformed.RealizedMonitoratingExercise;
+import cardio.uff.cardio.monitoringPerformed.RealizedMonitoratingWeigth;
 import cardio.uff.cardio.patiente.activities.MainActivityPatient;
 import cardio.uff.cardio.professional.activities.MainActivityProfessional;
 
@@ -53,6 +57,10 @@ public class SplashActivity extends AppCompatActivity {
 
                 ThresholdMonitoratingWeigth thresholdMonitoratingWeight = new ThresholdMonitoratingWeigth(this);
                 thresholdMonitoratingWeight.start();
+
+                AlarmForPerformed alarmForPerformed = new AlarmForPerformed();
+                alarmForPerformed.start(this);
+
             } else {
                 startActivity(new Intent(this, MainActivityProfessional.class));
             }

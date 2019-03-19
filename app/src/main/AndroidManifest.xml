@@ -17,6 +17,7 @@
         android:theme="@style/AppTheme"
         android:debuggable="false"
         tools:ignore="HardcodedDebugMode">
+
         <activity android:name="cardio.uff.cardio.common.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,6 +49,12 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
             </intent-filter>
         </service>
+
+        <receiver android:name=".alarms.PerformedBroadcastReceiver">
+            <intent-filter>
+                <action android:name="cardio.uff.PERFORMED_INTENT"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
