@@ -106,7 +106,7 @@ public class RealizedMonitoratingWeigth implements RealizedMonitorating {
 
         if (recomended != 0 && performed < recomended ) {
             String content = mContext.getResources().getString(R.string.message_weight_monitoring);
-            NotificationUtils.getInstance().showNotification(mContext, title, content, intent);
+            NotificationUtils.getInstance().showNotification(mContext, title, content, intent, hashCode());
         }
     }
 

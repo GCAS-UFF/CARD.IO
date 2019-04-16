@@ -123,7 +123,7 @@ public class ThresholdMonitoratingWeigth implements ThreshholdMonitorating{
             for (Float weight : weightFromLastDays){
                 if (weight >0 && currentWeight > weight + WEIGHT_THRESHOLD){
                     String content = mContext.getResources().getString(R.string.message_weight_threshold);
-                    NotificationUtils.getInstance().showNotification(mContext, title, content, intent);
+                    NotificationUtils.getInstance().showNotification(mContext, title, content, intent, hashCode());
                 }
             }
         }

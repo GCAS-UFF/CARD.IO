@@ -32,8 +32,8 @@ public class NotificationUtils {
 
     private NotificationUtils() {}
 
-    public void showNotification (Context context, String title, String content, Intent intent){
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, createRandomID(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    public void showNotification (Context context, String title, String content, Intent intent, int id){
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ico_add)
@@ -45,14 +45,14 @@ public class NotificationUtils {
                 .setAutoCancel(true);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        notificationManager.notify(createRandomID(), builder.build());
+        notificationManager.notify(id, builder.build());
     }
 
     public void showNotification (Context context, String title, String content){
         Intent intent = new Intent(context, SplashActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-        showNotification(context, title, content, intent);
+        showNotification(context, title, content, intent, createRandomID());
     }
 
     private static void createNotificationChannel(Context context) {
