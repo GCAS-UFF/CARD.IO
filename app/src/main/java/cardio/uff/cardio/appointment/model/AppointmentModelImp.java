@@ -2,6 +2,7 @@ package cardio.uff.cardio.appointment.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -68,7 +69,9 @@ public class AppointmentModelImp implements AppointmentModel{
                 Consulta consulta = entrySnapshot.getValue(Consulta.class);
                 consulta.setId(entrySnapshot.getKey());
 
-                appointmentList.add(consulta);
+                if (consulta.getPaciente().equals(getCurrentPatientKey())) {
+                    appointmentList.add(consulta);
+                }
             }
 
             return appointmentList;
