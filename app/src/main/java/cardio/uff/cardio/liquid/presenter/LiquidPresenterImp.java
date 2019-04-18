@@ -47,7 +47,7 @@ public class LiquidPresenterImp implements LiquidPresenter {
         try {
             for (CustomMapsList recomendationByDate: recomendatiosByDate) {
 
-                if (Formater.compareDateWithCurrentDate(
+                if (Formater.compareDateWithCurrentDateWtthoutMinutes(
                         Formater.getDateFromString(recomendationByDate.getTitle())) <= 0){
                     currentRecomendations.add(recomendationByDate);
                 } else{
@@ -74,7 +74,7 @@ public class LiquidPresenterImp implements LiquidPresenter {
         try {
             for (CustomMapsList recomendationByDate: recomendatiosByDate) {
 
-                if (Formater.compareDateWithCurrentDate(
+                if (Formater.compareDateWithCurrentDateWtthoutMinutes(
                         Formater.getDateFromString(recomendationByDate.getTitle())) <= 0){
                     currentRecomendations.add(recomendationByDate);
                 } else{

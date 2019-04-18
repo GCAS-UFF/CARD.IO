@@ -55,6 +55,12 @@
                 <action android:name="cardio.uff.PERFORMED_INTENT"/>
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".alarms.AppointmentBroadcastReceiver">
+            <intent-filter>
+                <action android:name="cardio.uff.APPOINTMENT_INTENT"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

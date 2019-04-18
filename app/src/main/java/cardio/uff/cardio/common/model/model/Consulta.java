@@ -11,6 +11,7 @@ import cardio.uff.cardio.common.util.Formater;
 public class Consulta {
 
     private String id;
+    private int notificationId;
     private String paciente;
     private String profissional;
     private String especialideProfissional;
@@ -40,6 +41,18 @@ public class Consulta {
         this.attended = attended;
     }
 
+    public Consulta(String id, String paciente, String especialideProfissional,
+                    String localizacao, long data, boolean attended, int notificationId) {
+        this.id = id;
+        this.notificationId = notificationId;
+        this.paciente = paciente;
+        this.especialideProfissional = especialideProfissional;
+        this.localizacao = localizacao;
+        this.data = data;
+        this.attended = attended;
+    }
+
+
     public Consulta() {
     }
 
@@ -51,6 +64,14 @@ public class Consulta {
     @Exclude
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getNotificationId() {
+        return notificationId;
+    }
+
+    public void setNotificationId(int notificationId) {
+        this.notificationId = notificationId;
     }
 
     public String getPaciente() {

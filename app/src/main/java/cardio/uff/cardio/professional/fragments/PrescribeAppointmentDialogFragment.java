@@ -33,6 +33,7 @@ import cardio.uff.cardio.common.model.view.DateTextBox;
 import cardio.uff.cardio.common.model.view.DropDown;
 import cardio.uff.cardio.common.model.view.Item;
 import cardio.uff.cardio.common.util.Formater;
+import cardio.uff.cardio.common.util.PreferencesUtils;
 import cardio.uff.cardio.professional.ComunicatorFragmentActivity;
 
 public class PrescribeAppointmentDialogFragment extends android.support.v4.app.DialogFragment {
@@ -131,7 +132,8 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
                 mHourTextBox.getValue()).getTime());
         consulta.setLocalizacao(mAdressDropDown.getValue());
         consulta.setEspecialideProfissional(mSpecialityDropDown.getValue());
-        consulta.setPaciente(comunicatorFragmentActivity.getPatientSelected().getId());
+        consulta.setPaciente(getCurrentPatientKey());
+        consulta.setNotificationId(Formater.createRandomID());
 //        consulta.setProfissional(PreferencesUtils.getString(getActivity(), FirebaseHelper.USER_KEY));
 
         saveIntoFirebase(consulta);
@@ -196,4 +198,8 @@ public class PrescribeAppointmentDialogFragment extends android.support.v4.app.D
 
         }
     };
+
+    public String getCurrentPatientKey() {
+        return PreferencesUtils.getString(getContext(), PreferencesUtils.CURRENT_PATIENT_KEY);
+    }
 }

@@ -25,11 +25,28 @@ import cardio.uff.cardio.professional.fragments.PrescribeAppointmentDialogFragme
 
 public class AppointmentFragment extends Fragment implements AppointmentView, View.OnClickListener{
 
+    public static final String ARG_PARAM1 = "id";
+    public static final String ARG_PARAM2 = "date";
+
+    private String mId;
+    private String mDateStr;
+
     private RelativeLayout mRlPrescribe;
     private RecyclerView mRVOldAppointments;
     private RecyclerView mRVFutureAppointments;
 
     private AppointmentPresenter mAppointmentPresenterImp;
+
+    public static AppointmentFragment newInstance (String id, String dateStr){
+        AppointmentFragment appointmentFragment = new AppointmentFragment();
+
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, id);
+        args.putString(ARG_PARAM2, dateStr);
+        appointmentFragment.setArguments(args);
+
+        return appointmentFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +60,17 @@ public class AppointmentFragment extends Fragment implements AppointmentView, Vi
         super.onAttach(context);
         if(context != null) {
             mAppointmentPresenterImp = new AppointmentPresenterImp(this, new AppointmentModelImp(context));
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+
+        if (bundle != null){
+            mId = bundle.getString(ARG_PARAM1);
+            mDateStr = bundle.getString(ARG_PARAM2);
         }
     }
 
@@ -64,6 +92,11 @@ public class AppointmentFragment extends Fragment implements AppointmentView, Vi
         mRVFutureAppointments.setNestedScrollingEnabled(false);
 
         mAppointmentPresenterImp.initilizeRecomendationList();
+
+        if (mId != null && mDateStr != null){
+            AppointmentDialogFragment dialog = AppointmentDialogFragment.newInstance(mId, mDateStr);
+            dialog.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+        }
     }
 
     @Override

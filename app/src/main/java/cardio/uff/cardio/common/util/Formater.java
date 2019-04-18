@@ -66,13 +66,31 @@ public class Formater {
         return resultStr.substring(resultStr.length() - 6,resultStr.length());
     }
 
-    private static Date getDateWithoutSeconds (Date date) throws ParseException {
+    private static Date getDateWithoutSeconds(Date date) throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String dateStr = formato.format(date);
+        return formato.parse(dateStr);
+    }
+
+    private static Date getDateWithoutMinutes(Date date) throws ParseException {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String dateStr = formato.format(date);
         return formato.parse(dateStr);
     }
 
-    public static int compareDates (Date date1, Date date2) throws ParseException {
+    public static int compareDatesWithoutMinutes(Date date1, Date date2) throws ParseException {
+        Date date1Formated = getDateWithoutMinutes(date1);
+        Date date2Formated = getDateWithoutMinutes(date2);
+
+        if (date1Formated.getTime() == date2Formated.getTime())
+            return 0;
+        else if (date1Formated.getTime() < date2Formated.getTime())
+            return -1;
+        else
+            return 1;
+    }
+
+    public static int compareDatesWithoutSeconds(Date date1, Date date2) throws ParseException {
         Date date1Formated = getDateWithoutSeconds(date1);
         Date date2Formated = getDateWithoutSeconds(date2);
 
@@ -84,8 +102,13 @@ public class Formater {
             return 1;
     }
 
-    public static int compareDateWithCurrentDate (Date date1) throws ParseException {
-        return compareDates(new Date(), date1);
+    public static int compareDateWithCurrentDateWtthoutMinutes(Date date1) throws ParseException {
+        return compareDatesWithoutMinutes(new Date(), date1);
+    }
+
+    public static int createRandomID(){
+        Long now = new Date().getTime();
+        return now.intValue();
     }
 
     public static boolean containsInMapsLists (String key, List<CustomMapsList> customMapsLists){
@@ -109,7 +132,7 @@ public class Formater {
             @Override
             public int compare(CustomMapsList r1, CustomMapsList r2) {
                 try {
-                    return Formater.compareDates(Formater.getDateFromString(r1.getTitle()),
+                    return Formater.compareDatesWithoutMinutes(Formater.getDateFromString(r1.getTitle()),
                             Formater.getDateFromString(r2.getTitle()));
                 } catch (ParseException e) {
                     e.printStackTrace();

@@ -26,6 +26,7 @@ import cardio.uff.cardio.patiente.activities.MainActivityPatient;
 public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
 
     private Context mContext;
+    private static int notificationId = 65786769;
 
     public ThresholdMonitoratingLiquid(Context context) {
         this.mContext = context;
@@ -82,12 +83,12 @@ public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
             Date startDate = new Date(recomentation.getStartDate());
             Date finishDate = new Date(recomentation.getFinishDate());
 
-            if (Formater.compareDates(startDate, currentDate) <= 0 &&
-                    Formater.compareDates(finishDate, currentDate) >=0){
+            if (Formater.compareDatesWithoutMinutes(startDate, currentDate) <= 0 &&
+                    Formater.compareDatesWithoutMinutes(finishDate, currentDate) >=0){
 
                 if (lastValidRecomendation == null)
                     lastValidRecomendation = recomentation;
-                else if (Formater.compareDates(new Date(lastValidRecomendation.getStartDate()), startDate) < 0){
+                else if (Formater.compareDatesWithoutMinutes(new Date(lastValidRecomendation.getStartDate()), startDate) < 0){
                     lastValidRecomendation = recomentation;
                 }
             }
@@ -120,11 +121,11 @@ public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
         if (recomended != 0 && performed != 0) {
             if (recomended < performed) {
                 String content = mContext.getResources().getString(R.string.message_surpassed_liquid_threshold);
-                NotificationUtils.getInstance().showNotification(mContext, title, content,intent, hashCode());
+                NotificationUtils.getInstance().showNotification(mContext, title, content,intent, notificationId);
 
             } else if (recomended * 0.75 <= performed) {
                 String content = mContext.getResources().getString(R.string.message_liquid_threshold);
-                NotificationUtils.getInstance().showNotification(mContext, title, content, intent, hashCode());
+                NotificationUtils.getInstance().showNotification(mContext, title, content, intent, notificationId);
             }
         }
     }

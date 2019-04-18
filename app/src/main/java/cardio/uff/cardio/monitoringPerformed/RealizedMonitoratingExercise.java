@@ -26,6 +26,7 @@ import cardio.uff.cardio.patiente.activities.MainActivityPatient;
 public class RealizedMonitoratingExercise implements RealizedMonitorating {
 
     private Context mContext;
+    private static int notificationId = 65789;
 
     public RealizedMonitoratingExercise(Context context) {
         this.mContext = context;
@@ -82,7 +83,7 @@ public class RealizedMonitoratingExercise implements RealizedMonitorating {
 
         if (recomended != 0 && performed < recomended ) {
             String content = mContext.getResources().getString(R.string.message_excercise_monitoring);
-            NotificationUtils.getInstance().showNotification(mContext, title, content, intent, hashCode());
+            NotificationUtils.getInstance().showNotification(mContext, title, content, intent, notificationId);
         }
     }
 
@@ -109,12 +110,12 @@ public class RealizedMonitoratingExercise implements RealizedMonitorating {
             Date startDate = new Date(recomentation.getStartDate());
             Date finishDate = new Date(recomentation.getFinishDate());
 
-            if (Formater.compareDates(startDate, currentDate) <= 0 &&
-                    Formater.compareDates(finishDate, currentDate) >=0){
+            if (Formater.compareDatesWithoutMinutes(startDate, currentDate) <= 0 &&
+                    Formater.compareDatesWithoutMinutes(finishDate, currentDate) >=0){
 
                 if (lastValidRecomendation == null)
                     lastValidRecomendation = recomentation;
-                else if (Formater.compareDates(new Date(lastValidRecomendation.getStartDate()), startDate) < 0){
+                else if (Formater.compareDatesWithoutMinutes(new Date(lastValidRecomendation.getStartDate()), startDate) < 0){
                     lastValidRecomendation = recomentation;
                 }
             }

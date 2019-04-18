@@ -24,6 +24,8 @@ public class ThresholdMonitoratingWeigth implements ThreshholdMonitorating{
     private Context mContext;
     private final int QUANTITY_OF_DAYS_TO_CHECK  = 3;
     private final int WEIGHT_THRESHOLD = 2;
+    private static int notificationId = 234555;
+
 
     public ThresholdMonitoratingWeigth(Context context) {
         this.mContext = context;
@@ -123,7 +125,7 @@ public class ThresholdMonitoratingWeigth implements ThreshholdMonitorating{
             for (Float weight : weightFromLastDays){
                 if (weight >0 && currentWeight > weight + WEIGHT_THRESHOLD){
                     String content = mContext.getResources().getString(R.string.message_weight_threshold);
-                    NotificationUtils.getInstance().showNotification(mContext, title, content, intent, hashCode());
+                    NotificationUtils.getInstance().showNotification(mContext, title, content, intent, notificationId);
                 }
             }
         }

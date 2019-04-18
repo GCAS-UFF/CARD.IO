@@ -52,7 +52,7 @@ public class NotificationUtils {
         Intent intent = new Intent(context, SplashActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-        showNotification(context, title, content, intent, createRandomID());
+        showNotification(context, title, content, intent, Formater.createRandomID());
     }
 
     private static void createNotificationChannel(Context context) {
@@ -71,10 +71,5 @@ public class NotificationUtils {
         } catch (NullPointerException e){
             e.printStackTrace();
         }
-    }
-
-    private int createRandomID(){
-        Long now = new Date().getTime();
-        return now.intValue();
     }
 }

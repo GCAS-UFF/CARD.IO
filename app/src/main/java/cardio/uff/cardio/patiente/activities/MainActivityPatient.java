@@ -14,10 +14,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
+
 import cardio.uff.cardio.appointment.view.AppointmentFragment;
 import cardio.uff.cardio.common.Firebase.FirebaseHelper;
 import cardio.uff.cardio.common.fragments.AboutFragment;
 import cardio.uff.cardio.common.model.model.Paciente;
+import cardio.uff.cardio.common.util.Formater;
 import cardio.uff.cardio.common.util.PreferencesUtils;
 import cardio.uff.cardio.R;
 import cardio.uff.cardio.common.activities.LoginActivity;
@@ -27,6 +30,7 @@ import cardio.uff.cardio.medicine.view.MedicineFragment;
 import cardio.uff.cardio.common.fragments.HomeFragment;
 import cardio.uff.cardio.common.fragments.HelpFragment;
 import cardio.uff.cardio.common.fragments.OrientationFragment;
+import cardio.uff.cardio.monitoringAppointment.AppointmentMonitorating;
 import cardio.uff.cardio.patiente.fragments.WeightFragment;
 import cardio.uff.cardio.professional.ComunicatorFragmentActivity;
 import cardio.uff.cardio.professional.fragments.PrescribeBiometricsFragment;
@@ -84,6 +88,9 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
 
         int telaRes = getIntent().getIntExtra("trocaTela", -1);
         if (telaRes > 0) trocaTela(telaRes);
+
+        AppointmentMonitorating appointmentMonitorating = new AppointmentMonitorating(this);
+        appointmentMonitorating.start();
     }
 
     @Override
@@ -97,6 +104,9 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
 
     @Override
     public void trocaTelaHome(int resId) {
+
+        String id = getIntent().getStringExtra("id");
+        long date = getIntent().getLongExtra("date", 0);
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -126,7 +136,16 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_consultas:
-                AppointmentFragment appointmentFragment= new AppointmentFragment();
+
+                AppointmentFragment appointmentFragment;
+
+                if (id != null && date > 0){
+                    appointmentFragment = AppointmentFragment.newInstance(id,
+                            Formater.getStringFromDate(new Date(date)));
+                } else {
+                    appointmentFragment= new AppointmentFragment();
+                }
+
                 fragmentTransaction.replace(R.id.container, appointmentFragment, "appointmentFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();

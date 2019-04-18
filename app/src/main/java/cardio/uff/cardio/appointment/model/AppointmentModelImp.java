@@ -41,6 +41,8 @@ public class AppointmentModelImp implements AppointmentModel{
 
     public void setRecommendationListener(){
         FirebaseHelper.appointmentDatabaseReference.
+                orderByChild(FirebaseHelper.APPOINTMENT_PATIENT_KEY).
+                equalTo(getCurrentPatientKey()).
                 addValueEventListener(appointmentEventListener);
     }
 
@@ -68,10 +70,7 @@ public class AppointmentModelImp implements AppointmentModel{
             for (DataSnapshot entrySnapshot : dataSnapshot.getChildren()) {
                 Consulta consulta = entrySnapshot.getValue(Consulta.class);
                 consulta.setId(entrySnapshot.getKey());
-
-                if (consulta.getPaciente().equals(getCurrentPatientKey())) {
-                    appointmentList.add(consulta);
-                }
+                appointmentList.add(consulta);
             }
 
             return appointmentList;
