@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,31 @@ public class MedicineModelImpl implements MedicineModel {
         return PreferencesUtils.getString(mContext, PreferencesUtils.CURRENT_PATIENT_KEY);
     }
 
+    private String [] getHorarios (String initialTime, int frequenceByDay){
+
+        String[] horarios = new String[frequenceByDay];
+
+        long dayInMiliseconds = 24 * 60 * 60 * 1000;
+        long interval = dayInMiliseconds/frequenceByDay;
+        int hours = Integer.parseInt(initialTime.substring(0,2));
+        int minutes = Integer.parseInt(initialTime.substring(3,5));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(0);
+        calendar.set(Calendar.HOUR_OF_DAY, hours);
+        calendar.set(Calendar.MINUTE, minutes);
+        calendar.set(Calendar.SECOND, 0);
+
+        for (int i = 0; i< frequenceByDay; i++){
+            horarios[i] = Formater.getTimeStringFromDate(calendar.getTime());
+            calendar.setTimeInMillis(
+                    calendar.getTimeInMillis() + interval
+            );
+        }
+
+        return horarios;
+    }
+
     private List<Recomentation> getRecomendationListFromDataSnapshot(DataSnapshot dataSnapshot) {
         List<Recomentation> recomentationList = new ArrayList<>();
 
@@ -84,6 +110,7 @@ public class MedicineModelImpl implements MedicineModel {
                     long executedDate = action.getExecutedDate();
                     medicamento.setExecutedDate(executedDate);
                     medicamento.setPerformed(true);
+                    medicamento.setHorarios(getHorarios(medicamento.getHorario(), recomendation.getFrequencyByDay()));
 
                 } catch (Exception e){
                     e.printStackTrace();

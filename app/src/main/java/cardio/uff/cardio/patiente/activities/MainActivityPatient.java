@@ -31,6 +31,7 @@ import cardio.uff.cardio.common.fragments.HomeFragment;
 import cardio.uff.cardio.common.fragments.HelpFragment;
 import cardio.uff.cardio.common.fragments.OrientationFragment;
 import cardio.uff.cardio.monitoringAppointment.AppointmentMonitorating;
+import cardio.uff.cardio.monitoringMedication.MedicationMonitorating;
 import cardio.uff.cardio.patiente.fragments.WeightFragment;
 import cardio.uff.cardio.professional.ComunicatorFragmentActivity;
 import cardio.uff.cardio.professional.fragments.PrescribeBiometricsFragment;
@@ -91,6 +92,9 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
 
         AppointmentMonitorating appointmentMonitorating = new AppointmentMonitorating(this);
         appointmentMonitorating.start();
+
+        MedicationMonitorating medicationMonitorating = new MedicationMonitorating(this);
+        medicationMonitorating.start();
     }
 
     @Override
@@ -130,7 +134,18 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
                 fragmentTransaction.commit();
                 break;
             case R.id.ll_medicacoes:
-                MedicineFragment medicineFragment = new MedicineFragment();
+
+                MedicineFragment medicineFragment;
+
+                if (id != null && date > 0){
+                    medicineFragment = MedicineFragment.newInstance(id,
+                            Formater.getStringFromDate(new Date(date)));
+                    getIntent().putExtra("id", (String)null);
+                    id = null;
+                } else {
+                    medicineFragment = new MedicineFragment();
+                }
+
                 fragmentTransaction.replace(R.id.container, medicineFragment, "medicineFragment");
                 fragmentTransaction.addToBackStack(getResources().getString(R.string.stack));
                 fragmentTransaction.commit();
@@ -142,6 +157,8 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
                 if (id != null && date > 0){
                     appointmentFragment = AppointmentFragment.newInstance(id,
                             Formater.getStringFromDate(new Date(date)));
+                    getIntent().putExtra("id", (String)null);
+                    id = null;
                 } else {
                     appointmentFragment= new AppointmentFragment();
                 }

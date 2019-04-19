@@ -1,11 +1,16 @@
 package cardio.uff.cardio.common.model.model;
 
+import android.util.Log;
+
 import com.google.firebase.database.Exclude;
 
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import cardio.uff.cardio.common.Firebase.FirebaseHelper;
+import cardio.uff.cardio.common.util.Formater;
 
 public class Medicamento extends Action {
     private String name;
@@ -15,6 +20,7 @@ public class Medicamento extends Action {
     private String profissionalId;
     private String observacao;
     private Profissional professionalObject;
+    private String [] horarios;
 
     private int duration;
 
@@ -80,14 +86,34 @@ public class Medicamento extends Action {
         this.professionalObject = professionalObject;
     }
 
+    public String[] getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(String[] horarios) {
+        this.horarios = horarios;
+    }
+
     @Override
-    public Map<String,String> toMap (){
+    public Map<String,String> toMap () {
         Map<String,String> result = new LinkedHashMap<>();
         result.put("Nome: ", name);
         result.put("Dosagem: ", dosagem);
         result.put("Quantidade: ", quantidade);
-        if (horario != null && !horario.isEmpty())
+
+        if (horario != null && !horario.isEmpty()) {
             result.put("Hora de início: ", horario);
+        }
+
+        String horariosStr = "";
+        if (horarios != null){
+            for (String time : horarios){
+                horariosStr = horariosStr.concat(time + " ");
+            }
+
+            result.put("Horários: ", horariosStr);
+        }
+
         if (getExecutedDate() <= 0)
             result.put("Observação: ", observacao);
         if (professionalObject != null)

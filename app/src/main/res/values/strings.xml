@@ -35,6 +35,10 @@
     <string name="message_title_monitoring_appointment">%1$s no dia %2$s</string>
     <string name="message_content_monitoring_appointment">Você possui uma consulta com %1$s às %2$s em %3$s</string>
 
+    <!--MONITORING MEDICATION-->
+    <string name="message_title_monitoring_medication">%1$s</string>
+    <string name="message_content_monitoring_medication">Você precisa consumir %1$s de %2$s de %3$s</string>
+
     <!--TELA LOGIN-->
     <string name="btn_login">Login</string>
     <string name="btn_register">Cadastrar</string>

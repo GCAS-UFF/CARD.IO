@@ -25,11 +25,28 @@ import cardio.uff.cardio.professional.fragments.PrescribeMedicineDialogFragment;
 
 public class MedicineFragment extends Fragment implements MedicineView, View.OnClickListener {
 
+    public static final String ARG_PARAM1 = "id";
+    public static final String ARG_PARAM2 = "date";
+
+    private String mId;
+    private String mDateStr;
+
     private RelativeLayout mRlPrescribe;
     private RecyclerView mRVOldMedicines;
     private RecyclerView mRVCurrentMedicines;
 
     private MedicinePresenter medicinePresenterImpl;
+
+    public static MedicineFragment newInstance (String id, String dateStr){
+        MedicineFragment medicineFragment = new MedicineFragment();
+
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, id);
+        args.putString(ARG_PARAM2, dateStr);
+        medicineFragment.setArguments(args);
+
+        return medicineFragment;
+    }
 
     @Nullable
     @Override
@@ -42,6 +59,17 @@ public class MedicineFragment extends Fragment implements MedicineView, View.OnC
         super.onAttach(context);
         if(context != null) {
             medicinePresenterImpl = new MedicinePresenterImpl(this, new MedicineModelImpl(context));
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+
+        if (bundle != null){
+            mId = bundle.getString(ARG_PARAM1);
+            mDateStr = bundle.getString(ARG_PARAM2);
         }
     }
 
@@ -63,6 +91,11 @@ public class MedicineFragment extends Fragment implements MedicineView, View.OnC
         mRVCurrentMedicines.setNestedScrollingEnabled(false);
 
         medicinePresenterImpl.initilizeRecomendationList();
+
+        if (mId != null && mDateStr != null){
+            DialogAddPerformMedicineFragment dialog = DialogAddPerformMedicineFragment.newInstance(mId, mDateStr);
+            dialog.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+        }
     }
 
     @Override

@@ -11,6 +11,7 @@ import cardio.uff.cardio.common.util.Formater;
 public class Recomentation {
 
     private String id;
+    private int notificationId;
     private Action action;
     private int frequencyByDay;
     private long startDate;
@@ -27,6 +28,14 @@ public class Recomentation {
     @Exclude
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getNotificationId() {
+        return notificationId;
+    }
+
+    public void setNotificationId(int notificationId) {
+        this.notificationId = notificationId;
     }
 
     @Exclude
