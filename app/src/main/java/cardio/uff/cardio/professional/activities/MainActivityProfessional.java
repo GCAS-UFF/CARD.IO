@@ -41,7 +41,6 @@ import static android.provider.ContactsContract.Intents.Insert.ACTION;
 public class MainActivityProfessional extends AppCompatActivity implements ComunicatorFragmentActivity, HomeFragment.ComunicadorHomeActivity {
 
     private FragmentManager fragmentManager;
-    private Paciente currentPatientSelected;
     private InternalReceiver internalReceiver;
 
     @Override
@@ -188,14 +187,8 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
 
     @Override
     public void setPatientSelected(Paciente patient) {
-        this.currentPatientSelected = patient;
         PreferencesUtils.setString(this,
                 PreferencesUtils.CURRENT_PATIENT_KEY, patient.getId());
-    }
-
-    @Override
-    public Paciente getPatientSelected() {
-        return this.currentPatientSelected;
     }
 
     @Override

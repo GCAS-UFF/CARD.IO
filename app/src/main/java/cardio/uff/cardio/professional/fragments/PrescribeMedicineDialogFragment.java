@@ -30,6 +30,7 @@ import cardio.uff.cardio.common.model.view.TextBox;
 import cardio.uff.cardio.common.model.view.DateTextBox;
 import cardio.uff.cardio.common.model.view.Item;
 import cardio.uff.cardio.common.util.Formater;
+import cardio.uff.cardio.common.util.PreferencesUtils;
 import cardio.uff.cardio.professional.ComunicatorFragmentActivity;
 
 public class PrescribeMedicineDialogFragment extends android.support.v4.app.DialogFragment {
@@ -136,6 +137,10 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
 
     }
 
+    public String getCurrentPatientKey() {
+        return PreferencesUtils.getString(getContext(), PreferencesUtils.CURRENT_PATIENT_KEY);
+    }
+
 
     private void saveObject() throws ParseException {
 
@@ -173,7 +178,7 @@ public class PrescribeMedicineDialogFragment extends android.support.v4.app.Dial
 
         try {
             DatabaseReference mDbRef = FirebaseHelper.getInstance()
-                    .getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId())
+                    .getPatientDatabaseReference(getCurrentPatientKey())
                     .child(FirebaseHelper.RECOMMENDED_ACTION_KEY)
                     .child(FirebaseHelper.MEDICINE_KEY);
 

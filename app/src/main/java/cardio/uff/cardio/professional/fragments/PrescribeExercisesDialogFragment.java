@@ -28,6 +28,7 @@ import cardio.uff.cardio.common.model.view.DateTextBox;
 import cardio.uff.cardio.common.model.view.Item;
 import cardio.uff.cardio.common.model.view.TextBox;
 import cardio.uff.cardio.common.util.Formater;
+import cardio.uff.cardio.common.util.PreferencesUtils;
 import cardio.uff.cardio.professional.ComunicatorFragmentActivity;
 
 public class PrescribeExercisesDialogFragment extends  android.support.v4.app.DialogFragment {
@@ -124,6 +125,10 @@ public class PrescribeExercisesDialogFragment extends  android.support.v4.app.Di
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
+    public String getCurrentPatientKey() {
+        return PreferencesUtils.getString(getContext(), PreferencesUtils.CURRENT_PATIENT_KEY);
+    }
+
     private void saveObject() throws ParseException {
 
         Exercicio exercicio = new Exercicio();
@@ -155,7 +160,7 @@ public class PrescribeExercisesDialogFragment extends  android.support.v4.app.Di
 
         try {
             DatabaseReference mDbRef = FirebaseHelper.getInstance()
-                    .getPatientDatabaseReference(comunicatorFragmentActivity.getPatientSelected().getId())
+                    .getPatientDatabaseReference(getCurrentPatientKey())
                     .child(FirebaseHelper.RECOMMENDED_ACTION_KEY)
                     .child(FirebaseHelper.EXERCICIO_KEY);
 

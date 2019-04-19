@@ -197,7 +197,6 @@ public class PrescribeBiometricsFragment extends Fragment {
 
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
-            Log.e(PrescribeFoodFragment.class.getName(), databaseError.getDetails());
         }
     };
 
@@ -228,7 +227,6 @@ public class PrescribeBiometricsFragment extends Fragment {
 
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
-            Log.e(PrescribeFoodFragment.class.getName(), databaseError.getDetails());
         }
     };
 
