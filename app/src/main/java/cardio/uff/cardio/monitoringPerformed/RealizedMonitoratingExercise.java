@@ -26,7 +26,7 @@ import cardio.uff.cardio.patiente.activities.MainActivityPatient;
 public class RealizedMonitoratingExercise implements RealizedMonitorating {
 
     private Context mContext;
-    private static int notificationId = 65789;
+    private static final int notificationId = 65789;
 
     public RealizedMonitoratingExercise(Context context) {
         this.mContext = context;
@@ -34,9 +34,11 @@ public class RealizedMonitoratingExercise implements RealizedMonitorating {
 
     @Override
     public void start() {
-        FirebaseHelper.getInstance().
-                getPatientDatabaseReference(getCurrentPatientKey())
-                .addListenerForSingleValueEvent(monitorateExerciseRealized);
+        if (getCurrentPatientKey() != null) {
+            FirebaseHelper.getInstance().
+                    getPatientDatabaseReference(getCurrentPatientKey())
+                    .addListenerForSingleValueEvent(monitorateExerciseRealized);
+        }
     }
 
     public String getCurrentPatientKey() {

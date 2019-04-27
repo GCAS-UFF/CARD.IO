@@ -80,7 +80,8 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
             fragmentTransaction.addToBackStack(getString(R.string.stack));
             fragmentTransaction.commit();
         }
-        setPatientSelected(null);
+
+        FirebaseHelper.getInstance().getCurrentPatientDatabaseReference().addValueEventListener(getPatientEventListener);
 
         int telaHomeRes = getIntent().getIntExtra("trocaTelaHome", -1);
         if (telaHomeRes > 0) trocaTelaHome(telaHomeRes);
@@ -203,7 +204,6 @@ public class MainActivityPatient extends AppCompatActivity implements HomeFragme
 
     @Override
     public void setPatientSelected(Paciente patient) {
-        FirebaseHelper.getInstance().getCurrentPatientDatabaseReference().addValueEventListener(getPatientEventListener);
     }
 
     @Override

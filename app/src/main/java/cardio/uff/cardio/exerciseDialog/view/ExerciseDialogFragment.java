@@ -155,6 +155,7 @@ public class ExerciseDialogFragment extends android.support.v4.app.DialogFragmen
             symptoms.put(entry.getKey(), false);
         }
         mCheckboxListItem = new CheckboxListItem(symptoms, "Sintomas");
+        mCheckboxListItem.setRequired(false);
         mItems.add(mCheckboxListItem);
 
         mItemRecycleViewAdapter.notifyDataSetChanged();

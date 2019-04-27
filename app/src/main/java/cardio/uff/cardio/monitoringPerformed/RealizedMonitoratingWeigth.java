@@ -25,7 +25,7 @@ import cardio.uff.cardio.patiente.activities.MainActivityPatient;
 public class RealizedMonitoratingWeigth implements RealizedMonitorating {
 
     private Context mContext;
-    private static int notificationId = 5698076;
+    private static final int notificationId = 5698076;
 
 
     public RealizedMonitoratingWeigth(Context context) {
@@ -34,9 +34,11 @@ public class RealizedMonitoratingWeigth implements RealizedMonitorating {
 
     @Override
     public void start() {
-        FirebaseHelper.getInstance().
-                getPatientDatabaseReference(getCurrentPatientKey())
-                .addListenerForSingleValueEvent(monitorateWeightRealized);
+        if (getCurrentPatientKey() != null) {
+            FirebaseHelper.getInstance().
+                    getPatientDatabaseReference(getCurrentPatientKey())
+                    .addListenerForSingleValueEvent(monitorateWeightRealized);
+        }
     }
 
     public String getCurrentPatientKey() {

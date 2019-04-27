@@ -29,11 +29,13 @@ public class MedicationMonitorating {
     }
 
     public void start() {
-        FirebaseHelper.getInstance().
-                getPatientDatabaseReference(getCurrentPatientKey()).
-                child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
-                child(FirebaseHelper.MEDICINE_KEY).
-                addValueEventListener(monitorateMedication);
+        if (getCurrentPatientKey() != null) {
+            FirebaseHelper.getInstance().
+                    getPatientDatabaseReference(getCurrentPatientKey()).
+                    child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
+                    child(FirebaseHelper.MEDICINE_KEY).
+                    addValueEventListener(monitorateMedication);
+        }
     }
 
     public String getCurrentPatientKey() {

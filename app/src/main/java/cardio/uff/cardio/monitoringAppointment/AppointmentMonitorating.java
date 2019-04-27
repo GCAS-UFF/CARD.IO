@@ -27,10 +27,12 @@ public class AppointmentMonitorating {
     }
 
     public void start() {
-        FirebaseHelper.appointmentDatabaseReference.
-                orderByChild(FirebaseHelper.APPOINTMENT_PATIENT_KEY).
-                equalTo(getCurrentPatientKey()).
-                addValueEventListener(monitorateAppointments);
+        if (getCurrentPatientKey() != null) {
+            FirebaseHelper.appointmentDatabaseReference.
+                    orderByChild(FirebaseHelper.APPOINTMENT_PATIENT_KEY).
+                    equalTo(getCurrentPatientKey()).
+                    addValueEventListener(monitorateAppointments);
+        }
     }
 
     public String getCurrentPatientKey() {

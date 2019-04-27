@@ -22,9 +22,9 @@ import cardio.uff.cardio.patiente.activities.MainActivityPatient;
 
 public class ThresholdMonitoratingWeigth implements ThreshholdMonitorating{
     private Context mContext;
-    private final int QUANTITY_OF_DAYS_TO_CHECK  = 3;
-    private final int WEIGHT_THRESHOLD = 2;
-    private static int notificationId = 234555;
+    private static final int QUANTITY_OF_DAYS_TO_CHECK  = 3;
+    private static final int WEIGHT_THRESHOLD = 2;
+    private static final int notificationId = 234555;
 
 
     public ThresholdMonitoratingWeigth(Context context) {
@@ -33,12 +33,14 @@ public class ThresholdMonitoratingWeigth implements ThreshholdMonitorating{
 
     @Override
     public void start() {
-        FirebaseHelper.getInstance().
-                getPatientDatabaseReference(getCurrentPatientKey())
-                .child(FirebaseHelper.PERFORMED_ACTION_KEY)
-                .child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY).
-                addValueEventListener(monitorateWeightThreshold);
+        if (getCurrentPatientKey() != null) {
+            FirebaseHelper.getInstance().
+                    getPatientDatabaseReference(getCurrentPatientKey())
+                    .child(FirebaseHelper.PERFORMED_ACTION_KEY)
+                    .child(FirebaseHelper.MEDICAO_DADOS_FISIOLOGICOS_KEY).
+                    addValueEventListener(monitorateWeightThreshold);
 
+        }
     }
 
     public String getCurrentPatientKey() {

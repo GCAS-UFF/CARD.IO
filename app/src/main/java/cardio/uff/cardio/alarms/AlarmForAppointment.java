@@ -42,7 +42,7 @@ public class AlarmForAppointment {
         PendingIntent alarmIntent = PendingIntent.getBroadcast(context, appointment.getNotificationId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Como a consulta é apenas um dia, se cria um alarme sem repetição
-        alarmMgr.set(AlarmManager.RTC_WAKEUP, appointment.getData(), alarmIntent);
+        alarmMgr.set(AlarmManager.RTC_WAKEUP, appointment.getData() - 24*60*60*1000, alarmIntent);
     }
 
 }

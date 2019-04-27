@@ -8,11 +8,13 @@ public class CheckboxListItem extends Item{
 
     private Map<String, Boolean> options;
     private String question;
+    private boolean isRequired;
 
     public CheckboxListItem(Map<String, Boolean> options, String question) {
         super(LayoutConstantes.CHECKBOX_LIST_LAYOUT);
         this.options = options;
         this.question = question;
+        isRequired = true;
     }
 
     public Map<String, Boolean> getOptions() {
@@ -43,8 +45,18 @@ public class CheckboxListItem extends Item{
         return optionsSelecteds;
     }
 
+    public boolean isRequired() {
+        return isRequired;
+    }
+
+    public void setRequired(boolean required) {
+        isRequired = required;
+    }
+
     @Override
     public boolean isEmpty() {
+        if (!isRequired) return false;
+
         for (Map.Entry<String, Boolean> entry : getOptions().entrySet()){
 
             if (entry.getValue()){

@@ -26,16 +26,26 @@ import cardio.uff.cardio.patiente.activities.MainActivityPatient;
 public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
 
     private Context mContext;
-    private static int notificationId = 65786769;
+    private static final int notificationId = 65786769;
 
     public ThresholdMonitoratingLiquid(Context context) {
         this.mContext = context;
     }
 
     public void start(){
-        FirebaseHelper.getInstance().
-        getPatientDatabaseReference(getCurrentPatientKey())
-        .addValueEventListener(monitorateLiquidThreshold);
+        if (getCurrentPatientKey() != null) {
+            FirebaseHelper.getInstance().
+                    getPatientDatabaseReference(getCurrentPatientKey()).
+                    child(FirebaseHelper.RECOMMENDED_ACTION_KEY).
+                    child(FirebaseHelper.ALIMENTACAO_KEY).
+                    addValueEventListener(rootEventListener);
+
+            FirebaseHelper.getInstance().
+                    getPatientDatabaseReference(getCurrentPatientKey()).
+                    child(FirebaseHelper.PERFORMED_ACTION_KEY).
+                    child(FirebaseHelper.ALIMENTACAO_KEY).
+                    addValueEventListener(rootEventListener);
+        }
     }
 
     public String getCurrentPatientKey() {
@@ -129,6 +139,20 @@ public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
             }
         }
     }
+
+    private ValueEventListener rootEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            FirebaseHelper.getInstance().
+                    getPatientDatabaseReference(getCurrentPatientKey())
+                    .addListenerForSingleValueEvent(monitorateLiquidThreshold);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
 
     private ValueEventListener monitorateLiquidThreshold = new ValueEventListener() {
         @Override
