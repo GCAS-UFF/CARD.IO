@@ -144,4 +144,92 @@
         </item>
     </array>
 
+    <!--PATIENT HELP-->
+    <array name="patient_help_titles">
+        <item>Menu</item>
+        <item>Como estou hoje</item>
+        <item>Líquidos ingeridos</item>
+        <item>medicações</item>
+        <item>Consultas</item>
+        <item>Exercícios</item>
+        <item>Orientações</item>
+        <item>Informações</item>
+    </array>
+    <array name="patient_help_descriptions">
+        <item>\u0009Localizado no canto superior direito, o menu está presente em todas as telas do aplicativo, exceto a de logon.
+            \n\u0009Nele há uma única opção: deslogar da sua conta no aplicativo.
+        </item>
+        <item>\u0009Nesta tela, você encontrará uma série de capos a serem preenchidos. São Eles:
+            \n\u0009- Meu peso: onde você colocará seu peso atual em quilogramas (separe as gramas com ponto \".\")
+            \n\u0009- Meus batimentos: onde você informará seus batimentos cardíacos no memento da aferição
+            \n\u0009- Minha pressão arterial: onde você informará sua pressão arterial no seguinto formato: 00x00.
+            \n\u0009- Inchaço: onde você informará a opção que melhor representa seu inchaço
+            \n\u0009- Fadiga: onde você informará a opção que melhor representa sua fadiga</item>
+        <item>\u0009Nesta tela, você encontrará duas listas: recomendações atuais e recomendações antigas e, em cada, terão as recomendações em cada data.
+            \n\u0009Ao clicar na data, você verá mais detalhes sobre a recomendação como data de início, data de fim da recomendação, além da quantidade máxima de líquidos para o dia.
+            \n\u0009Sempre que ingerir um líquido, clique na data e, em seguida, no ícone \"+\". A tela pedirá o nome do líquido ingerido, a quantidade (em unidade), a referência (copo, cálice, etc) e o horário que ingeriu.
+            \n\u0009Ao clicar em \"OK\", a lista atualizará, informando a quantidade total de líquido ingerida até o momento, assim que você atualizar a tela (saindo e voltando).</item>
+        <item>\u0009Nesta tela, você encontrará duas listas: recomendações atuais e recomendações antigas e, em cada, terão as recomendações em cada data.
+            \n\u0009Ao clicar na data, você verá mais detalhes sobre a recomendação como nome do medicamente, dose, quantidade e horários a serem tomados.
+            \n\u0009Sempre que cosumir um medicamento, clique na data e, em seguida, no ícone \"+\". A tela que surgir já estará preenchida com os detalhes da recomendação, exceto o horário de consumo de medicamento.
+            \n\u0009Ao clicar em \"OK\", a lista atualizará assim que você atualizar a tela (saindo e voltando).</item>
+        <item>\u0009Nesta tela, você encontrará duas listas: consultasa futuras e consultas passadas.
+            \n\u0009Ao clicar na data, você verá mais detalhes sobre a(s) consulta(s) como especialidade do profissional de saúde, horário e localização.
+            \n\u0009Sempre que comparecer a uma consulta, clique na data e, em seguida, no ícone \"+\". A tela que surgir já estará preenchida com os detalhes da recomendação, exceto o horário de comparecimento.
+            \n\u0009Ao clicar em \"OK\", a lista atualizará assim que você atualizar a tela (saindo e voltando).</item>
+        <item>\u0009Nesta tela, você encontrará duas listas: recomendações atuais e recomendações antigas e, em cada, terão as recomendações em cada data.
+            \n\u0009Ao clicar na data, você verá mais detalhes sobre a recomendação como exercício a ser realizado, intensidade, duração e frequência diária.
+            \n\u0009Sempre que se exercitar, clique na data e, em seguida, no ícone \"+\". A tela que surgir já estará preenchida com os detalhes da recomendação, exceto o horário de realização. Além disso, informe se houve se houve algum sintoma ao realizar a atividade física.
+            \n\u0009Ao clicar em \"OK\", a lista atualizará assim que você atualizar a tela (saindo e voltando).</item>
+        <item>Nesta tela, você encontrará informações sobre a Insuficiência Cardíaca.</item>
+        <item>Nesta tela, você encontrará informações sobre a concepção do aplicativo e seus colaboradores.</item>
+    </array>
+
+    <!--PROFESSIONAL HELP-->
+    <array name="professional_help_titles">
+        <item>Menu</item>
+        <item>Tela principal</item>
+        <item>Cadastro de paciente</item>
+        <item>Como estou hoje</item>
+        <item>Líquidos ingeridos</item>
+        <item>medicações</item>
+        <item>Consultas</item>
+        <item>Exercícios</item>
+        <item>Orientações</item>
+        <item>Informações</item>
+    </array>
+    <array name="professional_help_descriptions">
+        <item>\u0009Localizado no canto superior direito, o menu está presente em todas as telas do aplicativo, exceto a de logon.
+            \n\u0009Nele há uma única opção: deslogar da sua conta no aplicativo.</item>
+        <item>\u0009Nesta tela, você verá uma lista com todos seus pacientes já cadastrados. Ao clicar sobre o nome, sarão exibidos os dados deste paciente como endereço, CPF, data de nascimento, um botão \"dissociar\", para tirar o paciente da sua lista, e \"abrir\", para ir para o menu do paciente e conseguir recomendar ações e ver histórico de ações realizadas.
+            \n\u0009Além disso, haverá um botão \"Cadastrar paciente\".</item>
+        <item>\u0009Nesta tela, você poderá cadastrar um novo paciente, informando nome, CPF, endereço, data de nascimento e e-mail.
+            \n\u0009Não se esqueça de informar ao paciente que a senha de acesso ao sistema dele será o CPF.</item>
+        <item>\u0009Nesta tela você poderá ver uma lista de ações recomendadas/realizadas organizadas por data. Ao clicar na data, você verá um detalhamento da recomendação daquele dia e das ações realizadas pelo paciente.
+            \n\u0009Você também poderá adicionar uma recomendação, informando a periodicidade diária em que o paciente deverá aferiri seus dados biométricos, além de informar o período da recomendação através da data inicial e final.</item>
+        <item>\u0009Nesta tela, você encontrará duas listas: recomendações atuais e recomendações antigas e, em cada, terão as recomendações em cada data.
+            \n\u0009Ao clicar na data, você verá mais detalhes sobre a recomendação como data de início, data de fim da recomendação, além da quantidade máxima de líquidos para o dia.
+            \n\u0009Caso você queira, há a possibilidade de informar a realização de uma atividade. Basta clicar na data e, em seguida, no ícone \"+\". A tela pedirá o nome do líquido ingerido, a quantidade (em unidade), a referência (copo, cálice, etc) e o horário que ingeriu.
+            \n\u0009Ao clicar em \"OK\", a lista atualizará, informando a quantidade total de líquido ingerida até o momento, assim que você atualizar a tela (saindo e voltando).
+            \n\n\u0009Você pode adicionar novas recomendações clicando em \"Adicionar recomendação\" e informar, na tela que abrirá, a quantidade máxima a ser ingerida (em mililitros) e o período da recomendação.
+        </item>
+        <item>\u0009Nesta tela, você encontrará duas listas: recomendações atuais e recomendações antigas e, em cada, terão as recomendações em cada data.
+            \n\u0009Ao clicar na data, você verá mais detalhes sobre a recomendação como nome do medicamente, dose, quantidade e horários a serem tomados.
+            \n\u0009Caso você queira, há a possibilidade de informar a realização de uma atividade. Basta clicar na data e, em seguida, no ícone \"+\". A tela que surgir já estará preenchida com os detalhes da recomendação, exceto o horário de consumo de medicamento.
+            \n\u0009Ao clicar em \"OK\", a lista atualizará assim que você atualizar a tela (saindo e voltando).
+            \n\n\u0009Você pode adicionar novas recomendações clicando em \"Adicionar recomendação\" e informar, na tela que abrirá, o nome do medicamento, dosagem, frequência diária, observações (se houverem), dentre outros.</item>
+        <item>\u0009Nesta tela, você encontrará duas listas: consultasa futuras e consultas passadas.
+            \n\u0009Ao clicar na data, você verá mais detalhes sobre a(s) consulta(s) como especialidade do profissional de saúde, horário e localização.
+            \n\u0009Caso você queira, há a possibilidade de informar a realização de uma atividade. Basta clicar na data e, em seguida, no ícone \"+\". A tela que surgir já estará preenchida com os detalhes da recomendação, exceto o horário de comparecimento.
+            \n\u0009Ao clicar em \"OK\", a lista atualizará assim que você atualizar a tela (saindo e voltando).
+            \n\n\u0009Você pode adicionar novas recomendações clicando em \"Adicionar recomendação\" e informar, na tela que abrirá, a data da consulta, o horário, endereço e especialidade do profissional de saúde</item>
+        <item>\u0009Nesta tela, você encontrará duas listas: recomendações atuais e recomendações antigas e, em cada, terão as recomendações em cada data.
+            \n\u0009Ao clicar na data, você verá mais detalhes sobre a recomendação como exercício a ser realizado, intensidade, duração e frequência diária.
+            \n\u0009Caso você queira, há a possibilidade de informar a realização de uma atividade. Basta clicar na data e, em seguida, no ícone \"+\". A tela que surgir já estará preenchida com os detalhes da recomendação, exceto o horário de realização. Além disso, informe se houve se houve algum sintoma ao realizar a atividade física.
+            \n\u0009Ao clicar em \"OK\", a lista atualizará assim que você atualizar a tela (saindo e voltando).
+            \n\n\u0009Você pode adicionar novas recomendações clicando em \"Adicionar recomendação\" e informar, na tela que abrirá, a atividade física, a frequência diária, a intensidade, duração e período da recomendação.</item>
+        <item>Nesta tela, você encontrará informações sobre a Insuficiência Cardíaca.</item>
+        <item>Nesta tela, você encontrará informações sobre a concepção do aplicativo e seus colaboradores.</item>
+    </array>
+
 </resources>

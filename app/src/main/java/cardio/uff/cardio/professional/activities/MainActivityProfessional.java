@@ -60,7 +60,6 @@ public class MainActivityProfessional extends AppCompatActivity implements Comun
                 finish();
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
