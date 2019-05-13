@@ -89,6 +89,8 @@ public class MedicineDialogModelImp implements MedicineDialogModel {
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_START_HOUR_KEY).setValue(((Medicamento) recomentation.getAction()).getHorario());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_PROFESSIONAL_KEY).setValue(((Medicamento) recomentation.getAction()).getProfissionalId());
             mDbRef.child(recomentation.getId()).child(FirebaseHelper.PERFORMED_EXECUTED_DATE).setValue((recomentation.getAction()).getExecutedDate());
+            mDbRef.child(recomentation.getId()).child(FirebaseHelper.MEDICINE_INGERIDO).setValue(((Medicamento) recomentation.getAction()).isIngerido());
+
 
             mMedicineDialogPresenter.finishSendRecomendation(true);
         }catch (Exception e){
