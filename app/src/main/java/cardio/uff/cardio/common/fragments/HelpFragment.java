@@ -52,6 +52,7 @@ public class HelpFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycle_view_help);
+        mRecyclerView.setNestedScrollingEnabled(false);
 
         helpList = new ArrayList<>();
         populateHelpList(helpList);

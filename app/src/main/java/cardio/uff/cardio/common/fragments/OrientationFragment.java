@@ -47,6 +47,7 @@ public class OrientationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycle_view_orientations);
+        mRecyclerView.setNestedScrollingEnabled(false);
 
         orientationList = new ArrayList<>();
         populateOrientationList(orientationList);

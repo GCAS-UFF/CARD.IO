@@ -97,6 +97,7 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         super.onViewCreated(view, savedInstanceState);
 
         mRecView = (RecyclerView) view.findViewById(R.id.rec_view);
+        mRecView.setNestedScrollingEnabled(false);
         mBtnCancelar = (Button) view.findViewById(R.id.btn_cancelar);
         mBtnOk = (Button) view.findViewById(R.id.btn_ok);
 

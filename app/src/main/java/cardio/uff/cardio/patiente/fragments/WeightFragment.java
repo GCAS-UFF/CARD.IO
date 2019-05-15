@@ -70,6 +70,7 @@ public class WeightFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mRecView = (RecyclerView) view.findViewById(R.id.rec_view);
+        mRecView.setNestedScrollingEnabled(false);
         mRGFadiga = (RadioGroup) view.findViewById(R.id.rg_fadiga);
         mRGInchaco = (RadioGroup) view.findViewById(R.id.rg_inchaco);
         mButtonSave = (Button) view.findViewById(R.id.btn_save);

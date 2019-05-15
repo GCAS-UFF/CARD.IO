@@ -100,6 +100,8 @@ public class ExerciseDialogFragment extends android.support.v4.app.DialogFragmen
         super.onViewCreated(view, savedInstanceState);
 
         mRecView = (RecyclerView) view.findViewById(R.id.rec_view);
+        mRecView.setNestedScrollingEnabled(false);
+
         mBtnCancel = (Button) view.findViewById(R.id.btn_cancelar);
         mBtnCancel.setOnClickListener(this);
 
