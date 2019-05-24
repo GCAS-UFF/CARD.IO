@@ -17,7 +17,6 @@ public class AlarmForAppointment {
     public final static String PARAM_DATE = "date";
     public final static String PARAM_TITLE = "title";
     public final static String PARAM_CONTENT = "content";
-    public final static String PARAM_ATTENDED = "attended";
 
     private AlarmManager alarmMgr;
 
@@ -39,7 +38,6 @@ public class AlarmForAppointment {
         intent.putExtra(PARAM_DATE, appointment.getData());
         intent.putExtra(PARAM_TITLE, title);
         intent.putExtra(PARAM_CONTENT, content);
-        intent.putExtra(PARAM_ATTENDED, appointment.isAttended());
 
         PendingIntent alarmIntent = PendingIntent.getBroadcast(context, appointment.getNotificationId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 

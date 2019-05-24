@@ -21,7 +21,6 @@ public class Medicamento extends Action {
     private String observacao;
     private Profissional professionalObject;
     private String [] horarios;
-    private boolean ingerido;
 
     private int duration;
 
@@ -115,11 +114,8 @@ public class Medicamento extends Action {
             result.put("Horários: ", horariosStr);
         }
 
-        if (getExecutedDate() > 0)
-            result.put("Ingerido" , ingerido ? "Sim" : "Não");
-
-        result.put("Observação: ", observacao);
-
+        if (getExecutedDate() <= 0)
+            result.put("Observação: ", observacao);
         if (professionalObject != null)
             result.put("Profissional responsável: ", professionalObject.getNome());
 
@@ -128,11 +124,4 @@ public class Medicamento extends Action {
         return result;
     }
 
-    public boolean isIngerido() {
-        return ingerido;
-    }
-
-    public void setIngerido(boolean ingerido) {
-        this.ingerido = ingerido;
-    }
 }

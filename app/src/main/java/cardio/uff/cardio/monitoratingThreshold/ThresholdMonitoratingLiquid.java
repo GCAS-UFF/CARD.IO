@@ -3,7 +3,6 @@ package cardio.uff.cardio.monitoratingThreshold;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -134,7 +133,7 @@ public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
                 String content = mContext.getResources().getString(R.string.message_surpassed_liquid_threshold);
                 NotificationUtils.getInstance().showNotification(mContext, title, content,intent, notificationId);
 
-            } else if (recomended * 0.70 <= performed) {
+            } else if (recomended * 0.75 <= performed) {
                 String content = mContext.getResources().getString(R.string.message_liquid_threshold);
                 NotificationUtils.getInstance().showNotification(mContext, title, content, intent, notificationId);
             }
@@ -147,7 +146,6 @@ public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
             FirebaseHelper.getInstance().
                     getPatientDatabaseReference(getCurrentPatientKey())
                     .addListenerForSingleValueEvent(monitorateLiquidThreshold);
-            Log.d("debug_kelly", "entrei");
         }
 
         @Override

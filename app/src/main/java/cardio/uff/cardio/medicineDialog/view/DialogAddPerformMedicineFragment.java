@@ -16,9 +16,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import cardio.uff.cardio.R;
 import cardio.uff.cardio.common.adapters.ItemRecycleViewAdapter;
@@ -26,7 +24,6 @@ import cardio.uff.cardio.common.model.model.Medicamento;
 import cardio.uff.cardio.common.model.model.Recomentation;
 import cardio.uff.cardio.common.model.view.DateTextBox;
 import cardio.uff.cardio.common.model.view.Item;
-import cardio.uff.cardio.common.model.view.RadioButtonList;
 import cardio.uff.cardio.common.model.view.TextBox;
 import cardio.uff.cardio.common.util.Formater;
 import cardio.uff.cardio.medicineDialog.model.MedicineDialogModelImp;
@@ -48,10 +45,9 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
     private TextBox mNameTextBox;
     private TextBox mDosageTextBox;
     private TextBox mQuantityTextBox;
+    private TextBox mNoteTextBox;
     private TextBox mDateTextBox;
     private DateTextBox mHourTextBox;
-    private RadioButtonList mRadioButtonList;
-    private TextBox mNoteTextBox;
     private Button mBtnCancelar;
     private Button mBtnOk;
     private List<Item> mItems;
@@ -123,15 +119,8 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         mItems.add(mHourTextBox);
 
         mNoteTextBox = new TextBox(getResources().getString(R.string.medicine_note_label), "", TextBox.INPUT_TEXT);
-        mNoteTextBox.setEditable(true);
+        mNoteTextBox.setEditable(false);
         mItems.add(mNoteTextBox);
-
-        Map<String, Boolean> consumo = new HashMap<>();
-        consumo.put("Sim", false);
-        consumo.put("Não", false);
-
-        mRadioButtonList = new RadioButtonList(consumo, "Consumiu?");
-        mItems.add(mRadioButtonList);
 
         mItemRecycleViewAdapter = new ItemRecycleViewAdapter(mItems);
         mItemRecycleViewAdapter.setFragmentManager(getFragmentManager());
@@ -161,12 +150,6 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         medicamento.setDosagem(mDosageTextBox.getValue());
         medicamento.setQuantidade(mQuantityTextBox.getValue());
         medicamento.setObservacao(mNoteTextBox.getValue());
-        if (mRadioButtonList != null && mRadioButtonList.getOptionSelected() != null){
-            if (mRadioButtonList.getOptionSelected().equals("Sim"))
-                medicamento.setIngerido(true);
-            else
-                medicamento.setIngerido(false);
-        }
 
         Recomentation recomentation = new Recomentation();
         recomentation.setAction(medicamento);
@@ -198,6 +181,7 @@ public class DialogAddPerformMedicineFragment extends android.support.v4.app.Dia
         mNameTextBox.setValue(medicamento.getName());
         mDosageTextBox.setValue(medicamento.getDosagem());
         mQuantityTextBox.setValue(medicamento.getQuantidade());
+        mNoteTextBox.setValue(medicamento.getObservacao());
         mDateTextBox.setValue(mDateStr);
 
         mItemRecycleViewAdapter.notifyDataSetChanged();
