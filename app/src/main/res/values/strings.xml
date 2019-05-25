@@ -28,12 +28,12 @@
     <string name="message_weight_threshold">Você teve uma alteração de peso significativa nos últimos dias. \n Procure um profissional de saúde</string>
 
     <!--MONITORING PERFORMED-->
-    <string name="message_excercise_monitoring">Você ainda não cumpriu sua recomendação de exercício hoje!</string>
-    <string name="message_weight_monitoring">Você ainda não cumpriu sua recomendação de dados biométricos hoje!</string>
+    <string name="message_excercise_monitoring">Não se esqueça de se exercitar hoje</string>
+    <string name="message_weight_monitoring">Não se esqueça de nos dizer como você está hoje</string>
 
     <!--MONITORING APPOINTMENT-->
     <string name="message_title_monitoring_appointment">%1$s no dia %2$s</string>
-    <string name="message_content_monitoring_appointment">Você possui uma consulta com %1$s às %2$s em %3$s</string>
+    <string name="message_content_monitoring_appointment">Você possui uma consulta de %1$s às %2$s em %3$s</string>
 
     <!--MONITORING MEDICATION-->
     <string name="message_title_monitoring_medication">%1$s</string>
