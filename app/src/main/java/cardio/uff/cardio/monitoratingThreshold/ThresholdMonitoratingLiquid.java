@@ -133,7 +133,7 @@ public class ThresholdMonitoratingLiquid implements ThreshholdMonitorating{
                 String content = mContext.getResources().getString(R.string.message_surpassed_liquid_threshold);
                 NotificationUtils.getInstance().showNotification(mContext, title, content,intent, notificationId);
 
-            } else if (recomended * 0.75 <= performed) {
+            } else if (recomended * 0.70 <= performed) {
                 String content = mContext.getResources().getString(R.string.message_liquid_threshold);
                 NotificationUtils.getInstance().showNotification(mContext, title, content, intent, notificationId);
             }

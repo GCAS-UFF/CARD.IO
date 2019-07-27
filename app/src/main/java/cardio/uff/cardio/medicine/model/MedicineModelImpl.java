@@ -110,12 +110,18 @@ public class MedicineModelImpl implements MedicineModel {
                     long executedDate = action.getExecutedDate();
                     medicamento.setExecutedDate(executedDate);
                     medicamento.setPerformed(true);
-                    medicamento.setHorarios(getHorarios(medicamento.getHorario(), recomendation.getFrequencyByDay()));
+                    if (medicamento.getExecutedDate() <=  0)
+                        medicamento.setHorarios(getHorarios(medicamento.getHorario(), recomendation.getFrequencyByDay()));
 
                 } catch (Exception e){
                     e.printStackTrace();
                 }
 
+                try {
+                    medicamento.setIngerido(entrySnapshot.child(FirebaseHelper.MEDICINE_INGERIDO).getValue(Boolean.class));
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
 
                 recomendation.setAction(medicamento);
 

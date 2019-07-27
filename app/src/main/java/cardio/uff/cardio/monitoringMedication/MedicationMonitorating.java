@@ -111,7 +111,11 @@ public class MedicationMonitorating {
             if (Formater.compareDateWithCurrentDateWtthoutMinutes(new Date(recomentation.getFinishDate())) >0){
                 alarmForMedication.cancell(mContext, recomentation.getNotificationId());
             } else {
-                alarmForMedication.createAlarm(mContext, recomentation);
+                Medicamento medicamento = (Medicamento) recomentation.getAction();
+                if (medicamento.getHorarios() != null && medicamento.getName()!=null){
+                    alarmForMedication.createAlarm(mContext, recomentation);
+
+                }
             }
         }
     }

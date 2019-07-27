@@ -17,14 +17,17 @@ public class AppointmentBroadcastReceiver extends BroadcastReceiver {
         long date = intent.getLongExtra(AlarmForAppointment.PARAM_DATE, 0);
         String title = intent.getStringExtra(AlarmForAppointment.PARAM_TITLE);
         String content = intent.getStringExtra(AlarmForAppointment.PARAM_CONTENT);
+        boolean attended = intent.getBooleanExtra(AlarmForAppointment.PARAM_ATTENDED, false);
 
-        Intent clickIntent = new Intent(context, MainActivityPatient.class);
-        clickIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        clickIntent.putExtra("trocaTelaHome", R.id.ll_consultas);
-        clickIntent.putExtra("id", id);
-        clickIntent.putExtra("date", date);
 
-        NotificationUtils.getInstance().showNotification(context, title, content, clickIntent, (notificationId-5));
+        if (!attended) {
+            Intent clickIntent = new Intent(context, MainActivityPatient.class);
+            clickIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            clickIntent.putExtra("trocaTelaHome", R.id.ll_consultas);
+            clickIntent.putExtra("id", id);
+            clickIntent.putExtra("date", date);
 
+            NotificationUtils.getInstance().showNotification(context, title, content, clickIntent, (notificationId - 5));
+        }
     }
 }

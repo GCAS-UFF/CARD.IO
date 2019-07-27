@@ -42,6 +42,7 @@ public class FirebaseHelper{
     public static final String MEDICINE_NOTE_KEY = "observação";
     public static final String MEDICINE_START_HOUR_KEY = "horaInicial";
     public static final String MEDICINE_PROFESSIONAL_KEY = "profissionalResponsavel";
+    public static final String MEDICINE_INGERIDO = "ingerido";
     public static final String EXERCISE_NAME_KEY = "name";
     public static final String EXERCISE_INTENSITY_KEY = "intensity";
     public static final String EXERCISE_DURATION_KEY = "duration";
