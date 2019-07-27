@@ -78,7 +78,7 @@ public class MedicationMonitorating {
         return recomentationList;
     }
 
-    private String [] getHorarios (String initialTime, int frequenceByDay){
+    public static String [] getHorarios (String initialTime, int frequenceByDay){
 
         String[] horarios = new String[frequenceByDay];
 

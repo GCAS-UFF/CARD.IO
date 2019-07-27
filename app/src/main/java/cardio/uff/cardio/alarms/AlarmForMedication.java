@@ -14,6 +14,7 @@ import cardio.uff.cardio.R;
 import cardio.uff.cardio.common.model.model.Medicamento;
 import cardio.uff.cardio.common.model.model.Recomentation;
 import cardio.uff.cardio.common.util.Formater;
+import cardio.uff.cardio.monitoringMedication.MedicationMonitorating;
 import cardio.uff.cardio.patiente.activities.MainActivityPatient;
 
 public class AlarmForMedication {
@@ -43,6 +44,10 @@ public class AlarmForMedication {
             intent.putExtra(PARAM_NOTIFICATION_ID, recomentation.getNotificationId());
             intent.putExtra(PARAM_TITLE, title);
             intent.putExtra(PARAM_CONTENT, content);
+            if (medicamento.getHorarios() == null) {
+                medicamento.setHorarios(MedicationMonitorating.
+                        getHorarios(medicamento.getHorario(), recomentation.getFrequencyByDay()));
+            }
             intent.putStringArrayListExtra(PARAM_HORARIOS, new ArrayList<>(Arrays.asList(medicamento.getHorarios())));
 
             PendingIntent alarmIntent = PendingIntent.getBroadcast(context, recomentation.getNotificationId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
