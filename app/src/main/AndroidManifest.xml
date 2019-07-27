@@ -67,6 +67,12 @@
                 <action android:name="cardio.uff.MEDICATION_INTENT"/>
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".alarms.FirebaseSincronizationBroadcastReceiver">
+            <intent-filter>
+                <action android:name="cardio.uff.FIREBASE_SINCRONIZATION"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
