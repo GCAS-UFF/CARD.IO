@@ -24,7 +24,7 @@
                 <LinearLayout
                     android:id="@+id/ll_controle_peso"
                     android:layout_width="@dimen/ll_home_largura"
-                    android:layout_height="@dimen/ll_home_altura"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:background="@drawable/white_button_riple_effect"
                     android:padding="@dimen/padding_icone_home"
@@ -33,7 +33,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_biometric"
+                        android:src="@drawable/ico_biometric"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -47,7 +47,7 @@
                 <LinearLayout
                     android:id="@+id/ll_alimentacao"
                     android:layout_width="@dimen/ll_home_largura"
-                    android:layout_height="@dimen/ll_home_altura"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:background="@drawable/white_button_riple_effect"
                     android:padding="@dimen/padding_icone_home"
@@ -56,12 +56,11 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_liquid"
+                        android:src="@drawable/ico_liquid"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
                         style="@style/HomeText"
-                        android:textSize="15sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/alimentation_title"
@@ -79,7 +78,7 @@
                 <LinearLayout
                     android:id="@+id/ll_medicacoes"
                     android:layout_width="@dimen/ll_home_largura"
-                    android:layout_height="@dimen/ll_home_altura"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:background="@drawable/white_button_riple_effect"
                     android:padding="@dimen/padding_icone_home"
@@ -88,7 +87,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_medicine"
+                        android:src="@drawable/ico_medicine"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -102,7 +101,7 @@
                 <LinearLayout
                     android:id="@+id/ll_consultas"
                     android:layout_width="@dimen/ll_home_largura"
-                    android:layout_height="@dimen/ll_home_altura"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:background="@drawable/white_button_riple_effect"
                     android:padding="@dimen/padding_icone_home"
@@ -111,7 +110,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_appointment"
+                        android:src="@drawable/ico_appointment"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -133,7 +132,7 @@
                 <LinearLayout
                     android:id="@+id/ll_exercicios"
                     android:layout_width="@dimen/ll_home_largura"
-                    android:layout_height="@dimen/ll_home_altura"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:background="@drawable/white_button_riple_effect"
                     android:padding="@dimen/padding_icone_home"
@@ -142,7 +141,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_exercise"
+                        android:src="@drawable/ico_exercise"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -156,7 +155,7 @@
                 <LinearLayout
                     android:id="@+id/ll_orientation"
                     android:layout_width="@dimen/ll_home_largura"
-                    android:layout_height="@dimen/ll_home_altura"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:background="@drawable/white_button_riple_effect"
                     android:padding="@dimen/padding_icone_home"
@@ -165,7 +164,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_orientations"
+                        android:src="@drawable/ico_orientations"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
@@ -187,17 +186,24 @@
                 <LinearLayout
                     android:id="@+id/ll_sobre"
                     android:layout_width="@dimen/ll_home_largura"
-                    android:layout_height="@dimen/ll_home_altura"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:background="@drawable/white_button_riple_effect"
                     android:padding="@dimen/padding_icone_home"
                     android:layout_margin="@dimen/margem_icone_homme">
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_about"
-                        android:layout_gravity="center_horizontal"/>
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ico_about"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
 
                     <TextView
                         style="@style/HomeText"
@@ -210,7 +216,7 @@
                 <LinearLayout
                     android:id="@+id/ll_help"
                     android:layout_width="@dimen/ll_home_largura"
-                    android:layout_height="@dimen/ll_home_altura"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:background="@drawable/white_button_riple_effect"
                     android:padding="@dimen/padding_icone_home"
@@ -219,7 +225,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/danilo_help"
+                        android:src="@drawable/ico_help"
                         android:layout_gravity="center_horizontal"/>
 
                     <TextView
