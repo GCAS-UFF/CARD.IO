@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import cardio.uff.cardio.alarms.AlarmForFirebaseSincronization;
 import cardio.uff.cardio.alarms.AlarmForPerformed;
 import cardio.uff.cardio.alarms.PerformedBroadcastReceiver;
 import cardio.uff.cardio.common.Firebase.FirebaseConfig;
@@ -52,14 +53,8 @@ public class SplashActivity extends AppCompatActivity {
             if (type.equals((new Paciente()).getTipo())) {
                 startActivity(new Intent(this, MainActivityPatient.class));
 
-                ThresholdMonitoratingLiquid thresholdMonitoratingLiquid = new ThresholdMonitoratingLiquid(this);
-                thresholdMonitoratingLiquid.start();
-
-                ThresholdMonitoratingWeigth thresholdMonitoratingWeight = new ThresholdMonitoratingWeigth(this);
-                thresholdMonitoratingWeight.start();
-
-                AlarmForPerformed alarmForPerformed = new AlarmForPerformed();
-                alarmForPerformed.start(this);
+                AlarmForFirebaseSincronization alarmForFirebaseSincronization =  new AlarmForFirebaseSincronization();
+                alarmForFirebaseSincronization.createAlarm(this);
 
             } else {
                 startActivity(new Intent(this, MainActivityProfessional.class));

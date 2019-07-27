@@ -1,15 +1,25 @@
 package cardio.uff.cardio.common.Firebase;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 
+import cardio.uff.cardio.alarms.AlarmForPerformed;
 import cardio.uff.cardio.common.util.Formater;
 import cardio.uff.cardio.common.util.PreferencesUtils;
+import cardio.uff.cardio.monitoratingThreshold.ThresholdMonitoratingLiquid;
+import cardio.uff.cardio.monitoratingThreshold.ThresholdMonitoratingWeigth;
+import cardio.uff.cardio.monitoringAppointment.AppointmentMonitorating;
+import cardio.uff.cardio.monitoringMedication.MedicationMonitorating;
 
 public class FirebaseHelper{
 
@@ -138,6 +148,23 @@ public class FirebaseHelper{
         long dayInMilliseconds = 86400000;
 
         return appointmentDatabaseReference.orderByChild(APPOINTMENT_DATA_KEY).startAt(dateLong);
+    }
+
+    public void sincronize (){
+        ThresholdMonitoratingLiquid thresholdMonitoratingLiquid = new ThresholdMonitoratingLiquid(context);
+        thresholdMonitoratingLiquid.start();
+
+        ThresholdMonitoratingWeigth thresholdMonitoratingWeight = new ThresholdMonitoratingWeigth(context);
+        thresholdMonitoratingWeight.start();
+
+        AlarmForPerformed alarmForPerformed = new AlarmForPerformed();
+        alarmForPerformed.start(context);
+
+        AppointmentMonitorating appointmentMonitorating = new AppointmentMonitorating(context);
+        appointmentMonitorating.start();
+
+        MedicationMonitorating medicationMonitorating = new MedicationMonitorating(context);
+        medicationMonitorating.start();
     }
 
 }

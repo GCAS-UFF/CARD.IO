@@ -4,7 +4,7 @@
     package="cardio.uff.cardio">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
 
     <application
@@ -65,6 +65,12 @@
         <receiver android:name=".alarms.MedicationBroadcastReceiver">
             <intent-filter>
                 <action android:name="cardio.uff.MEDICATION_INTENT"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".alarms.FirebaseSincronizationBroadcastReceiver">
+            <intent-filter>
+                <action android:name="cardio.uff.FIREBASE_SINCRONIZATION"/>
             </intent-filter>
         </receiver>
     </application>
