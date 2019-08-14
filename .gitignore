@@ -17,3 +17,5 @@ app/release/*
 app/debug/*
 .settings/org.eclipse.buildship.core.prefs
 .project
+app/.settings/org.eclipse.buildship.core.prefs
+app/.classpath
