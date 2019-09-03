@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
-
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name="cardio.uff.cardio.common.App"
@@ -30,7 +30,7 @@
         <activity android:name="cardio.uff.cardio.professional.activities.MainActivityProfessional"/>
 
         <!--<meta-data android:name="firebase_messaging_auto_init_enabled"-->
-            <!--android:value="false" />-->
+        <!--android:value="false" />-->
 
         <service android:name="cardio.uff.cardio.common.Firebase.MyFirebaseMessagingService">
             <intent-filter>
@@ -50,27 +50,39 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".alarms.PerformedBroadcastReceiver">
+        <receiver android:name=".alarms.PerformedBroadcastReceiver" android:enabled="true">
             <intent-filter>
                 <action android:name="cardio.uff.PERFORMED_INTENT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".alarms.AppointmentBroadcastReceiver">
+        <receiver android:name=".alarms.AppointmentBroadcastReceiver" android:enabled="true">
             <intent-filter>
                 <action android:name="cardio.uff.APPOINTMENT_INTENT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".alarms.MedicationBroadcastReceiver">
+        <receiver android:name=".alarms.MedicationBroadcastReceiver"  android:enabled="true">
             <intent-filter>
                 <action android:name="cardio.uff.MEDICATION_INTENT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".alarms.FirebaseSincronizationBroadcastReceiver">
+        <receiver android:name=".alarms.FirebaseSincronizationBroadcastReceiver" android:enabled="true">
             <intent-filter>
                 <action android:name="cardio.uff.FIREBASE_SINCRONIZATION"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
     </application>

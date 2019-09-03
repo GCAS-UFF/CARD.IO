@@ -31,14 +31,18 @@ public class ItemExpandableListAdapter extends RecyclerView.Adapter<ItemExpandab
     }
 
     public void addPacient (Paciente paciente){
-        for (Paciente p : mPatientsList){
-            if (p.getId() != null && p.getId().equals(paciente.getId())){
-                mPatientsList.remove(p);
+        try {
+            for (Paciente p : mPatientsList) {
+                if (p.getId() != null && p.getId().equals(paciente.getId())) {
+                    mPatientsList.remove(p);
+                }
             }
+            mPatientsList.add(paciente);
+            sortByName();
+            notifyDataSetChanged();
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        mPatientsList.add(paciente);
-        sortByName();
-        notifyDataSetChanged();
     }
 
     private void sortByName (){
