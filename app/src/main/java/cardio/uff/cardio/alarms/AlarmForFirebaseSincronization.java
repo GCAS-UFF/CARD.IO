@@ -14,7 +14,7 @@ public class AlarmForFirebaseSincronization {
 
 
     private final int id = 567;
-    private final long interval = 60*60*1000;
+    private final long interval = 1*60*1000;
     private AlarmManager alarmMgr;
     private long initialTime;
 
